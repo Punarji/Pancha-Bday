@@ -50,7 +50,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 .birthday-blast{position:fixed;inset:0;z-index:90;display:none;place-items:center;background:rgba(255,125,180,.18);pointer-events:none}.birthday-blast.show{display:grid;animation:blastFade 2.2s forwards}.blast-text{font-family:Pacifico,cursive;font-size:clamp(35px,9vw,90px);text-align:center;color:#fff;text-shadow:0 0 15px #ff4f9c,0 0 45px #ff4f9c;animation:blastText 1.7s ease-out}@keyframes blastText{0%{transform:scale(.1);opacity:0}35%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:0}}@keyframes blastFade{0%{opacity:1}100%{opacity:0}}
 .site{display:none}.site.show{display:block}.top-pill{border:0;cursor:pointer;font-family:inherit}.main-memory-photo{width:min(100%,520px);max-height:60vh;object-fit:contain;border-radius:22px;border:3px solid #fff;box-shadow:0 18px 45px rgba(207,83,139,.16)}.photo-fallback{display:none;min-height:300px;border:2px dashed #ff9fc5;border-radius:20px;background:#fff;place-items:center;padding:30px;color:#e9659c}.photo-fallback span{font-size:60px}.photo-fallback small{display:block}.song-note{font-size:13px;color:#947d89}
 
-/* Pig intro animation styles */
+/* Pig intro animation styles with walking/running entrance */
 .hide-init {
   display: none !important;
 }
@@ -73,22 +73,24 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 }
 
 .pig-container {
-  position: relative;
+  position: absolute;
+  right: -150px;
   text-align: center;
   cursor: pointer;
-  animation: runInFromRight 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: walkToMiddle 2.2s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
 
 .pig-character {
   font-size: 90px;
-  animation: bouncePig 0.6s infinite alternate;
+  display: inline-block;
+  animation: walkBounce 0.35s infinite alternate ease-in-out;
   filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
   user-select: none;
 }
 
 .thought-bubble {
   position: absolute;
-  bottom: 110px;
+  bottom: 115px;
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
@@ -102,7 +104,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   max-width: 280px;
   text-align: center;
   border: 2px solid #ff9bc3;
-  animation: fadeInBubble 0.5s ease 1.2s forwards;
+  animation: fadeInBubble 0.5s ease 1.8s forwards;
   opacity: 0;
 }
 
@@ -119,21 +121,27 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   width: 0;
 }
 
-@keyframes runInFromRight {
+@keyframes walkToMiddle {
   0% {
-    transform: translateX(120vw);
+    right: -150px;
+    transform: scaleX(-1);
+  }
+  70% {
+    right: calc(50% - 45px);
+    transform: scaleX(-1);
   }
   100% {
-    transform: translateX(0);
+    right: calc(50% - 45px);
+    transform: scaleX(1);
   }
 }
 
-@keyframes bouncePig {
+@keyframes walkBounce {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) rotate(-5deg);
   }
   100% {
-    transform: translateY(-20px);
+    transform: translateY(-15px) rotate(5deg);
   }
 }
 
