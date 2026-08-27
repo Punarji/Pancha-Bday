@@ -14,10 +14,13 @@ const progressBar=document.getElementById('progressBar');
 const finalScreen=document.getElementById('finalScreen');
 const replay=document.getElementById('replay');
 
-// Pig Intro Elements
+// Cloud Intro Elements & Calendar Elements
 const pigScreen = document.getElementById('pigScreen');
-const pigContainer = document.getElementById('pigContainer');
+const cloudsIntroWrapper = document.getElementById('cloudsIntroWrapper');
 const pigThought = document.getElementById('pigThought');
+const dateButton = document.getElementById('dateButton');
+const calendarModal = document.getElementById('calendarModal');
+const closeCalendar = document.getElementById('closeCalendar');
 
 const opened=new Set();
 let backgroundAudio=new Audio('assets/perfect-instrumental.mp3');
@@ -28,19 +31,28 @@ function confetti(n=70){const s=['💗','✨','🌸','♡','🎀','🎂'];for(le
 function hearts(){const b=document.getElementById('heartsBg');if(!b)return;let e=document.createElement('div');e.className='float-heart';e.textContent=['♡','💗','✦','🌸'][Math.floor(Math.random()*4)];e.style.left=Math.random()*100+'%';e.style.bottom='-20px';e.style.fontSize=14+Math.random()*22+'px';e.style.animationDuration=7+Math.random()*7+'s';b.appendChild(e);setTimeout(()=>e.remove(),15000)}
 setInterval(hearts,900);
 
-// Pig Walking & Interaction Logic
+// Slowed down thought text update
 setTimeout(() => {
-  pigThought.textContent = "Click me! ✨";
-}, 2500);
+  pigThought.textContent = "Click the clouds to open! ✨";
+}, 3500);
 
-pigContainer.addEventListener('click', () => {
-  let secretCode = prompt("Enter the secret code to open the gift:");
-  if (secretCode === "0906") {
+// Cloud Opening Interaction
+cloudsIntroWrapper.addEventListener('click', () => {
+  cloudsIntroWrapper.classList.add('opened');
+  setTimeout(() => {
     pigScreen.classList.add('hide');
     candleScreen.classList.remove('hide-init');
-  } else if (secretCode !== null) {
-    alert("Incorrect secret code! Try again 🐷");
-  }
+  }, 1000);
+});
+
+// Date Button Calendar Modal Logic
+dateButton.addEventListener('click', () => {
+  calendarModal.classList.add('show');
+  confetti(25);
+});
+closeCalendar.addEventListener('click', () => calendarModal.classList.remove('show'));
+calendarModal.addEventListener('click', (e) => {
+  if (e.target === calendarModal) calendarModal.classList.remove('show');
 });
 
 candleButton.addEventListener('click',()=>{candleButton.classList.add('off');blast.classList.add('show');confetti(140);setTimeout(()=>{candleScreen.classList.add('hide');site.classList.add('show');startBackground()},1300)});
@@ -52,4 +64,4 @@ function closeGift(){let a=document.getElementById('songPlayer');if(a)a.pause();
 closeModal.addEventListener('click',closeGift);modal.addEventListener('click',e=>{if(e.target===modal)closeGift()});
 function setupSong(){stopBackground();let a=document.getElementById('songPlayer'),r=document.querySelector('.record');a.addEventListener('play',()=>r.classList.add('playing'));a.addEventListener('pause',()=>r.classList.remove('playing'));a.addEventListener('ended',()=>r.classList.remove('playing'));a.addEventListener('error',()=>{document.querySelector('.song-note').textContent='Add your legally obtained audio as assets/thinking-out-loud.mp3 to enable this gift.'});a.play().catch(()=>{})}
 replay.addEventListener('click',()=>{finalScreen.classList.remove('show');opened.clear();gifts.forEach(g=>g.classList.remove('opened'));openedCount.textContent='0';progressBar.style.width='0%';startBackground()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){photoModal.classList.remove('show');if(modal.classList.contains('show'))closeGift()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){photoModal.classList.remove('show');calendarModal.classList.remove('show');if(modal.classList.contains('show'))closeGift()}});
