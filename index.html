@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ff7eb6" />
+  <title>For My Pancha 💗</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section class="candle-screen" id="candleScreen">
+    <div class="candle-card">
+      <p class="tiny">A little birthday surprise for you...</p>
+      <h1>Make a wish, Suduu 💗</h1>
+      <p class="candle-note">Tap the glowing candle. ✨</p>
+      <button class="candle-button" id="candleButton" aria-label="Light off the birthday candle">
+        <span class="flame"><i></i></span><span class="candle-body"></span><span class="candle-base"></span>
+      </button>
+      <p class="tap-hint">🕯️ Click the candle</p>
+    </div>
+  </section>
+  <div class="birthday-blast" id="blast"><div class="blast-text">HAPPY BIRTHDAY! 🎂💗</div></div>
+  <div class="site" id="site">
+  <div class="sky">
+    <div class="cloud cloud-1"></div><div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="stars"></div>
+    <div class="hearts-bg" id="heartsBg"></div>
+  </div>
+
+  <main class="app">
+    <header class="hero">
+      <button class="top-pill" id="photoButton">🐷 For my Pancha 🐷</button>
+      <div class="date-pill">🎂 06.09.2026</div>
+      <p class="small-title">Happy Birthday</p>
+      <h1>Suduu</h1>
+      <div class="nickname">♡ My loving Panchoo ♡</div>
+      <p class="intro">I made three little gifts for the girl who is like the sky to me. ☁️💗<br>
+        <span>Open them one by one...</span></p>
+    </header>
+
+    <section class="gifts" aria-label="Three birthday gifts">
+      <button class="gift-card" data-gift="message" aria-label="Open sweet message">
+        <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
+        <strong>💌 A Sweet Message</strong><small>Open me first</small>
+      </button>
+
+      <button class="gift-card" data-gift="memories" aria-label="Open memories">
+        <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
+        <strong>📸 Our Memories</strong><small>A little photo surprise</small>
+      </button>
+
+      <button class="gift-card" data-gift="song" aria-label="Open song">
+        <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
+        <strong>🎵 A Song For You</strong><small>One song, just for you</small>
+      </button>
+    </section>
+
+    <div class="progress-wrap">
+      <div class="progress-text"><span id="openedCount">0</span> / 3 gifts opened 💗</div>
+      <div class="progress"><span id="progressBar"></span></div>
+    </div>
+
+    <section class="message-panel" id="finalHint">
+      <div class="panel-heart">♡</div>
+      <p>Three little gifts. One very special girl. 🌸</p>
+      <small>Take your time, Panchoo. There is a little surprise waiting at the end. ✨</small>
+    </section>
+  </main>
+  </div>
+
+  <div class="modal" id="photoModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="close" id="closePhoto" aria-label="Close">×</button>
+      <div class="modal-icon">🐷💕</div><h2>Our Little World</h2>
+      <p class="modal-sub">A photo just for us. 💗</p>
+      <img class="main-memory-photo" src="assets/our-photo.jpg" alt="Our photo" onerror="this.style.display='none';document.getElementById('photoFallback').style.display='grid'">
+      <div class="photo-fallback" id="photoFallback"><span>📸</span><b>Add your photo here</b><small>Replace <code>assets/our-photo.jpg</code> with your photo.</small></div>
+    </div>
+  </div>
+
+  <div class="modal" id="photoModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="close" id="closePhoto" aria-label="Close">×</button>
+      <div class="modal-icon">🐷💕</div><h2>Our Little World</h2>
+      <p class="modal-sub">A photo just for us. 💗</p>
+      <img class="main-memory-photo" src="assets/our-photo.jpg" alt="Our photo" onerror="this.style.display='none';document.getElementById('photoFallback').style.display='grid'">
+      <div class="photo-fallback" id="photoFallback"><span>📸</span><b>Add your photo here</b><small>Replace <code>assets/our-photo.jpg</code> with your photo.</small></div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="close" id="closeModal" aria-label="Close">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="final-screen" id="finalScreen" aria-hidden="true">
+    <div class="final-card">
+      <div class="big-heart">💗</div>
+      <p class="final-kicker">You opened all three...</p>
+      <h2>Happy 25th Birthday,<br><span>My loving Panchoo 🎂✨</span></h2>
+      <p><b>Keep smiling, my Sweetest Angry bird 💗</b></p>
+      <p>You are my little piece of sky — beautiful, bright, and impossible not to smile at. ☁️🌸</p>
+      <p class="signature">With lots of love,<br><b>your ura 🐷💕</b></p>
+      <button class="replay" id="replay">Replay the surprise ↻</button>
+    </div>
+  </div>
+
+  <template id="messageTemplate">
+    <div class="modal-icon">💌</div>
+    <h2>For my Pancha</h2>
+    <div class="letter">
+      <p><b>Happy 25th Birthday, Suduu! 🌸💕</b></p>
+      <p>You are like the sky to me — sometimes calm, sometimes full of colors, but always beautiful in your own way. ☁️🌷</p>
+      <p>Thank you for being my Pancha, my favorite person, and the one who always calls me <b>“ura” 🐷😂</b>.</p>
+      <p>I hope this new year of your life brings you endless happiness, beautiful moments, and everything your heart wishes for.</p>
+      <p><b>Keep smiling, my Sweetest Angry bird 💗</b></p><p><b>Happy 25th Birthday, My loving Panchoo 🎂✨</b></p>
+    </div>
+  </template>
+
+  <template id="memoriesTemplate">
+    <div class="modal-icon">📸</div><h2>Our Little Memories</h2>
+    <p class="modal-sub">Three moments I want to keep close. 💗</p>
+    <div class="photos">
+      <img src="assets/photo1.jpg" alt="Memory 1" onerror="this.src='assets/placeholder.svg'">
+      <img src="assets/photo2.jpg" alt="Memory 2" onerror="this.src='assets/placeholder.svg'">
+      <img src="assets/photo3.jpg" alt="Memory 3" onerror="this.src='assets/placeholder.svg'">
+    </div>
+  </template>
+
+  <template id="songTemplate">
+    <div class="modal-icon">🎵</div><h2>A Song For You</h2>
+    <p class="modal-sub">Thinking Out Loud — Ed Sheeran 💗</p>
+    <div class="record"><div class="record-center">♡</div></div>
+    <audio id="songPlayer" controls preload="metadata"><source src="assets/thinking-out-loud.mp3" type="audio/mpeg"></audio>
+    <p class="song-note">Add your legally obtained audio as <code>assets/thinking-out-loud.mp3</code> to enable this gift.</p>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
