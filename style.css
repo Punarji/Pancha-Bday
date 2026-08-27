@@ -45,12 +45,100 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 .confetti{position:fixed;z-index:50;width:9px;height:14px;top:-20px;animation:confetti 2.8s linear forwards;pointer-events:none}@keyframes confetti{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
 @media(max-width:700px){.app{padding-top:18px}.top-pill,.date-pill{position:static;display:inline-block;margin:4px}.small-title{margin-top:32px}.gifts{grid-template-columns:1fr;gap:15px}.gift-card{display:grid;grid-template-columns:145px 1fr;align-items:center;text-align:left;padding:12px}.gift-box{width:145px;height:125px;transform:scale(.78);transform-origin:center}.gift-card strong,.gift-card small{grid-column:2}.gift-card strong{margin-top:-65px}.gift-card small{margin-top:-25px}.photos{grid-template-columns:1fr}.modal-card{padding:28px 18px}.final-card h2{font-size:32px}}
 
-/* Version 2: candle opening, photo button and hosted audio */
+/* Candle opening and hosted audio */
 .candle-screen{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 40%,#ffeaf5 0,#f7b9d4 28%,#302035 100%);display:grid;place-items:center;overflow:hidden;transition:opacity 1s,transform 1s}.candle-screen.hide{opacity:0;transform:scale(1.08);pointer-events:none}.candle-card{text-align:center;color:#fff;padding:30px}.candle-card h1{font-family:Pacifico,cursive;font-size:clamp(35px,7vw,60px);margin:5px 0;color:#fff;text-shadow:0 0 20px #ff8fbe}.candle-note{font-size:19px}.tiny{font-size:18px;opacity:.9}.tap-hint{opacity:.85}.candle-button{position:relative;width:150px;height:260px;border:0;background:transparent;cursor:pointer;margin:12px auto 0;display:block}.candle-body{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);width:72px;height:155px;border-radius:10px 10px 18px 18px;background:linear-gradient(90deg,#ffd3e5,#fff,#ffb8d4);box-shadow:0 0 35px rgba(255,185,215,.65)}.candle-base{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:105px;height:22px;border-radius:50%;background:#ff9bc3;box-shadow:0 0 30px #ff9bc3}.flame{position:absolute;z-index:2;left:50%;top:26px;transform:translateX(-50%);width:40px;height:65px;border-radius:55% 45% 60% 40%;background:#fff1a8;box-shadow:0 0 15px #fff,0 0 45px #ff8cba,0 0 85px #ff6aa8;animation:flicker .13s infinite alternate}.flame i{display:block;width:18px;height:34px;background:#fff;border-radius:50%;margin:17px auto}.candle-button.off .flame{animation:none;opacity:0;transform:translateX(-50%) scale(.1)}@keyframes flicker{to{transform:translateX(-50%) rotate(3deg) scale(1.04)}}
 .birthday-blast{position:fixed;inset:0;z-index:90;display:none;place-items:center;background:rgba(255,125,180,.18);pointer-events:none}.birthday-blast.show{display:grid;animation:blastFade 2.2s forwards}.blast-text{font-family:Pacifico,cursive;font-size:clamp(35px,9vw,90px);text-align:center;color:#fff;text-shadow:0 0 15px #ff4f9c,0 0 45px #ff4f9c;animation:blastText 1.7s ease-out}@keyframes blastText{0%{transform:scale(.1);opacity:0}35%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:0}}@keyframes blastFade{0%{opacity:1}100%{opacity:0}}
 .site{display:none}.site.show{display:block}.top-pill{border:0;cursor:pointer;font-family:inherit}.main-memory-photo{width:min(100%,520px);max-height:60vh;object-fit:contain;border-radius:22px;border:3px solid #fff;box-shadow:0 18px 45px rgba(207,83,139,.16)}.photo-fallback{display:none;min-height:300px;border:2px dashed #ff9fc5;border-radius:20px;background:#fff;place-items:center;padding:30px;color:#e9659c}.photo-fallback span{font-size:60px}.photo-fallback small{display:block}.song-note{font-size:13px;color:#947d89}
 
-/* Version 2: candle opening, photo button and hosted audio */
-.candle-screen{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 40%,#ffeaf5 0,#f7b9d4 28%,#302035 100%);display:grid;place-items:center;overflow:hidden;transition:opacity 1s,transform 1s}.candle-screen.hide{opacity:0;transform:scale(1.08);pointer-events:none}.candle-card{text-align:center;color:#fff;padding:30px}.candle-card h1{font-family:Pacifico,cursive;font-size:clamp(35px,7vw,60px);margin:5px 0;color:#fff;text-shadow:0 0 20px #ff8fbe}.candle-note{font-size:19px}.tiny{font-size:18px;opacity:.9}.tap-hint{opacity:.85}.candle-button{position:relative;width:150px;height:260px;border:0;background:transparent;cursor:pointer;margin:12px auto 0;display:block}.candle-body{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);width:72px;height:155px;border-radius:10px 10px 18px 18px;background:linear-gradient(90deg,#ffd3e5,#fff,#ffb8d4);box-shadow:0 0 35px rgba(255,185,215,.65)}.candle-base{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:105px;height:22px;border-radius:50%;background:#ff9bc3;box-shadow:0 0 30px #ff9bc3}.flame{position:absolute;z-index:2;left:50%;top:26px;transform:translateX(-50%);width:40px;height:65px;border-radius:55% 45% 60% 40%;background:#fff1a8;box-shadow:0 0 15px #fff,0 0 45px #ff8cba,0 0 85px #ff6aa8;animation:flicker .13s infinite alternate}.flame i{display:block;width:18px;height:34px;background:#fff;border-radius:50%;margin:17px auto}.candle-button.off .flame{animation:none;opacity:0;transform:translateX(-50%) scale(.1)}@keyframes flicker{to{transform:translateX(-50%) rotate(3deg) scale(1.04)}}
-.birthday-blast{position:fixed;inset:0;z-index:90;display:none;place-items:center;background:rgba(255,125,180,.18);pointer-events:none}.birthday-blast.show{display:grid;animation:blastFade 2.2s forwards}.blast-text{font-family:Pacifico,cursive;font-size:clamp(35px,9vw,90px);text-align:center;color:#fff;text-shadow:0 0 15px #ff4f9c,0 0 45px #ff4f9c;animation:blastText 1.7s ease-out}@keyframes blastText{0%{transform:scale(.1);opacity:0}35%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:0}}@keyframes blastFade{0%{opacity:1}100%{opacity:0}}
-.site{display:none}.site.show{display:block}.top-pill{border:0;cursor:pointer;font-family:inherit}.main-memory-photo{width:min(100%,520px);max-height:60vh;object-fit:contain;border-radius:22px;border:3px solid #fff;box-shadow:0 18px 45px rgba(207,83,139,.16)}.photo-fallback{display:none;min-height:300px;border:2px dashed #ff9fc5;border-radius:20px;background:#fff;place-items:center;padding:30px;color:#e9659c}.photo-fallback span{font-size:60px}.photo-fallback small{display:block}.song-note{font-size:13px;color:#947d89}
+/* Pig intro animation styles */
+.hide-init {
+  display: none !important;
+}
+
+.pig-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: radial-gradient(circle at 50% 40%, #ffeaf5 0, #f7b9d4 28%, #302035 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.8s ease;
+}
+
+.pig-screen.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pig-container {
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  animation: runInFromRight 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.pig-character {
+  font-size: 90px;
+  animation: bouncePig 0.6s infinite alternate;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+  user-select: none;
+}
+
+.thought-bubble {
+  position: absolute;
+  bottom: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #463744;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(207, 83, 139, 0.3);
+  width: max-content;
+  max-width: 280px;
+  text-align: center;
+  border: 2px solid #ff9bc3;
+  animation: fadeInBubble 0.5s ease 1.2s forwards;
+  opacity: 0;
+}
+
+.thought-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: #fff transparent;
+  display: block;
+  width: 0;
+}
+
+@keyframes runInFromRight {
+  0% {
+    transform: translateX(120vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes bouncePig {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeInBubble {
+  to {
+    opacity: 1;
+  }
+}
