@@ -24,11 +24,11 @@ let backgroundAudio=new Audio('assets/perfect-instrumental.mp3');
 backgroundAudio.loop=true;backgroundAudio.volume=.42;let bgStarted=false;
 function startBackground(){backgroundAudio.play().then(()=>bgStarted=true).catch(()=>{});}
 function stopBackground(){backgroundAudio.pause();backgroundAudio.currentTime=0;}
-function confetti(n=70){const s=['💗','✨','🌸','♡','🎀','🎂'];for(let i=0;i<n;i++){let e=document.createElement('div');e.className='confetti';e.textContent=s[Math.floor(Math.random()*s.length)];e.style.left=Math.random()*100+'vw';e.style.fontSize=(10+Math.random()*20)+'px';e.style.animationDelay=Math.random()*.6+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),3500)}}
+function confetti(n=70){const s=['💗','✨','🌸','♡','🎀','🎂'];for(let i=0;i<n;i++){let e=document.createElement('div');e.className='confetti';e.textContent=s[Math.floor(Math.random()*s.length)];e.style.left=Math.random()*100+'vw';e.style.fontSize=(10+Math.random()*20)+'px';e.style.animationDelay=Math.random()*0.6+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),3500)}}
 function hearts(){const b=document.getElementById('heartsBg');if(!b)return;let e=document.createElement('div');e.className='float-heart';e.textContent=['♡','💗','✦','🌸'][Math.floor(Math.random()*4)];e.style.left=Math.random()*100+'%';e.style.bottom='-20px';e.style.fontSize=14+Math.random()*22+'px';e.style.animationDuration=7+Math.random()*7+'s';b.appendChild(e);setTimeout(()=>e.remove(),15000)}
 setInterval(hearts,900);
 
-// Pig Interaction Logic
+// Pig Walking & Interaction Logic
 setTimeout(() => {
   pigThought.textContent = "Click me! ✨";
 }, 2500);
