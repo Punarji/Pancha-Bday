@@ -12,12 +12,12 @@
 </head>
 <body>
 
-  <!-- STEP 1: CLOUD OPENING INTRO WITH "HI" -->
+  <!-- STEP 1: CLOUD OPENING INTRO WITH CLOUDY HI & HIDDEN BEHIND -->
   <section class="pig-screen" id="pigScreen">
     <div class="clouds-intro-wrapper" id="cloudsIntroWrapper">
-      <div class="cloud-intro-title" id="cloudIntroTitle">HI! ☁️💗</div>
+      <div class="cloud-intro-title" id="cloudIntroTitle">HI</div>
       
-      <!-- Pig sequence container behind clouds -->
+      <!-- Pig sequence container hidden safely behind clouds initially -->
       <div class="pig-intro-stage" id="pigIntroStage">
         <div class="thought-bubble" id="pigThought">Hmmmm what a speacial day is today... 💭</div>
         <div class="pig-character-walk">
@@ -31,11 +31,10 @@
 
       <div class="big-intro-cloud cloud-left" id="cloudLeft"></div>
       <div class="big-intro-cloud cloud-right" id="cloudRight"></div>
-      <div class="cloud-tap-hint" id="cloudTapHint">☁️ Click the clouds! ☁️</div>
     </div>
   </section>
 
-  <!-- STEP 2: FADED CANDLE SHOWING STEP BY STEP -->
+  <!-- STEP 2: FADED CANDLE SHOWING STEP BY STEP (NO TAP HINT) -->
   <section class="candle-screen hide-init" id="candleScreen">
     <div class="candle-card">
       <p class="tiny">A little birthday surprise for you...</p>
@@ -44,7 +43,6 @@
       <button class="candle-button" id="candleButton" aria-label="Light off the birthday candle">
         <span class="flame"><i></i></span><span class="candle-body"></span><span class="candle-base"></span>
       </button>
-      <p class="tap-hint">🕯️ Tap the glowing candle</p>
     </div>
   </section>
 
@@ -112,7 +110,7 @@
     </div>
   </div>
 
-  <!-- CORRECTED SEPTEMBER 2026 CALENDAR (SEPTEMBER 6 IS SUNDAY) -->
+  <!-- SEPTEMBER 2026 CALENDAR (SEPTEMBER 1 IS TUESDAY, SEP 6 IS SUNDAY) -->
   <div class="modal" id="calendarModal" aria-hidden="true">
     <div class="modal-card calendar-card-box">
       <button class="close" id="closeCalendar" aria-label="Close">×</button>
@@ -124,12 +122,12 @@
           <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
         </div>
         <div class="cal-grid">
-          <!-- September 2026 starts on a Tuesday: Aug 30, 31 faded, Sep 1 is Tuesday -->
-          <span class="fade-day">30</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span class="special-birthday-date">6 👑🎂</span>
-          <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
-          <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
-          <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
-          <span>28</span><span>29</span><span>30</span><span class="fade-day">1</span><span class="fade-day">2</span><span class="fade-day">3</span><span class="fade-day">4</span>
+          <!-- September 2026 starts on Tuesday: Aug 30,31 faded, Sep 1 is Tuesday -->
+          <span class="fade-day">30</span><span class="fade-day">31</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+          <span class="special-birthday-date">6 👑🎂</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
+          <span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
+          <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
+          <span>27</span><span>28</span><span>29</span><span>30</span><span class="fade-day">1</span><span class="fade-day">2</span><span class="fade-day">3</span>
         </div>
       </div>
       <p class="cal-note">✨ September 6th (Sunday): Suduu's Birthday! ✨</p>
