@@ -15,7 +15,8 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .app{width:min(980px,92vw);margin:auto;padding:28px 0 60px}
 .hero{text-align:center;position:relative}
 .top-pill,.date-pill{position:absolute;top:0;background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.8);padding:9px 18px;border-radius:999px;box-shadow:0 8px 25px rgba(211,89,139,.1);font-weight:700;color:#ee4f92}
-.top-pill{left:0}.date-pill{right:0}
+.top-pill{left:0}.date-pill{right:0; cursor:pointer; font-family:inherit; transition: transform 0.2s;}
+.date-pill:hover{transform: scale(1.05); background: rgba(255,255,255,.9);}
 .small-title{margin:62px 0 0;font-size:18px}.hero h1{font-family:Pacifico,cursive;color:#f44e95;font-size:clamp(54px,10vw,92px);line-height:1;margin:6px 0;text-shadow:0 5px 0 rgba(255,255,255,.8)}
 .nickname{display:inline-block;background:#ff6fae;color:#fff;padding:5px 30px;border-radius:12px;transform:rotate(-1deg);font-weight:700;font-size:20px}
 .intro{margin:24px auto 28px;max-width:650px;font-size:20px;line-height:1.45}.intro span{color:#f14f94;font-weight:700}
@@ -50,7 +51,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 .birthday-blast{position:fixed;inset:0;z-index:90;display:none;place-items:center;background:rgba(255,125,180,.18);pointer-events:none}.birthday-blast.show{display:grid;animation:blastFade 2.2s forwards}.blast-text{font-family:Pacifico,cursive;font-size:clamp(35px,9vw,90px);text-align:center;color:#fff;text-shadow:0 0 15px #ff4f9c,0 0 45px #ff4f9c;animation:blastText 1.7s ease-out}@keyframes blastText{0%{transform:scale(.1);opacity:0}35%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:0}}@keyframes blastFade{0%{opacity:1}100%{opacity:0}}
 .site{display:none}.site.show{display:block}.top-pill{border:0;cursor:pointer;font-family:inherit}.main-memory-photo{width:min(100%,520px);max-height:60vh;object-fit:contain;border-radius:22px;border:3px solid #fff;box-shadow:0 18px 45px rgba(207,83,139,.16)}.photo-fallback{display:none;min-height:300px;border:2px dashed #ff9fc5;border-radius:20px;background:#fff;place-items:center;padding:30px;color:#e9659c}.photo-fallback span{font-size:60px}.photo-fallback small{display:block}.song-note{font-size:13px;color:#947d89}
 
-/* Pig intro animation styles with walking/running entrance */
+/* CLOUD OPENING INTRO & HEDGING PIG WITH LEGS & CIRCLE WALKING */
 .hide-init {
   display: none !important;
 }
@@ -59,53 +60,213 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   position: fixed;
   inset: 0;
   z-index: 150;
-  background: radial-gradient(circle at 50% 40%, #ffeaf5 0, #f7b9d4 28%, #302035 100%);
+  background: radial-gradient(circle at 50% 40%, #fff4f8 0, #ffd1e8 40%, #f6b6d8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: opacity 0.8s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .pig-screen.hide {
   opacity: 0;
+  transform: scale(1.1);
   pointer-events: none;
 }
 
-.pig-container {
-  position: absolute;
-  right: -150px;
-  text-align: center;
+.clouds-intro-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  animation: walkToMiddle 2.2s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
 
-.pig-character {
-  font-size: 90px;
-  display: inline-block;
-  animation: walkBounce 0.35s infinite alternate ease-in-out;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+/* Big cute familiar background clouds */
+.big-intro-cloud {
+  position: absolute;
+  width: 380px;
+  height: 130px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 100px;
+  box-shadow: 0 15px 40px rgba(207, 83, 139, 0.2);
+  transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 5;
+}
+
+.big-intro-cloud:before, .big-intro-cloud:after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.big-intro-cloud:before {
+  width: 160px;
+  height: 160px;
+  left: 60px;
+  top: -70px;
+}
+
+.big-intro-cloud:after {
+  width: 200px;
+  height: 200px;
+  right: 50px;
+  top: -95px;
+}
+
+.cloud-left {
+  left: calc(50% - 370px);
+}
+
+.cloud-right {
+  right: calc(50% - 370px);
+}
+
+/* When clouds open */
+.clouds-intro-wrapper.opened .cloud-left {
+  transform: translateX(-120vw);
+}
+
+.clouds-intro-wrapper.opened .cloud-right {
+  transform: translateX(120vw);
+}
+
+.clouds-intro-wrapper.opened .cloud-tap-hint,
+.clouds-intro-wrapper.opened .pig-hidden-box {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.cloud-tap-hint {
+  position: absolute;
+  bottom: 22%;
+  background: rgba(255, 255, 255, 0.85);
+  color: #f14f94;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 18px;
+  box-shadow: 0 8px 25px rgba(211, 89, 139, 0.2);
+  z-index: 10;
+  animation: pulseHint 1.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseHint {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* Pig looking like he is hiding behind the clouds in the middle */
+.pig-hidden-box {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease;
+}
+
+/* Pig walking on a circle path animation */
+.pig-character-walk {
+  position: relative;
+  font-size: 75px;
+  animation: walkInCircle 6s infinite linear;
+  transform-origin: center center;
   user-select: none;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
 }
 
+.pig-body-part {
+  display: block;
+  animation: pigWiggle 0.4s infinite alternate ease-in-out;
+}
+
+/* Added Pig Legs */
+.pig-legs-container {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+}
+
+.pig-leg {
+  width: 8px;
+  height: 16px;
+  background: #ff9bc3;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.left-leg {
+  animation: legMoveLeft 0.3s infinite alternate ease-in-out;
+}
+
+.right-leg {
+  animation: legMoveRight 0.3s infinite alternate ease-in-out;
+}
+
+@keyframes legMoveLeft {
+  0% { transform: rotate(-15deg); }
+  100% { transform: rotate(15deg); }
+}
+
+@keyframes legMoveRight {
+  0% { transform: rotate(15deg); }
+  100% { transform: rotate(-15deg); }
+}
+
+@keyframes pigWiggle {
+  0% { transform: translateY(0) rotate(-3deg); }
+  100% { transform: translateY(-4px) rotate(3deg); }
+}
+
+/* Circular Walking Motion Path */
+@keyframes walkInCircle {
+  0% {
+    transform: translate(0px, -35px) rotate(0deg);
+  }
+  25% {
+    transform: translate(35px, 0px) rotate(90deg);
+  }
+  50% {
+    transform: translate(0px, 35px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-35px, 0px) rotate(270deg);
+  }
+  100% {
+    transform: translate(0px, -35px) rotate(360deg);
+  }
+}
+
+/* Slowed down thought bubble appearance */
 .thought-bubble {
   position: absolute;
-  bottom: 115px;
+  bottom: 110px;
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
   color: #463744;
   padding: 12px 20px;
   border-radius: 20px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   box-shadow: 0 10px 25px rgba(207, 83, 139, 0.3);
   width: max-content;
   max-width: 280px;
   text-align: center;
   border: 2px solid #ff9bc3;
-  animation: fadeInBubble 0.5s ease 1.8s forwards;
+  animation: fadeInBubbleSlow 1.2s ease 2.5s forwards; /* Much slower transition */
   opacity: 0;
+  z-index: 6;
 }
 
 .thought-bubble::after {
@@ -121,32 +282,74 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   width: 0;
 }
 
-@keyframes walkToMiddle {
-  0% {
-    right: -150px;
-    transform: scaleX(-1);
-  }
-  70% {
-    right: calc(50% - 45px);
-    transform: scaleX(-1);
-  }
-  100% {
-    right: calc(50% - 45px);
-    transform: scaleX(1);
-  }
+@keyframes fadeInBubbleSlow {
+  0% { opacity: 0; transform: translateX(-50%) scale(0.9); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1); }
 }
 
-@keyframes walkBounce {
-  0% {
-    transform: translateY(0) rotate(-5deg);
-  }
-  100% {
-    transform: translateY(-15px) rotate(5deg);
-  }
+/* Calendar Modal Custom Styling */
+.calendar-card-box {
+  width: min(420px, 92vw) !important;
 }
 
-@keyframes fadeInBubble {
-  to {
-    opacity: 1;
-  }
+.custom-calendar {
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+  margin: 15px 0;
+  border: 2px solid #ffdeed;
+}
+
+.cal-header-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-weight: 700;
+  color: #d65b91;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #55404f;
+}
+
+.cal-grid span {
+  padding: 8px 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fade-day {
+  color: #cbb4c2;
+}
+
+.special-birthday-date {
+  background: linear-gradient(135deg, #ff72ad, #f84d93);
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(248, 77, 147, 0.4);
+  animation: pulseDate 1.2s infinite;
+  font-size: 13px !important;
+  grid-column: span 1;
+}
+
+@keyframes pulseDate {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.cal-note {
+  font-size: 15px;
+  color: #f14f94;
+  font-weight: 700;
+  margin-top: 10px;
 }
