@@ -74,8 +74,8 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 .confetti{position:fixed;z-index:50;width:9px;height:14px;top:-20px;animation:confetti 2.8s linear forwards;pointer-events:none}@keyframes confetti{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
 @media(max-width:700px){.app{padding-top:18px}.top-pill,.date-pill{position:static;display:inline-block;margin:4px}.small-title{margin-top:32px}.gifts{grid-template-columns:1fr;gap:15px}.gift-card{display:grid;grid-template-columns:145px 1fr;align-items:center;text-align:left;padding:12px}.gift-box{width:145px;height:125px;transform:scale(.78);transform-origin:center}.gift-card strong,.gift-card small{grid-column:2}.gift-card strong{margin-top:-65px}.gift-card small{margin-top:-25px}.photos-exact-5cm{flex-direction:column;align-items:center}.modal-card{padding:28px 18px}.final-card h2{font-size:32px}}
 
-/* CANDLE SCREEN WITH STEP-BY-STEP FADED ENTRANCE & GLOWING */
-.candle-screen{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 40%,#ffeaf5 0,#f7b9d4 28%,#302035 100%);display:grid;place-items:center;overflow:hidden;transition:opacity 1s,transform 1s}.candle-screen.hide{opacity:0;transform:scale(1.08);pointer-events:none}.candle-card{text-align:center;color:#fff;padding:30px}.candle-card h1{font-family:Pacifico,cursive;font-size:clamp(35px,7vw,60px);margin:5px 0;color:#fff;text-shadow:0 0 20px #ff8fbe}.candle-note{font-size:19px}.tiny{font-size:18px;opacity:.9}.tap-hint{opacity:.85}
+/* CANDLE SCREEN WITH STEP-BY-STEP FADED ENTRANCE & GLOWING (NO TAP HINT) */
+.candle-screen{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 40%,#ffeaf5 0,#f7b9d4 28%,#302035 100%);display:grid;place-items:center;overflow:hidden;transition:opacity 1s,transform 1s}.candle-screen.hide{opacity:0;transform:scale(1.08);pointer-events:none}.candle-card{text-align:center;color:#fff;padding:30px}.candle-card h1{font-family:Pacifico,cursive;font-size:clamp(35px,7vw,60px);margin:5px 0;color:#fff;text-shadow:0 0 20px #ff8fbe}.candle-note{font-size:19px}.tiny{font-size:18px;opacity:.9}
 
 /* Faded candle initially */
 .candle-button{position:relative;width:150px;height:260px;border:0;background:transparent;cursor:pointer;margin:12px auto 0;display:block;opacity:0.2;transform:scale(0.85);transition:opacity 1.5s ease, transform 1.5s ease;}
@@ -96,7 +96,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 .birthday-blast{position:fixed;inset:0;z-index:90;display:none;place-items:center;background:rgba(255,125,180,.18);pointer-events:none}.birthday-blast.show{display:grid;animation:blastFade 2.2s forwards}.blast-text{font-family:Pacifico,cursive;font-size:clamp(35px,9vw,90px);text-align:center;color:#fff;text-shadow:0 0 15px #ff4f9c,0 0 45px #ff4f9c;animation:blastText 1.7s ease-out}@keyframes blastText{0%{transform:scale(.1);opacity:0}35%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:0}}@keyframes blastFade{0%{opacity:1}100%{opacity:0}}
 .site{display:none}.site.show{display:block}.top-pill{border:0;cursor:pointer;font-family:inherit}.main-memory-photo{width:min(100%,520px);max-height:60vh;object-fit:contain;border-radius:22px;border:3px solid #fff;box-shadow:0 18px 45px rgba(207,83,139,.16)}.photo-fallback{display:none;min-height:300px;border:2px dashed #ff9fc5;border-radius:20px;background:#fff;place-items:center;padding:30px;color:#e9659c}.photo-fallback span{font-size:60px}.photo-fallback small{display:block}.song-note{font-size:13px;color:#947d89}
 
-/* CLOUD OPENING INTRO & HEDGING PIG */
+/* BIG CLOUD OPENING INTRO & FULLY COVERED PIG */
 .hide-init {
   display: none !important;
 }
@@ -129,26 +129,28 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   cursor: pointer;
 }
 
-/* Big cute familiar background clouds with ONLY "HI" above them */
+/* BIG CLOUDY FONT FOR "HI" */
 .cloud-intro-title {
   position: absolute;
-  top: 25%;
+  top: 18%;
   font-family: Pacifico, cursive;
-  font-size: clamp(50px, 8vw, 85px);
-  color: #f44e95;
-  text-shadow: 0 4px 0 rgba(255,255,255,0.9);
+  font-size: clamp(70px, 12vw, 120px);
+  color: #ffffff;
+  text-shadow: 0 8px 25px rgba(211, 89, 139, 0.4), 0 2px 0 #ff7eb6;
+  letter-spacing: 4px;
   z-index: 6;
   animation: pulseHint 2s infinite;
   pointer-events: none;
 }
 
+/* MASSIVE CLOUDS TO COMPLETELY HIDE EVERYTHING BEHIND THEM */
 .big-intro-cloud {
   position: absolute;
-  width: 380px;
-  height: 130px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 100px;
-  box-shadow: 0 15px 40px rgba(207, 83, 139, 0.2);
+  width: 650px;
+  height: 280px;
+  background: #ffffff;
+  border-radius: 180px;
+  box-shadow: 0 20px 50px rgba(207, 83, 139, 0.25);
   transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
   z-index: 5;
 }
@@ -161,25 +163,25 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 }
 
 .big-intro-cloud:before {
-  width: 160px;
-  height: 160px;
-  left: 60px;
-  top: -70px;
+  width: 280px;
+  height: 280px;
+  left: 90px;
+  top: -130px;
 }
 
 .big-intro-cloud:after {
-  width: 200px;
-  height: 200px;
-  right: 50px;
-  top: -95px;
+  width: 350px;
+  height: 350px;
+  right: 80px;
+  top: -160px;
 }
 
 .cloud-left {
-  left: calc(50% - 370px);
+  left: calc(50% - 630px);
 }
 
 .cloud-right {
-  right: calc(50% - 370px);
+  right: calc(50% - 630px);
 }
 
 /* When clouds open */
@@ -191,31 +193,15 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   transform: translateX(120vw);
 }
 
-.clouds-intro-wrapper.opened .cloud-intro-title,
-.clouds-intro-wrapper.opened .cloud-tap-hint {
+.clouds-intro-wrapper.opened .cloud-intro-title {
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
 }
 
-.cloud-tap-hint {
-  position: absolute;
-  bottom: 20%;
-  background: rgba(255, 255, 255, 0.88);
-  color: #f14f94;
-  padding: 10px 24px;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 18px;
-  box-shadow: 0 8px 25px rgba(211, 89, 139, 0.2);
-  z-index: 10;
-  animation: pulseHint 1.5s infinite;
-  pointer-events: none;
-}
-
 @keyframes pulseHint {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.06); }
+  50% { transform: scale(1.04); }
 }
 
 /* Pig Hidden Behind Clouds Initially Stage */
