@@ -11,7 +11,16 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <section class="candle-screen" id="candleScreen">
+
+  <!-- PIG INTRO SCREEN -->
+  <section class="pig-screen" id="pigScreen">
+    <div class="pig-container" id="pigContainer">
+      <div class="thought-bubble" id="pigThought">Hmm Today is very special day lets see whats going on here... 💭</div>
+      <div class="pig-character" id="pigCharacter">🐷</div>
+    </div>
+  </section>
+
+  <section class="candle-screen hide-init" id="candleScreen">
     <div class="candle-card">
       <p class="tiny">A little birthday surprise for you...</p>
       <h1>Make a wish, Suduu 💗</h1>
@@ -22,64 +31,56 @@
       <p class="tap-hint">🕯️ Click the candle</p>
     </div>
   </section>
+
   <div class="birthday-blast" id="blast"><div class="blast-text">HAPPY BIRTHDAY! 🎂💗</div></div>
+  
   <div class="site" id="site">
-  <div class="sky">
-    <div class="cloud cloud-1"></div><div class="cloud cloud-2"></div>
-    <div class="cloud cloud-3"></div>
-    <div class="stars"></div>
-    <div class="hearts-bg" id="heartsBg"></div>
-  </div>
-
-  <main class="app">
-    <header class="hero">
-      <button class="top-pill" id="photoButton">🐷 For my Pancha 🐷</button>
-      <div class="date-pill">🎂 06.09.2026</div>
-      <p class="small-title">Happy Birthday</p>
-      <h1>Suduu</h1>
-      <div class="nickname">♡ My loving Panchoo ♡</div>
-      <p class="intro">I made three little gifts for the girl who is like the sky to me. ☁️💗<br>
-        <span>Open them one by one...</span></p>
-    </header>
-
-    <section class="gifts" aria-label="Three birthday gifts">
-      <button class="gift-card" data-gift="message" aria-label="Open sweet message">
-        <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
-        <strong>💌 A Sweet Message</strong><small>Open me first</small>
-      </button>
-
-      <button class="gift-card" data-gift="memories" aria-label="Open memories">
-        <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
-        <strong>📸 Our Memories</strong><small>A little photo surprise</small>
-      </button>
-
-      <button class="gift-card" data-gift="song" aria-label="Open song">
-        <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
-        <strong>🎵 A Song For You</strong><small>One song, just for you</small>
-      </button>
-    </section>
-
-    <div class="progress-wrap">
-      <div class="progress-text"><span id="openedCount">0</span> / 3 gifts opened 💗</div>
-      <div class="progress"><span id="progressBar"></span></div>
+    <div class="sky">
+      <div class="cloud cloud-1"></div><div class="cloud cloud-2"></div>
+      <div class="cloud cloud-3"></div>
+      <div class="stars"></div>
+      <div class="hearts-bg" id="heartsBg"></div>
     </div>
 
-    <section class="message-panel" id="finalHint">
-      <div class="panel-heart">♡</div>
-      <p>Three little gifts. One very special girl. 🌸</p>
-      <small>Take your time, Panchoo. There is a little surprise waiting at the end. ✨</small>
-    </section>
-  </main>
-  </div>
+    <main class="app">
+      <header class="hero">
+        <button class="top-pill" id="photoButton">🐷 For my Pancha 🐷</button>
+        <div class="date-pill">🎂 06.09.2026</div>
+        <p class="small-title">Happy Birthday</p>
+        <h1>Suduu</h1>
+        <div class="nickname">♡ My loving Panchoo ♡</div>
+        <p class="intro">I made three little gifts for the girl who is like the sky to me. ☁️💗<br>
+          <span>Open them one by one...</span></p>
+      </header>
 
-  <div class="modal" id="photoModal" aria-hidden="true">
-    <div class="modal-card">
-      <button class="close" id="closePhoto" aria-label="Close">×</button>
-      <div class="modal-icon">🐷💕</div><h2>Our Little World</h2>
-      <p class="modal-sub">A photo just for us. 💗</p>
-      <img class="main-memory-photo" src="assets/our-photo.jpg" alt="Our photo" onerror="this.style.display='none';document.getElementById('photoFallback').style.display='grid'">
-      <div class="photo-fallback" id="photoFallback"><span>📸</span><b>Add your photo here</b><small>Replace <code>assets/our-photo.jpg</code> with your photo.</small></div>
-    </div>
+      <section class="gifts" aria-label="Three birthday gifts">
+        <button class="gift-card" data-gift="message" aria-label="Open sweet message">
+          <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
+          <strong>💌 A Sweet Message</strong><small>Open me first</small>
+        </button>
+
+        <button class="gift-card" data-gift="memories" aria-label="Open memories">
+          <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
+          <strong>📸 Our Memories</strong><small>A little photo surprise</small>
+        </button>
+
+        <button class="gift-card" data-gift="song" aria-label="Open song">
+          <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
+          <strong>🎵 A Song For You</strong><small>One song, just for you</small>
+        </button>
+      </section>
+
+      <div class="progress-wrap">
+        <div class="progress-text"><span id="openedCount">0</span> / 3 gifts opened 💗</div>
+        <div class="progress"><span id="progressBar"></span></div>
+      </div>
+
+      <section class="message-panel" id="finalHint">
+        <div class="panel-heart">♡</div>
+        <p>Three little gifts. One very special girl. 🌸</p>
+        <small>Take your time, Panchoo. There is a little surprise waiting at the end. ✨</small>
+      </section>
+    </main>
   </div>
 
   <div class="modal" id="photoModal" aria-hidden="true">
