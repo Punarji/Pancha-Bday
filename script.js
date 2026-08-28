@@ -15,7 +15,6 @@ const progressBar=document.getElementById('progressBar');
 const finalScreen=document.getElementById('finalScreen');
 const replay=document.getElementById('replay');
 
-// Elements for cloud sequence and calendar
 const pigScreen = document.getElementById('pigScreen');
 const cloudsIntroWrapper = document.getElementById('cloudsIntroWrapper');
 const pigIntroStage = document.getElementById('pigIntroStage');
@@ -29,7 +28,7 @@ let backgroundAudio=new Audio('assets/perfect-instrumental.mp3');
 backgroundAudio.loop=true;backgroundAudio.volume=.42;let bgStarted=false;
 function startBackground(){backgroundAudio.play().then(()=>bgStarted=true).catch(()=>{});}
 function stopBackground(){backgroundAudio.pause();backgroundAudio.currentTime=0;}
-function confetti(n=70){const s=['💗','✨','🌸','♡','🎀','🎂'];for(let i=0;i<n;i++){let e=document.createElement('div');e.className='confetti';e.textContent=s[Math.floor(Math.random()*s.lengthPitts || s.length)];e.style.left=Math.random()*100+'vw';e.style.fontSize=(10+Math.random()*20)+'px';e.style.animationDelay=Math.random()*0.6+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),3500)}}
+function confetti(n=70){const s=['💗','✨','🌸','♡','🎀','🎂'];for(let i=0;i<n;i++){let e=document.createElement('div');e.className='confetti';e.textContent=s[Math.floor(Math.random()*s.length)];e.style.left=Math.random()*100+'vw';e.style.fontSize=(10+Math.random()*20)+'px';e.style.animationDelay=Math.random()*0.6+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),3500)}}
 function hearts(){const b=document.getElementById('heartsBg');if(!b)return;let e=document.createElement('div');e.className='float-heart';e.textContent=['♡','💗','✦','🌸'][Math.floor(Math.random()*4)];e.style.left=Math.random()*100+'%';e.style.bottom='-20px';e.style.fontSize=14+Math.random()*22+'px';e.style.animationDuration=7+Math.random()*7+'s';b.appendChild(e);setTimeout(()=>e.remove(),15000)}
 setInterval(hearts,900);
 
@@ -39,28 +38,28 @@ cloudsIntroWrapper.addEventListener('click', () => {
   if (sequenceStarted) return;
   sequenceStarted = true;
 
-  // 1. Open the two big clouds
+  // 1. Open the two big overlapping clouds
   cloudsIntroWrapper.classList.add('opened');
 
-  // 2. Pig thinks out loud step-by-step
+  // 2. Pig thinks out loud step-by-step with slower pacing
   setTimeout(() => {
     pigThought.textContent = "Hmmmm what a speacial day is today...";
-  }, 400);
+  }, 500);
 
   setTimeout(() => {
     pigThought.textContent = "Oh wait today is my pancha's birthdayy!";
-  }, 2200);
+  }, 2800);
 
   setTimeout(() => {
     pigThought.textContent = "lets go to celebrate it come follow me";
-  }, 4200);
+  }, 5200);
 
-  // 3. Pig goes backward slowly and changes thought to click me
+  // 3. Pig goes backward slowly and changes thought
   setTimeout(() => {
     pigIntroStage.classList.add('gone-back');
     pigThought.textContent = "click me";
     pigThought.style.transform = "translateX(-50%) scale(1.1)";
-  }, 6200);
+  }, 7600);
 
   // 4. Transition to candle screen step by step
   setTimeout(() => {
@@ -70,14 +69,14 @@ cloudsIntroWrapper.addEventListener('click', () => {
     // Fade candle in step-by-step
     setTimeout(() => {
       candleButton.classList.add('faded-visible');
-    }, 300);
+    }, 400);
 
     // Suddenly glow the candle
     setTimeout(() => {
       candleButton.classList.add('glowing');
-    }, 1800);
+    }, 2000);
 
-  }, 7500);
+  }, 9000);
 });
 
 // Candle tap interaction triggering smoke on whole screen and surprise
@@ -118,3 +117,42 @@ closeModal.addEventListener('click',closeGift);modal.addEventListener('click',e=
 function setupSong(){stopBackground();let a=document.getElementById('songPlayer'),r=document.querySelector('.record');a.addEventListener('play',()=>r.classList.add('playing'));a.addEventListener('pause',()=>r.classList.remove('playing'));a.addEventListener('ended',()=>r.classList.remove('playing'));a.addEventListener('error',()=>{document.querySelector('.song-note').textContent='Add your legally obtained audio as assets/thinking-out-loud.mp3 to enable this gift.'});a.play().catch(()=>{})}
 replay.addEventListener('click',()=>{finalScreen.classList.remove('show');opened.clear();gifts.forEach(g=>g.classList.remove('opened'));openedCount.textContent='0';progressBar.style.width='0%';startBackground()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){photoModal.classList.remove('show');calendarModal.classList.remove('show');if(modal.classList.contains('show'))closeGift()}});
+
+// MINI GAME LOGIC: Beautiful Girl finding Cute Pig
+const gameGrid = document.getElementById('gameGrid');
+const gameStatus = document.getElementById('gameStatus');
+const totalTiles = 4;
+let winningIndex = Math.floor(Math.random() * totalTiles);
+let gameWon = false;
+
+function initMiniGame() {
+  gameGrid.innerHTML = '';
+  winningIndex = Math.floor(Math.random() * totalTiles);
+  gameWon = false;
+  gameStatus.textContent = "Click a card to find the hidden cute pig!";
+
+  for (let i = 0; i < totalTiles; i++) {
+    const tile = document.createElement('button');
+    tile.className = 'game-tile';
+    tile.textContent = "👧"; // Beautiful girl icon representing searching
+    tile.addEventListener('click', () => handleTileClick(i, tile));
+    gameGrid.appendChild(tile);
+  }
+}
+
+function handleTileClick(index, tile) {
+  if (gameWon || tile.classList.contains('revealed')) return;
+
+  tile.classList.add('revealed');
+  if (index === winningIndex) {
+    tile.textContent = "🐷";
+    gameStatus.textContent = "Yay! You found the cute pig! 💕🎉";
+    gameWon = true;
+    confetti(50);
+  } else {
+    tile.textContent = "🌸";
+    gameStatus.textContent = "Not here! Keep looking for the cute pig... 💖";
+  }
+}
+
+initMiniGame();
