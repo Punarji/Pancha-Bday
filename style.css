@@ -142,7 +142,7 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
   transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
   transform: translateY(110px);
   z-index: 2;
-  overflow: hidden; /* Prevent scrolling inside letter */
+  overflow: hidden;
   text-align: center;
 }
 .vintage-letter-card.pulled-out {
@@ -287,6 +287,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  overflow: hidden;
 }
 
 /* COLOURFUL & VISIBLE CLOUDY FONT FOR "HI" CENTERED BETWEEN BOTH CLOUDS */
@@ -296,7 +297,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: Pacifico, cursive;
-  font-size: clamp(90px, 15vw, 140px);
+  font-size: clamp(70px, 15vw, 120px);
   background: linear-gradient(135deg, #ff3385, #ff7eb6, #ffb8d4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -307,11 +308,11 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   pointer-events: none;
 }
 
-/* MASSIVE OVERLAPPING CLOUDS */
+/* RESPONSIVE FLUID CLOUDS (FIXED MOBILE OVERFLOW) */
 .big-intro-cloud {
   position: absolute;
-  width: 750px;
-  height: 320px;
+  width: min(750px, 95vw);
+  height: clamp(220px, 35vh, 320px);
   background: #ffffff;
   border-radius: 180px;
   box-shadow: 0 20px 50px rgba(207, 83, 139, 0.25);
@@ -327,25 +328,36 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 }
 
 .big-intro-cloud:before {
-  width: 320px;
-  height: 320px;
-  left: 100px;
-  top: -150px;
+  width: clamp(200px, 35vw, 320px);
+  height: clamp(200px, 35vw, 320px);
+  left: 10%;
+  top: -50%;
 }
 
 .big-intro-cloud:after {
-  width: 380px;
-  height: 380px;
-  right: 90px;
-  top: -180px;
+  width: clamp(220px, 40vw, 380px);
+  height: clamp(220px, 40vw, 380px);
+  right: 10%;
+  top: -60%;
 }
 
 .cloud-left {
-  left: calc(50% - 480px);
+  left: calc(50% - min(480px, 52vw) - min(375px, 47vw));
 }
 
 .cloud-right {
-  right: calc(50% - 480px);
+  right: calc(50% - min(480px, 52vw) - min(375px, 47vw));
+}
+
+@media(max-width: 768px) {
+  .cloud-left {
+    left: -45vw;
+    width: 85vw;
+  }
+  .cloud-right {
+    right: -45vw;
+    width: 85vw;
+  }
 }
 
 .clouds-intro-wrapper.opened .cloud-left {
