@@ -32,7 +32,7 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .bow{position:absolute;z-index:4;top:3px;left:53px;font-size:75px;transform:rotate(-7deg)}
 .lock{position:absolute;z-index:5;left:72px;top:72px;width:38px;height:38px;background:#fff;border-radius:50%;display:grid;place-items:center;color:#f65c9c;font-size:23px}
 
-/* DRAG PIG TO GIRL MINI GAME STYLING */
+/* MINI GAME SECTION */
 .mini-game-section {
   margin: 35px auto 0;
   max-width: 700px;
@@ -72,10 +72,21 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
   overflow: hidden;
   touch-action: none;
 }
-.girl-target {
-  font-size: 48px;
+.empty-target-box {
+  font-size: 16px;
+  font-weight: 700;
+  color: #d65b91;
+  background: rgba(255,255,255,0.8);
+  padding: 12px 20px;
+  border-radius: 14px;
+  border: 2px dashed #ff7eb6;
+  cursor: pointer;
   user-select: none;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+  transition: transform 0.2s;
+}
+.empty-target-box:hover {
+  transform: scale(1.05);
+  background: #fff;
 }
 .draggable-pig {
   position: absolute;
@@ -103,104 +114,30 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .modal,.final-screen{position:fixed;inset:0;background:rgba(79,38,61,.3);backdrop-filter:blur(7px);z-index:20;display:none;align-items:center;justify-content:center;padding:20px}.modal.show,.final-screen.show{display:flex}
 .modal-card{position:relative;width:min(720px,95vw);max-height:90vh;overflow:auto;background:linear-gradient(180deg,#fffafd,#fff1f7);border:2px solid #fff;border-radius:30px;padding:34px;box-shadow:0 30px 80px rgba(91,38,68,.25);text-align:center}
 .close{position:absolute;right:15px;top:12px;border:0;background:#fff;color:#ee5796;width:38px;height:38px;border-radius:50%;font-size:28px;cursor:pointer}.modal-icon{font-size:48px}.modal-icon-small{font-size:32px;margin-bottom: -5px;}.modal h2{font-family:Pacifico,cursive;color:#ef5797;font-size:38px;margin:4px 0}.modal-sub{margin-top:0;color:#896e7e}
-.letter{font-size:17px;line-height:1.4;text-align:center;padding:2px 10px}.letter p{margin:6px 0}.letter b{color:#e94e91}
 
-/* VINTAGE ENVELOPE OPENING ANIMATION STYLES (NO SCROLL, FULL FIT) */
-.vintage-envelope-opening-stage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-}
-.open-envelope-container {
-  position: relative;
-  width: min(440px, 85vw);
-  height: 250px;
-  background: #e8d3be;
-  border-radius: 12px;
-  box-shadow: 0 15px 35px rgba(120,80,60,0.25);
-  margin-bottom: 15px;
-  overflow: hidden;
-}
-.open-env-back {
-  position: absolute;
-  inset: 0;
-  background: #eddccb;
-}
-.vintage-letter-card {
-  position: absolute;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-  height: 215px;
-  background: #fbf6ec;
-  border: 2px solid #dfc7b0;
-  border-radius: 10px;
-  padding: 12px 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-  transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-  transform: translateY(110px);
-  z-index: 2;
-  overflow: hidden;
+/* MEDIUM SIZE VINTAGE LETTER STYLING */
+.medium-letter-stage {
+  padding: 10px;
   text-align: center;
 }
-.vintage-letter-card.pulled-out {
-  transform: translateY(-25px);
-  height: 310px;
-  box-shadow: 0 15px 40px rgba(100,60,40,0.2);
-}
-.vintage-paper-style {
+.medium-vintage-paper {
   background: #fbf6ec;
-  font-family: "Baloo 2", serif;
+  border: 2px solid #dfc7b0;
+  border-radius: 16px;
+  padding: 24px 20px;
+  margin: 15px auto 0;
+  max-width: 520px;
+  font-size: 18px;
+  line-height: 1.6;
   color: #524039;
+  box-shadow: 0 10px 30px rgba(100,60,40,0.12);
+  text-align: center;
 }
-.open-env-front {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 140px;
-  background: linear-gradient(180deg, #e4cca7, #d7bd99);
-  clip-path: polygon(0 30%, 50% 100%, 100% 30%, 100% 100%, 0 100%);
-  z-index: 3;
-  pointer-events: none;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+.medium-vintage-paper p {
+  margin: 10px 0;
 }
-.open-env-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 110px;
-  background: #eedbc6;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  z-index: 4;
-  transform-origin: top;
-  transition: transform 0.8s ease-in-out;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-.open-env-flap.opened {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
-.pull-letter-btn {
-  background: #d46a84;
-  color: #fff;
-  border: none;
-  padding: 10px 22px;
-  font-size: 15px;
-  font-weight: 700;
-  border-radius: 999px;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(212,106,132,0.3);
-  transition: transform 0.2s;
-  font-family: inherit;
-}
-.pull-letter-btn:hover {
-  transform: scale(1.05);
+.medium-vintage-paper b {
+  color: #e94e91;
 }
 
 .photos-exact-5cm {
@@ -286,32 +223,222 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   overflow: hidden;
 }
 
-/* COLOURFUL & VISIBLE CLOUDY FONT FOR "HI" CENTERED BETWEEN BOTH CLOUDS */
+.intro-center-content {
+  position: relative;
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CLOUDS CLOSER TOGETHER */
 .cloud-intro-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   font-family: Pacifico, cursive;
-  font-size: clamp(70px, 15vw, 120px);
+  font-size: clamp(65px, 14vw, 110px);
   background: linear-gradient(135deg, #ff3385, #ff7eb6, #ffb8d4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 6px 15px rgba(255, 110, 160, 0.5));
   letter-spacing: 4px;
-  z-index: 6;
+  cursor: pointer;
   animation: pulseHint 2s infinite;
-  pointer-events: none;
+  user-select: none;
+  z-index: 8;
+  margin-bottom: 10px;
 }
 
-/* RESPONSIVE FLUID CLOUDS (FIXED MOBILE OVERFLOW) */
+/* PASSCODE SMALL CREATIVE CLOUD STYLING */
+.passcode-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  width: min(320px, 90vw);
+  animation: popInPasscode 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popInPasscode {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.passcode-cloud-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 40px;
+  padding: 26px 20px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(207, 83, 139, 0.35);
+  border: 3px solid #ffb8d4;
+}
+
+.passcode-cloud-card::before, .passcode-cloud-card::after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.passcode-cloud-card::before {
+  width: 90px;
+  height: 90px;
+  top: -40px;
+  left: 30px;
+  border-top: 3px solid #ffb8d4;
+}
+
+.passcode-cloud-card::after {
+  width: 110px;
+  height: 110px;
+  top: -50px;
+  right: 30px;
+  border-top: 3px solid #ffb8d4;
+}
+
+.passcode-cloud-icon {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.passcode-cloud-card h3 {
+  font-family: Pacifico, cursive;
+  color: #ef5797;
+  font-size: 22px;
+  margin: 0 0 4px 0;
+}
+
+.passcode-cloud-card p {
+  color: #8f7584;
+  font-size: 13px;
+  margin: 0 0 15px 0;
+}
+
+.passcode-inputs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.passcode-inputs input {
+  width: 140px;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 6px;
+  border: 2px solid #ff9bc3;
+  border-radius: 14px;
+  background: #fff0f7;
+  color: #463744;
+  font-family: inherit;
+  outline: none;
+  padding: 6px;
+}
+
+.passcode-inputs button {
+  background: linear-gradient(135deg, #ff72ad, #f84d93);
+  color: #fff;
+  border: none;
+  width: 48px;
+  border-radius: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(248, 77, 147, 0.3);
+  transition: transform 0.2s;
+}
+
+.passcode-inputs button:hover {
+  transform: scale(1.05);
+}
+
+.passcode-error {
+  color: #ff4d6d;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 8px 0 0 0;
+  min-height: 18px;
+}
+
+/* CRYING PIG OVERLAY STYLING */
+.crying-pig-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(79, 38, 61, 0.4);
+  backdrop-filter: blur(5px);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeInPig 0.3s ease;
+}
+
+@keyframes fadeInPig {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.crying-pig-card {
+  background: linear-gradient(180deg, #fffafd, #ffeaf4);
+  border: 3px solid #ff9bc3;
+  border-radius: 28px;
+  padding: 30px 24px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(91, 38, 68, 0.25);
+  width: min(340px, 90vw);
+}
+
+.crying-pig-emoji {
+  font-size: 60px;
+  animation: bouncePig 0.8s infinite alternate ease-in-out;
+  margin-bottom: 8px;
+}
+
+@keyframes bouncePig {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.crying-pig-card h3 {
+  font-family: Pacifico, cursive;
+  color: #ef5797;
+  font-size: 24px;
+  margin: 0 0 6px 0;
+}
+
+.crying-pig-card p {
+  color: #8f7584;
+  font-size: 15px;
+  margin: 0 0 20px 0;
+}
+
+.try-again-btn {
+  background: #ff6fae;
+  color: #fff;
+  border: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 111, 174, 0.3);
+  transition: transform 0.2s;
+}
+
+.try-again-btn:hover {
+  transform: scale(1.05);
+}
+
+/* CLOSER CLOUDS SETUP */
 .big-intro-cloud {
   position: absolute;
-  width: min(750px, 95vw);
+  width: min(700px, 90vw);
   height: clamp(220px, 35vh, 320px);
   background: #ffffff;
   border-radius: 180px;
@@ -341,22 +468,23 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   top: -60%;
 }
 
+/* Brought clouds closer together so they meet right at center */
 .cloud-left {
-  left: calc(50% - min(480px, 52vw) - min(375px, 47vw));
+  left: calc(50% - min(580px, 62vw));
 }
 
 .cloud-right {
-  right: calc(50% - min(480px, 52vw) - min(375px, 47vw));
+  right: calc(50% - min(580px, 62vw));
 }
 
 @media(max-width: 768px) {
   .cloud-left {
-    left: -45vw;
-    width: 85vw;
+    left: -32vw;
+    width: 80vw;
   }
   .cloud-right {
-    right: -45vw;
-    width: 85vw;
+    right: -32vw;
+    width: 80vw;
   }
 }
 
@@ -375,8 +503,8 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 }
 
 @keyframes pulseHint {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.04); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
 }
 
 .pig-intro-stage {
