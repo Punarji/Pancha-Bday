@@ -12,25 +12,55 @@
 </head>
 <body>
 
-  <!-- STEP 1: CLOUD OPENING INTRO WITH COLOURFUL HI & OVERLAPPING CLOUDS -->
+  <!-- STEP 1: CLOUD OPENING INTRO WITH PASSCODE ENTRY -->
   <section class="pig-screen" id="pigScreen">
     <div class="clouds-intro-wrapper" id="cloudsIntroWrapper">
-      <div class="cloud-intro-title" id="cloudIntroTitle">HI</div>
       
-      <!-- Pig sequence container hidden safely behind overlapping clouds initially -->
-      <div class="pig-intro-stage" id="pigIntroStage">
-        <div class="thought-bubble" id="pigThought">Hmmmm what a speacial day is today...</div>
-        <div class="pig-character-walk">
-          <div class="pig-body-part">🐷</div>
-          <div class="pig-legs-container">
-            <div class="pig-leg left-leg"></div>
-            <div class="pig-leg right-leg"></div>
+      <!-- Big Closing Clouds meeting in the center -->
+      <div class="big-intro-cloud cloud-left" id="cloudLeft"></div>
+      <div class="big-intro-cloud cloud-right" id="cloudRight"></div>
+
+      <!-- Center Interactive Content -->
+      <div class="intro-center-content" id="introCenterContent">
+        <div class="cloud-intro-title" id="cloudIntroTitle" role="button" tabindex="0">HI</div>
+        
+        <!-- Passcode Prompt Container (Hidden Initially) -->
+        <div class="passcode-container hide-init" id="passcodeContainer">
+          <div class="passcode-cloud-card">
+            <span class="passcode-cloud-icon">☁️🔐</span>
+            <h3>Enter Secret Passcode</h3>
+            <p>Type the 4-digit code to open the clouds, Suduu!</p>
+            <div class="passcode-inputs">
+              <input type="password" maxlength="4" id="passcodeInput" placeholder="••••" inputmode="numeric" pattern="[0-9]*" />
+              <button id="submitPasscode" aria-label="Submit passcode">✨</button>
+            </div>
+            <p class="passcode-error" id="passcodeError"></p>
+          </div>
+        </div>
+
+        <!-- Crying Pig Overlay for Wrong Passcode or Wrong Box Click -->
+        <div class="crying-pig-overlay hide-init" id="cryingPigOverlay">
+          <div class="crying-pig-card">
+            <div class="crying-pig-emoji">🥺🐷💧</div>
+            <h3>Wrong passcode, Suduu!</h3>
+            <p>The little piggie is crying... Try again! 😭💕</p>
+            <button class="try-again-btn" id="closeCryingPig">Try Again 💗</button>
+          </div>
+        </div>
+      
+        <!-- Pig sequence container -->
+        <div class="pig-intro-stage" id="pigIntroStage">
+          <div class="thought-bubble" id="pigThought">Hmmmm what a speacial day is today...</div>
+          <div class="pig-character-walk">
+            <div class="pig-body-part">🐷</div>
+            <div class="pig-legs-container">
+              <div class="pig-leg left-leg"></div>
+              <div class="pig-leg right-leg"></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="big-intro-cloud cloud-left" id="cloudLeft"></div>
-      <div class="big-intro-cloud cloud-right" id="cloudRight"></div>
     </div>
   </section>
 
@@ -87,13 +117,13 @@
         </button>
       </section>
 
-      <!-- DRAG PIG TO GIRL MINI GAME SECTION -->
+      <!-- PREVIOUS DRAG PIG MINI GAME SECTION (WITHOUT GIRL ICON, CLICKING WRONG EMPTY BOX SHOWS CRYING PIG) -->
       <section class="mini-game-section" aria-label="Mini game">
         <div class="game-card-box">
-          <h2>Bring the Cute Pig to Your Girl! 🐷💕</h2>
-          <p class="game-sub" id="gameSubInstruction">Drag the little cute pig over to meet the girl!</p>
+          <h2>Bring the Cute Pig Home! 🐷💕</h2>
+          <p class="game-sub" id="gameSubInstruction">Drag the little cute pig over to the target spot!</p>
           <div class="drag-play-area" id="dragPlayArea">
-            <div class="girl-target" id="girlTarget">👧💖</div>
+            <div class="empty-target-box" id="emptyTargetBox" title="Clicking here if wrong shows crying pig">🌸 Drop Here 🌸</div>
             <div class="draggable-pig" id="draggablePig" draggable="true">🐷</div>
           </div>
           <p class="game-status" id="gameStatus">Drag the pig across the field to give a big hug!</p>
@@ -165,27 +195,19 @@
     </div>
   </div>
 
-  <!-- VINTAGE LETTER TEMPLATE OPENING FROM ENVELOPE (FULL FIT NO SCROLL) -->
+  <!-- MEDIUM SIZE VINTAGE LETTER TEMPLATE -->
   <template id="messageTemplate">
-    <div class="vintage-envelope-opening-stage">
-      <div class="open-envelope-container" id="openEnvelopeContainer">
-        <div class="open-env-back"></div>
-        <div class="vintage-letter-card" id="vintageLetterCard">
-          <div class="modal-icon-small">💌</div>
-          <h2>For my Pancha</h2>
-          <div class="letter vintage-paper-style">
-            <p><b>Happy 25th Birthday, Suduu! 🌸💕</b></p>
-            <p>You are like the sky to me — calm yet full of colors, always beautiful. ☁️🌷</p>
-            <p>Thank you for being my Pancha and calling me <b>“ura” 🐷😂</b>.</p>
-            <p>Wishing you endless happiness and everything your heart desires.</p>
-            <p><b>Keep smiling, my Sweetest Angry bird 💗</b></p>
-            <p><b>Happy 25th Birthday, My loving Panchoo 🎂✨</b></p>
-          </div>
-        </div>
-        <div class="open-env-front"></div>
-        <div class="open-env-flap" id="openEnvFlap"></div>
+    <div class="medium-letter-stage">
+      <div class="modal-icon-small">💌</div>
+      <h2>For my Pancha</h2>
+      <div class="letter medium-vintage-paper">
+        <p><b>Happy 25th Birthday, Suduu! 🌸💕</b></p>
+        <p>You are like the sky to me — calm yet full of colors, always beautiful. ☁️🌷</p>
+        <p>Thank you for being my Pancha and calling me <b>“ura” 🐷😂</b>.</p>
+        <p>Wishing you endless happiness and everything your heart desires.</p>
+        <p><b>Keep smiling, my Sweetest Angry bird 💗</b></p>
+        <p><b>Happy 25th Birthday, My loving Panchoo 🎂✨</b></p>
       </div>
-      <button class="pull-letter-btn" id="pullLetterBtn">Pull letter out of envelope ✨</button>
     </div>
   </template>
 
