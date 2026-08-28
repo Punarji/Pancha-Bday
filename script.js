@@ -1,187 +1,274 @@
-const gifts=document.querySelectorAll('.gift-card');
-const candleScreen=document.getElementById('candleScreen');
-const candleButton=document.getElementById('candleButton');
-const smokeOverlay=document.getElementById('smokeOverlay');
-const blast=document.getElementById('blast');
-const site=document.getElementById('site');
-const photoButton=document.getElementById('photoButton');
-const photoModal=document.getElementById('photoModal');
-const closePhoto=document.getElementById('closePhoto');
-const modal=document.getElementById('modal');
-const modalContent=document.getElementById('modalContent');
-const closeModal=document.getElementById('closeModal');
-const openedCount=document.getElementById('openedCount');
-const progressBar=document.getElementById('progressBar');
-const finalScreen=document.getElementById('finalScreen');
-const replay=document.getElementById('replay');
+document.addEventListener("DOMContentLoaded", () => {
+  // --- 1. CLOUDS OPENING INTRO ANIMATION ---
+  const pigScreen = document.getElementById("pigScreen");
+  const cloudsIntroWrapper = document.getElementById("cloudsIntroWrapper");
+  const pigIntroStage = document.getElementById("pigIntroStage");
+  const candleScreen = document.getElementById("candleScreen");
 
-const pigScreen = document.getElementById('pigScreen');
-const cloudsIntroWrapper = document.getElementById('cloudsIntroWrapper');
-const pigIntroStage = document.getElementById('pigIntroStage');
-const pigThought = document.getElementById('pigThought');
-const dateButton = document.getElementById('dateButton');
-const calendarModal = document.getElementById('calendarModal');
-const closeCalendar = document.getElementById('closeCalendar');
+  if (cloudsIntroWrapper && pigScreen) {
+    cloudsIntroWrapper.addEventListener("click", () => {
+      cloudsIntroWrapper.classList.add("opened");
+      if (pigIntroStage) {
+        pigIntroStage.classList.add("gone-back");
+      }
+      setTimeout(() => {
+        pigScreen.classList.add("hide");
+        if (candleScreen) {
+          candleScreen.classList.remove("hide-init");
+          // Slight delay to trigger CSS fade-in
+          setTimeout(() => {
+            const candleButton = document.getElementById("candleButton");
+            if (candleButton) {
+              candleButton.classList.add("faded-visible");
+            }
+          }, 100);
+        }
+      }, 1000);
+    });
+  }
 
-const opened=new Set();
-let backgroundAudio=new Audio('assets/perfect-instrumental.mp3');
-backgroundAudio.loop=true;backgroundAudio.volume=.42;let bgStarted=false;
-function startBackground(){backgroundAudio.play().then(()=>bgStarted=true).catch(()=>{});}
-function stopBackground(){backgroundAudio.pause();backgroundAudio.currentTime=0;}
-function confetti(n=70){const s=['💗','✨','🌸','♡','🎀','🎂'];for(let i=0;i<n;i++){let e=document.createElement('div');e.className='confetti';e.textContent=s[Math.floor(Math.random()*s.length)];e.style.left=Math.random()*100+'vw';e.style.fontSize=(10+Math.random()*20)+'px';e.style.animationDelay=Math.random()*0.6+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),3500)}}
-function hearts(){const b=document.getElementById('heartsBg');if(!b)return;let e=document.createElement('div');e.className='float-heart';e.textContent=['♡','💗','✦','🌸'][Math.floor(Math.random()*4)];e.style.left=Math.random()*100+'%';e.style.bottom='-20px';e.style.fontSize=14+Math.random()*22+'px';e.style.animationDuration=7+Math.random()*7+'s';b.appendChild(e);setTimeout(()=>e.remove(),15000)}
-setInterval(hearts,900);
+  // --- 2. CANDLE BLOWING & BIRTHDAY BLAST ---
+  const candleButton = document.getElementById("candleButton");
+  const smokeOverlay = document.getElementById("smokeOverlay");
+  const blast = document.getElementById("blast");
+  const site = document.getElementById("site");
 
-// Sequence timeline when user clicks anywhere on opening screen
-let sequenceStarted = false;
-cloudsIntroWrapper.addEventListener('click', () => {
-  if (sequenceStarted) return;
-  sequenceStarted = true;
+  let isCandleLit = false;
 
-  // 1. Open the two big overlapping clouds
-  cloudsIntroWrapper.classList.add('opened');
+  if (candleButton) {
+    candleButton.addEventListener("click", () => {
+      if (!isCandleLit) {
+        // Light up the candle
+        candleButton.classList.add("glowing");
+        isCandleLit = true;
+      } else {
+        // Blow out the candle
+        candleButton.classList.remove("glowing");
+        candleButton.classList.add("off");
 
-  // 2. Pig thinks out loud step-by-step
-  setTimeout(() => {
-    pigThought.textContent = "Hmmmm what a speacial day is today...";
-  }, 500);
+        // Smoke & Blast Transition
+        if (smokeOverlay) smokeOverlay.classList.add("show");
+        if (blast) blast.classList.add("show");
 
-  setTimeout(() => {
-    pigThought.textContent = "Oh wait today is my pancha's birthdayy!";
-  }, 2800);
-
-  setTimeout(() => {
-    pigThought.textContent = "lets go to celebrate it come follow me";
-  }, 5200);
-
-  // 3. Pig goes backward slowly and changes thought
-  setTimeout(() => {
-    pigIntroStage.classList.add('gone-back');
-    pigThought.textContent = "click me";
-    pigThought.style.transform = "translate(-50%, -50%) scale(1.1)";
-  }, 7600);
-
-  // 4. Transition to candle screen step by step
-  setTimeout(() => {
-    pigScreen.classList.add('hide');
-    candleScreen.classList.remove('hide-init');
-
-    // Fade candle in step-by-step
-    setTimeout(() => {
-      candleButton.classList.add('faded-visible');
-    }, 400);
-
-    // Suddenly glow the candle
-    setTimeout(() => {
-      candleButton.classList.add('glowing');
-    }, 2000);
-
-  }, 9000);
-});
-
-// Candle tap interaction triggering smoke on whole screen and surprise
-candleButton.addEventListener('click', () => {
-  candleButton.classList.add('off');
-  smokeOverlay.classList.add('show');
-  blast.classList.add('show');
-  confetti(140);
-
-  setTimeout(() => {
-    candleScreen.classList.add('hide');
-    site.classList.add('show');
-    startBackground();
-
-    // Fade out smoke smoothly
-    setTimeout(() => {
-      smokeOverlay.classList.remove('show');
-    }, 600);
-  }, 1400);
-});
-
-// Date Button Calendar Modal Logic
-dateButton.addEventListener('click', () => {
-  calendarModal.classList.add('show');
-  confetti(25);
-});
-closeCalendar.addEventListener('click', () => calendarModal.classList.remove('show'));
-calendarModal.addEventListener('click', (e) => {
-  if (e.target === calendarModal) calendarModal.classList.remove('show');
-});
-
-photoButton.addEventListener('click',()=>photoModal.classList.add('show'));closePhoto.addEventListener('click',()=>photoModal.classList.remove('show'));photoModal.addEventListener('click',e=>{if(e.target===photoModal)photoModal.classList.remove('show')});
-function markOpened(t){if(!opened.has(t)){opened.add(t);document.querySelector(`[data-gift="${t}"]`).classList.add('opened');openedCount.textContent=opened.size;progressBar.style.width=(opened.size/3*100)+'%'}}
-
-function openGift(t){
-  let id={message:'messageTemplate',memories:'memoriesTemplate',song:'songTemplate'}[t];
-  modalContent.innerHTML=document.getElementById(id).innerHTML;
-  modal.classList.add('show');
-  markOpened(t);
-
-  // If vintage message card, attach envelope opening interaction
-  if(t==='message') {
-    const pullBtn = document.getElementById('pullLetterBtn');
-    const envFlap = document.getElementById('openEnvFlap');
-    const letterCard = document.getElementById('vintageLetterCard');
-    
-    if(pullBtn) {
-      pullBtn.addEventListener('click', () => {
-        envFlap.classList.add('opened');
         setTimeout(() => {
-          letterCard.classList.add('pulled-out');
-          pullBtn.style.display = 'none';
-        }, 300);
-        confetti(25);
+          if (candleScreen) candleScreen.classList.add("hide");
+          if (smokeOverlay) smokeOverlay.classList.remove("show");
+          if (site) site.classList.add("show");
+          startFloatingHearts();
+        }, 1500);
+      }
+    });
+  }
+
+  // --- 3. GIFT MODALS & INTERACTIONS ---
+  const gifts = document.querySelectorAll(".gift-card");
+  const modal = document.getElementById("modal");
+  const modalContent = document.getElementById("modalContent");
+  const closeModal = document.getElementById("closeModal");
+  const openedCountEl = document.getElementById("openedCount");
+  const progressBar = document.getElementById("progressBar");
+  const finalScreen = document.getElementById("finalScreen");
+  const replayBtn = document.getElementById("replay");
+
+  let openedGiftsCount = 0;
+  const openedGiftsSet = new Set();
+
+  gifts.forEach((card) => {
+    card.addEventListener("click", () => {
+      const giftType = card.getAttribute("data-gift");
+      openGiftModal(giftType);
+
+      if (!openedGiftsSet.has(giftType)) {
+        openedGiftsSet.add(giftType);
+        openedGiftsCount++;
+        if (openedCountEl) openedCountEl.textContent = openedGiftsCount;
+        if (progressBar) progressBar.style.width = `${(openedGiftsCount / 3) * 100}%`;
+        card.classList.add("opened");
+
+        if (openedGiftsCount === 3) {
+          setTimeout(() => {
+            if (finalScreen) finalScreen.classList.add("show");
+            launchConfetti();
+          }, 900);
+        }
+      }
+    });
+  });
+
+  function openGiftModal(type) {
+    if (!modal || !modalContent) return;
+    modalContent.innerHTML = "";
+
+    if (type === "message") {
+      const template = document.getElementById("messageTemplate");
+      if (template) {
+        modalContent.appendChild(template.content.cloneNode(true));
+        setupEnvelopeInteraction();
+      }
+    } else if (type === "memories") {
+      const template = document.getElementById("memoriesTemplate");
+      if (template) {
+        modalContent.appendChild(template.content.cloneNode(true));
+      }
+    } else if (type === "song") {
+      const template = document.getElementById("songTemplate");
+      if (template) {
+        modalContent.appendChild(template.content.cloneNode(true));
+        setupSongPlayer();
+      }
+    }
+
+    modal.classList.add("show");
+  }
+
+  if (closeModal) {
+    closeModal.addEventListener("click", () => {
+      modal.classList.remove("show");
+    });
+  }
+
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("show");
+    });
+  }
+
+  // --- 4. VINTAGE ENVELOPE INTERACTION ---
+  function setupEnvelopeInteraction() {
+    const flap = document.getElementById("openEnvFlap");
+    const letterCard = document.getElementById("vintageLetterCard");
+    const pullBtn = document.getElementById("pullLetterBtn");
+
+    if (pullBtn && flap && letterCard) {
+      let isOpen = false;
+      pullBtn.addEventListener("click", () => {
+        if (!isOpen) {
+          flap.classList.add("opened");
+          setTimeout(() => {
+            letterCard.classList.add("pulled-out");
+          }, 400);
+          pullBtn.textContent = "Close letter ♡";
+          isOpen = true;
+        } else {
+          letterCard.classList.remove("pulled-out");
+          setTimeout(() => {
+            flap.classList.remove("opened");
+          }, 500);
+          pullBtn.textContent = "Pull letter out of envelope ✨";
+          isOpen = false;
+        }
       });
     }
   }
 
-  if(t==='song')setupSong();
-  confetti(35);
-}
-
-gifts.forEach(g=>g.addEventListener('click',()=>openGift(g.dataset.gift)));
-
-function closeGift(){let a=document.getElementById('songPlayer');if(a)a.pause();modal.classList.remove('show');if(bgStarted)startBackground();if(opened.size===3)setTimeout(()=>{finalScreen.classList.add('show');confetti(110)},400)}
-closeModal.addEventListener('click',closeGift);modal.addEventListener('click',e=>{if(e.target===modal)closeGift()});
-function setupSong(){stopBackground();let a=document.getElementById('songPlayer'),r=document.querySelector('.record');a.addEventListener('play',()=>r.classList.add('playing'));a.addEventListener('pause',()=>r.classList.remove('playing'));a.addEventListener('ended',()=>r.classList.remove('playing'));a.addEventListener('error',()=>{document.querySelector('.song-note').textContent='Add your legally obtained audio as assets/thinking-out-loud.mp3 to enable this gift.'});a.play().catch(()=>{})}
-replay.addEventListener('click',()=>{finalScreen.classList.remove('show');opened.clear();gifts.forEach(g=>g.classList.remove('opened'));openedCount.textContent='0';progressBar.style.width='0%';startBackground()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){photoModal.classList.remove('show');calendarModal.classList.remove('show');if(modal.classList.contains('show'))closeGift()}});
-
-// MINI GAME LOGIC
-const gameGrid = document.getElementById('gameGrid');
-const gameStatus = document.getElementById('gameStatus');
-const totalTiles = 4;
-let winningIndex = Math.floor(Math.random() * totalTiles);
-let gameWon = false;
-
-function initMiniGame() {
-  gameGrid.innerHTML = '';
-  winningIndex = Math.floor(Math.random() * totalTiles);
-  gameWon = false;
-  gameStatus.textContent = "Click a card to find the hidden cute pig!";
-
-  for (let i = 0; i < totalTiles; i++) {
-    const tile = document.createElement('button');
-    tile.className = 'game-tile';
-    tile.textContent = "👧";
-    tile.addEventListener('click', () => handleTileClick(i, tile));
-    gameGrid.appendChild(tile);
+  // --- 5. SONG PLAYER INTERACTION ---
+  function setupSongPlayer() {
+    const player = document.getElementById("songPlayer");
+    const record = document.querySelector(".record");
+    if (player && record) {
+      player.addEventListener("play", () => record.classList.add("playing"));
+      player.addEventListener("pause", () => record.classList.remove("playing"));
+      player.addEventListener("ended", () => record.classList.remove("playing"));
+    }
   }
-}
 
-function handleTileClick(index, tile) {
-  if (gameWon || tile.classList.contains('revealed')) return;
+  // --- 6. TOP BUTTONS (PHOTO & CALENDAR MODALS) ---
+  const photoButton = document.getElementById("photoButton");
+  const photoModal = document.getElementById("photoModal");
+  const closePhoto = document.getElementById("closePhoto");
 
-  tile.classList.add('revealed');
-  if (index === winningIndex) {
-    tile.textContent = "🐷";
-    gameStatus.textContent = "Yay! You found the cute pig! 💕🎉";
-    gameWon = true;
-    confetti(50);
-  } else {
-    tile.textContent = "🌸";
-    gameStatus.textContent = "Not here! Keep looking for the cute pig... 💖";
+  if (photoButton && photoModal) {
+    photoButton.addEventListener("click", () => photoModal.classList.add("show"));
   }
-}
+  if (closePhoto && photoModal) {
+    closePhoto.addEventListener("click", () => photoModal.classList.remove("show"));
+  }
 
-initMiniGame();
+  const dateButton = document.getElementById("dateButton");
+  const calendarModal = document.getElementById("calendarModal");
+  const closeCalendar = document.getElementById("closeCalendar");
+
+  if (dateButton && calendarModal) {
+    dateButton.addEventListener("click", () => calendarModal.classList.add("show"));
+  }
+  if (closeCalendar && calendarModal) {
+    closeCalendar.addEventListener("click", () => calendarModal.classList.remove("show"));
+  }
+
+  // --- 7. MINI GAME: FIND THE PIG ---
+  const gameGrid = document.getElementById("gameGrid");
+  const gameStatus = document.getElementById("gameStatus");
+  const totalTiles = 8;
+  const winningIndex = Math.floor(Math.random() * totalTiles);
+
+  if (gameGrid) {
+    for (let i = 0; i < totalTiles; i++) {
+      const tile = document.createElement("button");
+      tile.className = "game-tile";
+      tile.textContent = "❓";
+      tile.setAttribute("aria-label", `Card ${i + 1}`);
+
+      tile.addEventListener("click", () => {
+        if (tile.classList.contains("revealed")) return;
+
+        tile.classList.add("revealed");
+        if (i === winningIndex) {
+          tile.textContent = "🐷";
+          if (gameStatus) gameStatus.textContent = "Yay! You found the cute pig! 🎉💕";
+          revealAllTiles();
+        } else {
+          tile.textContent = "🌸";
+          if (gameStatus) gameStatus.textContent = "Not here! Try another card 💗";
+        }
+      });
+      gameGrid.appendChild(tile);
+    }
+  }
+
+  function revealAllTiles() {
+    const tiles = document.querySelectorAll(".game-tile");
+    tiles.forEach((t, idx) => {
+      t.classList.add("revealed");
+      if (idx === winningIndex) {
+        t.textContent = "🐷";
+      } else if (t.textContent === "❓") {
+        t.textContent = "💨";
+      }
+    });
+  }
+
+  // --- 8. FLOATING HEARTS & REPLAY ---
+  function startFloatingHearts() {
+    const heartsBg = document.getElementById("heartsBg");
+    if (!heartsBg) return;
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "float-heart";
+      heart.textContent = Math.random() > 0.5 ? "💗" : "🌸";
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.bottom = `-20px";
+      heart.style.fontSize = `${Math.random() * 20 + 14}px`;
+      heart.style.animationDuration = `${Math.random() * 3 + 3}s`;
+      heartsBg.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 450);
+  }
+
+  function launchConfetti() {
+    for (let i = 0; i < 45; i++) {
+      const confetti = document.createElement("div");
+      confetti.className = "confetti";
+      confetti.style.left = `${Math.random() * 100}vw`;
+      confetti.style.background = ['#ff6fae', '#ffb8d4', '#ffffff', '#ff4f9c'][Math.floor(Math.random() * 4)];
+      confetti.style.animationDelay = `${Math.random() * 1.5}s`;
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 4000);
+    }
+  }
+
+  if (replayBtn) {
+    replayBtn.addEventListener("click", () => {
+      window.location.reload();
+    });
+  }
+});
