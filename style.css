@@ -99,6 +99,81 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .close{position:absolute;right:15px;top:12px;border:0;background:#fff;color:#ee5796;width:38px;height:38px;border-radius:50%;font-size:28px;cursor:pointer}.modal-icon{font-size:48px}.modal h2{font-family:Pacifico,cursive;color:#ef5797;font-size:38px;margin:4px 0}.modal-sub{margin-top:0;color:#896e7e}
 .letter{font-size:19px;line-height:1.55;text-align:center;padding:12px 20px}.letter p{margin:14px 0}.letter b{color:#e94e91}
 
+/* PASSCODE BOX STYLING */
+.passcode-box {
+  position: absolute;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(207, 83, 139, 0.3);
+  text-align: center;
+  width: min(380px, 90vw);
+  border: 2px solid #ffb8d4;
+  backdrop-filter: blur(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.passcode-box.hide {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+.passcode-box h2 {
+  font-family: Pacifico, cursive;
+  color: #ef5797;
+  font-size: 28px;
+  margin: 10px 0 5px 0;
+}
+.passcode-sub {
+  color: #8f7584;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.passcode-input-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.passcode-box input {
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 2px solid #ffb8d4;
+  outline: none;
+  font-family: inherit;
+  font-size: 16px;
+  width: 200px;
+  text-align: center;
+  color: #463744;
+  background: #fff;
+}
+.passcode-box input:focus {
+  border-color: #f84d93;
+}
+.passcode-box button {
+  background: #ff6fae;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 111, 174, 0.3);
+  font-family: inherit;
+  transition: transform 0.2s;
+}
+.passcode-box button:hover {
+  transform: scale(1.05);
+}
+.passcode-error {
+  color: #e94e91;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 12px;
+  min-height: 20px;
+}
+
+/* VINTAGE ENVELOPE OPENING ANIMATION STYLES INSIDE MODAL */
 .vintage-envelope-opening-stage {
   display: flex;
   flex-direction: column;
@@ -279,39 +354,18 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
 
-/* Pig hidden safely BEHIND the clouds in the center layer (z-index 2) */
-.pig-intro-stage {
-  position: absolute;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: transform 1.2s ease, opacity 0.8s ease;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.pig-intro-stage.gone-back {
-  transform: translate(-50%, -50%) scale(0.3) translateY(150px);
-  opacity: 0;
-}
-
-/* CLOUDS START FAR APART AND SLIDE CLOSE TOGETHER */
+/* MASSIVE OVERLAPPING CLOUDS */
 .big-intro-cloud {
   position: absolute;
-  width: 520px;
-  height: 220px;
+  width: 750px;
+  height: 320px;
   background: #ffffff;
-  border-radius: 120px;
-  box-shadow: 0 15px 40px rgba(207, 83, 139, 0.22);
+  border-radius: 180px;
+  box-shadow: 0 20px 50px rgba(207, 83, 139, 0.25);
   transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
   z-index: 5;
-  top: calc(50% - 110px);
 }
 
 .big-intro-cloud:before, .big-intro-cloud:after {
@@ -322,31 +376,27 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 }
 
 .big-intro-cloud:before {
-  width: 220px;
-  height: 220px;
-  left: 70px;
-  top: -100px;
+  width: 320px;
+  height: 320px;
+  left: 100px;
+  top: -150px;
 }
 
 .big-intro-cloud:after {
-  width: 260px;
-  height: 260px;
-  right: 60px;
-  top: -120px;
+  width: 380px;
+  height: 380px;
+  right: 90px;
+  top: -180px;
 }
 
-/* Start far apart off-screen or sides, then slide closer to meet in the middle */
 .cloud-left {
-  right: calc(50% + 80px);
-  transform: translateX(-40vw);
+  left: calc(50% - 480px);
 }
 
 .cloud-right {
-  left: calc(50% + 80px);
-  transform: translateX(40vw);
+  right: calc(50% - 480px);
 }
 
-/* When wrapper opens, they fly all the way out */
 .clouds-intro-wrapper.opened .cloud-left {
   transform: translateX(-120vw);
 }
@@ -355,56 +405,19 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   transform: translateX(120vw);
 }
 
-.clouds-intro-wrapper.opened .cloud-intro-title {
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
-/* When initial page loads, clouds slide IN from far apart to close together */
-.clouds-intro-wrapper .cloud-left,
-.clouds-intro-wrapper .cloud-right {
-  animation: slideCloudsTogether 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-}
-
-@keyframes slideCloudsTogether {
-  0% {
-    transform: translateX(var(--start-x, 0));
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.cloud-left { --start-x: -45vw; }
-.cloud-right { --start-x: 45vw; }
-
-/* COLOURFUL & VISIBLE CLOUDY FONT FOR "HI" RIGHT WHERE THE CLOUDS MEET IN THE CENTER */
-.cloud-intro-title {
+.pig-intro-stage {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-family: Pacifico, cursive;
-  font-size: clamp(65px, 11vw, 105px);
-  background: linear-gradient(135deg, #ff3385, #ff7eb6, #ffb8d4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 10px rgba(255, 110, 160, 0.4));
-  letter-spacing: 2px;
-  z-index: 7;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1.2s ease, opacity 0.8s ease;
+}
+
+.pig-intro-stage.gone-back {
+  transform: scale(0.3) translateY(150px);
   opacity: 0;
-  animation: fadeInHi 0.8s ease 0.9s forwards, pulseHint 2s infinite 1.7s;
-  pointer-events: none;
-}
-
-@keyframes fadeInHi {
-  to { opacity: 1; }
-}
-
-@keyframes pulseHint {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.04); }
 }
 
 .pig-character-walk {
