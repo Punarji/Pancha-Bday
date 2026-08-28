@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <!-- STEP 1: CLOUD OPENING INTRO WITH CLOUDY HI, OVERLAPPING CLOUDS, & SLOWER PIG SPEED -->
+  <!-- STEP 1: CLOUD OPENING INTRO WITH COLOURFUL HI & OVERLAPPING CLOUDS -->
   <section class="pig-screen" id="pigScreen">
     <div class="clouds-intro-wrapper" id="cloudsIntroWrapper">
       <div class="cloud-intro-title" id="cloudIntroTitle">HI</div>
@@ -34,7 +34,7 @@
     </div>
   </section>
 
-  <!-- STEP 2: FADED CANDLE SHOWING STEP BY STEP (NO WATCH THE CANDLE GLOW TEXT & NO TAP HINT) -->
+  <!-- STEP 2: FADED CANDLE SHOWING STEP BY STEP -->
   <section class="candle-screen hide-init" id="candleScreen">
     <div class="candle-card">
       <p class="tiny">A little birthday surprise for you...</p>
@@ -70,9 +70,14 @@
       </header>
 
       <section class="gifts" aria-label="Three birthday gifts">
+        <!-- VINTAGE ENVELOPE GIFT CARD FOR SWEET MESSAGE -->
         <button class="gift-card" data-gift="message" aria-label="Open sweet message">
-          <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
-          <strong>💌 A Sweet Message</strong><small>Open me first</small>
+          <div class="vintage-envelope-box">
+            <div class="envelope-base"></div>
+            <div class="envelope-flap"></div>
+            <div class="envelope-seal">♡</div>
+          </div>
+          <strong>💌 A Sweet Message</strong><small>Open from envelope</small>
         </button>
 
         <button class="gift-card" data-gift="memories" aria-label="Open memories">
@@ -86,14 +91,12 @@
         </button>
       </section>
 
-      <!-- MINI GAME SECTION: Find the cute pig -->
+      <!-- MINI GAME SECTION -->
       <section class="mini-game-section" aria-label="Mini game">
         <div class="game-card-box">
           <h2>Find the Cute Pig Mini Game 🐷💕</h2>
           <p class="game-sub">Help the beautiful girl find her cute hiding pig among the magical cards!</p>
-          <div class="game-grid" id="gameGrid">
-            <!-- 4 hidden cards generated via script -->
-          </div>
+          <div class="game-grid" id="gameGrid"></div>
           <p class="game-status" id="gameStatus">Click a card to find the hidden cute pig!</p>
         </div>
       </section>
@@ -121,7 +124,7 @@
     </div>
   </div>
 
-  <!-- SEPTEMBER 2026 CALENDAR (SEPTEMBER 1 IS TUESDAY, SEP 6 IS SUNDAY) -->
+  <!-- SEPTEMBER 2026 CALENDAR -->
   <div class="modal" id="calendarModal" aria-hidden="true">
     <div class="modal-card calendar-card-box">
       <button class="close" id="closeCalendar" aria-label="Close">×</button>
@@ -163,15 +166,27 @@
     </div>
   </div>
 
+  <!-- VINTAGE LETTER TEMPLATE OPENING FROM ENVELOPE -->
   <template id="messageTemplate">
-    <div class="modal-icon">💌</div>
-    <h2>For my Pancha</h2>
-    <div class="letter">
-      <p><b>Happy 25th Birthday, Suduu! 🌸💕</b></p>
-      <p>You are like the sky to me — sometimes calm, sometimes full of colors, but always beautiful in your own way. ☁️🌷</p>
-      <p>Thank you for being my Pancha, my favorite person, and the one who always calls me <b>“ura” 🐷😂</b>.</p>
-      <p>I hope this new year of your life brings you endless happiness, beautiful moments, and everything your heart wishes for.</p>
-      <p><b>Keep smiling, my Sweetest Angry bird 💗</b></p><p><b>Happy 25th Birthday, My loving Panchoo 🎂✨</b></p>
+    <div class="vintage-envelope-opening-stage">
+      <div class="open-envelope-container" id="openEnvelopeContainer">
+        <div class="open-env-back"></div>
+        <div class="vintage-letter-card" id="vintageLetterCard">
+          <div class="modal-icon">💌</div>
+          <h2>For my Pancha</h2>
+          <div class="letter vintage-paper-style">
+            <p><b>Happy 25th Birthday, Suduu! 🌸💕</b></p>
+            <p>You are like the sky to me — sometimes calm, sometimes full of colors, but always beautiful in your own way. ☁️🌷</p>
+            <p>Thank you for being my Pancha, my favorite person, and the one who always calls me <b>“ura” 🐷😂</b>.</p>
+            <p>I hope this new year of your life brings you endless happiness, beautiful moments, and everything your heart wishes for.</p>
+            <p><b>Keep smiling, my Sweetest Angry bird 💗</b></p>
+            <p><b>Happy 25th Birthday, My loving Panchoo 🎂✨</b></p>
+          </div>
+        </div>
+        <div class="open-env-front"></div>
+        <div class="open-env-flap" id="openEnvFlap"></div>
+      </div>
+      <button class="pull-letter-btn" id="pullLetterBtn">Pull letter out of envelope ✨</button>
     </div>
   </template>
 
