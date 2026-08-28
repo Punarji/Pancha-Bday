@@ -33,7 +33,7 @@ function confetti(n=70){const s=['💗','✨','🌸','♡','🎀','🎂'];for(le
 function hearts(){const b=document.getElementById('heartsBg');if(!b)return;let e=document.createElement('div');e.className='float-heart';e.textContent=['♡','💗','✦','🌸'][Math.floor(Math.random()*4)];e.style.left=Math.random()*100+'%';e.style.bottom='-20px';e.style.fontSize=14+Math.random()*22+'px';e.style.animationDuration=7+Math.random()*7+'s';b.appendChild(e);setTimeout(()=>e.remove(),15000)}
 setInterval(hearts,900);
 
-// Sequence timeline when user clicks clouds
+// Sequence timeline when user clicks anywhere on opening screen
 let sequenceStarted = false;
 cloudsIntroWrapper.addEventListener('click', () => {
   if (sequenceStarted) return;
@@ -48,17 +48,17 @@ cloudsIntroWrapper.addEventListener('click', () => {
   }, 400);
 
   setTimeout(() => {
-    pigThought.textContent = "Oh wait today is my pancha's birthdayy! 🎉";
+    pigThought.textContent = "Oh wait today is my pancha's birthdayy!";
   }, 2200);
 
   setTimeout(() => {
-    pigThought.textContent = "lets go to celebrate it come follow me! ✨";
+    pigThought.textContent = "lets go to celebrate it come follow me";
   }, 4200);
 
   // 3. Pig goes backward slowly and changes thought to click me
   setTimeout(() => {
     pigIntroStage.classList.add('gone-back');
-    pigThought.textContent = "Click me! 👇";
+    pigThought.textContent = "click me";
     pigThought.style.transform = "translateX(-50%) scale(1.1)";
   }, 6200);
 
@@ -99,7 +99,7 @@ candleButton.addEventListener('click', () => {
   }, 1400);
 });
 
-// Date Button Calendar Modal Logic (September 6th Sunday correctly mapped)
+// Date Button Calendar Modal Logic (September 1st Tuesday, Sep 6th Sunday)
 dateButton.addEventListener('click', () => {
   calendarModal.classList.add('show');
   confetti(25);
