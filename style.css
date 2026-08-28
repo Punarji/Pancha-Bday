@@ -32,6 +32,50 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .bow{position:absolute;z-index:4;top:3px;left:53px;font-size:75px;transform:rotate(-7deg)}
 .lock{position:absolute;z-index:5;left:72px;top:72px;width:38px;height:38px;background:#fff;border-radius:50%;display:grid;place-items:center;color:#f65c9c;font-size:23px}
 
+/* VINTAGE ENVELOPE GIFT ICON */
+.vintage-envelope-box {
+  height: 140px;
+  position: relative;
+  width: 170px;
+  margin: 15px auto 15px;
+  background: #f2e3d5;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(150,110,90,0.2);
+  border: 2px solid #dcc4b0;
+  overflow: hidden;
+}
+.envelope-base {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #f7ece1 0%, #ecd7c2 100%);
+}
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: #e4ccb5;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  border-bottom: 2px solid #d3b69c;
+}
+.envelope-seal {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  background: #d46a84;
+  color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  z-index: 3;
+}
+
 /* MINI GAME STYLING */
 .mini-game-section {
   margin: 35px auto 0;
@@ -99,6 +143,104 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .close{position:absolute;right:15px;top:12px;border:0;background:#fff;color:#ee5796;width:38px;height:38px;border-radius:50%;font-size:28px;cursor:pointer}.modal-icon{font-size:48px}.modal h2{font-family:Pacifico,cursive;color:#ef5797;font-size:38px;margin:4px 0}.modal-sub{margin-top:0;color:#896e7e}
 .letter{font-size:19px;line-height:1.55;text-align:center;padding:12px 20px}.letter p{margin:14px 0}.letter b{color:#e94e91}
 
+/* VINTAGE ENVELOPE OPENING ANIMATION STYLES INSIDE MODAL */
+.vintage-envelope-opening-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.open-envelope-container {
+  position: relative;
+  width: min(440px, 85vw);
+  height: 280px;
+  background: #e8d3be;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(120,80,60,0.25);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.open-env-back {
+  position: absolute;
+  inset: 0;
+  background: #eddccb;
+}
+.vintage-letter-card {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  height: 230px;
+  background: #fbf6ec;
+  border: 2px solid #dfc7b0;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  transform: translateY(120px);
+  z-index: 2;
+  overflow-y: auto;
+  text-align: center;
+}
+.vintage-letter-card.pulled-out {
+  transform: translateY(-40px);
+  height: 380px;
+  box-shadow: 0 15px 40px rgba(100,60,40,0.2);
+}
+.vintage-paper-style {
+  background: #fbf6ec;
+  font-family: "Baloo 2", serif;
+  color: #524039;
+}
+.open-env-front {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  background: linear-gradient(180deg, #e4cca7, #d7bd99);
+  clip-path: polygon(0 30%, 50% 100%, 100% 30%, 100% 100%, 0 100%);
+  z-index: 3;
+  pointer-events: none;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.open-env-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 130px;
+  background: #eedbc6;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 4;
+  transform-origin: top;
+  transition: transform 0.8s ease-in-out;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.open-env-flap.opened {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+.pull-letter-btn {
+  background: #d46a84;
+  color: #fff;
+  border: none;
+  padding: 12px 26px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(212,106,132,0.3);
+  transition: transform 0.2s;
+  font-family: inherit;
+}
+.pull-letter-btn:hover {
+  transform: scale(1.05);
+}
+
 .photos-exact-5cm {
   display: flex;
   justify-content: center;
@@ -134,7 +276,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 .confetti{position:fixed;z-index:50;width:9px;height:14px;top:-20px;animation:confetti 2.8s linear forwards;pointer-events:none}@keyframes confetti{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
 @media(max-width:700px){.app{padding-top:18px}.top-pill,.date-pill{position:static;display:inline-block;margin:4px}.small-title{margin-top:32px}.gifts{grid-template-columns:1fr;gap:15px}.gift-card{display:grid;grid-template-columns:145px 1fr;align-items:center;text-align:left;padding:12px}.gift-box{width:145px;height:125px;transform:scale(.78);transform-origin:center}.gift-card strong,.gift-card small{grid-column:2}.gift-card strong{margin-top:-65px}.gift-card small{margin-top:-25px}.photos-exact-5cm{flex-direction:column;align-items:center}.modal-card{padding:28px 18px}.final-card h2{font-size:32px}}
 
-/* CANDLE SCREEN WITH STEP-BY-STEP FADED ENTRANCE & GLOWING (NO WATCH THE CANDLE GLOW TEXT & NO TAP HINT) */
+/* CANDLE SCREEN */
 .candle-screen{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 40%,#ffeaf5 0,#f7b9d4 28%,#302035 100%);display:grid;place-items:center;overflow:hidden;transition:opacity 1s,transform 1s}.candle-screen.hide{opacity:0;transform:scale(1.08);pointer-events:none}.candle-card{text-align:center;color:#fff;padding:30px}.candle-card h1{font-family:Pacifico,cursive;font-size:clamp(35px,7vw,60px);margin:5px 0;color:#fff;text-shadow:0 0 20px #ff8fbe}.tiny{font-size:18px;opacity:.9}
 
 .candle-button{position:relative;width:150px;height:260px;border:0;background:transparent;cursor:pointer;margin:12px auto 0;display:block;opacity:0.2;transform:scale(0.85);transition:opacity 1.5s ease, transform 1.5s ease;}
@@ -153,7 +295,6 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 .birthday-blast{position:fixed;inset:0;z-index:90;display:none;place-items:center;background:rgba(255,125,180,.18);pointer-events:none}.birthday-blast.show{display:grid;animation:blastFade 2.2s forwards}.blast-text{font-family:Pacifico,cursive;font-size:clamp(35px,9vw,90px);text-align:center;color:#fff;text-shadow:0 0 15px #ff4f9c,0 0 45px #ff4f9c;animation:blastText 1.7s ease-out}@keyframes blastText{0%{transform:scale(.1);opacity:0}35%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:0}}@keyframes blastFade{0%{opacity:1}100%{opacity:0}}
 .site{display:none}.site.show{display:block}.top-pill{border:0;cursor:pointer;font-family:inherit}.main-memory-photo{width:min(100%,520px);max-height:60vh;object-fit:contain;border-radius:22px;border:3px solid #fff;box-shadow:0 18px 45px rgba(207,83,139,.16)}.photo-fallback{display:none;min-height:300px;border:2px dashed #ff9fc5;border-radius:20px;background:#fff;place-items:center;padding:30px;color:#e9659c}.photo-fallback span{font-size:60px}.photo-fallback small{display:block}.song-note{font-size:13px;color:#947d89}
 
-/* BIG CLOUD OPENING INTRO & FULLY COVERED PIG WITH OVERLAPPING CLOSE CLOUDS */
 .hide-init {
   display: none !important;
 }
@@ -186,21 +327,23 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   cursor: pointer;
 }
 
-/* BIG CLOUDY FONT FOR "HI" */
+/* COLOURFUL & VISIBLE CLOUDY FONT FOR "HI" */
 .cloud-intro-title {
   position: absolute;
-  top: 18%;
+  top: 16%;
   font-family: Pacifico, cursive;
-  font-size: clamp(70px, 12vw, 120px);
-  color: #ffffff;
-  text-shadow: 0 8px 25px rgba(211, 89, 139, 0.4), 0 2px 0 #ff7eb6;
+  font-size: clamp(80px, 14vw, 130px);
+  background: linear-gradient(135deg, #ff3385, #ff7eb6, #ffb8d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 15px rgba(255, 110, 160, 0.5));
   letter-spacing: 4px;
   z-index: 6;
   animation: pulseHint 2s infinite;
   pointer-events: none;
 }
 
-/* MASSIVE CLOUDS OVERLAPPING CLOSER SO NO PIG IS SEEN BEHIND THEM */
+/* MASSIVE OVERLAPPING CLOUDS */
 .big-intro-cloud {
   position: absolute;
   width: 750px;
@@ -233,7 +376,6 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   top: -180px;
 }
 
-/* Shifted closer so they completely overlap and hide the pig */
 .cloud-left {
   left: calc(50% - 480px);
 }
@@ -242,7 +384,6 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   right: calc(50% - 480px);
 }
 
-/* When clouds open */
 .clouds-intro-wrapper.opened .cloud-left {
   transform: translateX(-120vw);
 }
@@ -280,7 +421,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 .pig-character-walk {
   position: relative;
   font-size: 75px;
-  animation: walkInCircle 10s infinite linear; /* Slower pig speed */
+  animation: walkInCircle 10s infinite linear;
   transform-origin: center center;
   user-select: none;
   filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
@@ -288,7 +429,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 
 .pig-body-part {
   display: block;
-  animation: pigWiggle 0.7s infinite alternate ease-in-out; /* Slower wiggle */
+  animation: pigWiggle 0.7s infinite alternate ease-in-out;
 }
 
 .pig-legs-container {
@@ -309,7 +450,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 }
 
 .left-leg {
-  animation: legMoveLeft 0.5s infinite alternate ease-in-out; /* Slower legs */
+  animation: legMoveLeft 0.5s infinite alternate ease-in-out;
 }
 
 .right-leg {
