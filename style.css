@@ -3,10 +3,16 @@
 html,body{margin:0;min-height:100%;font-family:"Baloo 2",system-ui,sans-serif;color:var(--ink)}
 body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);overflow-x:hidden}
 .sky{position:fixed;inset:0;z-index:-2;overflow:hidden;background:linear-gradient(180deg,#ffd2e5,#fff0f7 55%,#f8f4ff)}
-.cloud{position:absolute;width:260px;height:75px;background:rgba(255,255,255,.45);border-radius:100px;filter:blur(1px)}
+.cloud{position:absolute;width:260px;height:75px;background:rgba(255,255,255,.45);border-radius:100px;filter:blur(1px);animation: floatCloud 8s ease-in-out infinite alternate;}
+@keyframes floatCloud {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-12px); }
+}
 .cloud:before,.cloud:after{content:"";position:absolute;background:inherit;border-radius:50%}
 .cloud:before{width:110px;height:110px;left:40px;top:-45px}.cloud:after{width:140px;height:140px;right:30px;top:-65px}
-.cloud-1{top:18%;left:-100px}.cloud-2{top:62%;right:-110px;transform:scale(.85)}.cloud-3{top:82%;left:10%;transform:scale(.55);opacity:.7}
+.cloud-1{top:18%;left:-100px;animation-delay: 0s;}
+.cloud-2{top:62%;right:-110px;transform:scale(.85);animation-delay: 2s;}
+.cloud-3{top:82%;left:10%;transform:scale(.55);opacity:.7;animation-delay: 4s;}
 .stars:before,.stars:after{content:"✦  ·  ✧     ·  ✦       ·  ✧   ·";position:absolute;color:rgba(255,255,255,.85);font-size:25px;letter-spacing:20px;top:12%;left:8%}
 .stars:after{top:47%;left:72%;font-size:18px}
 .hearts-bg{position:absolute;inset:0;pointer-events:none}
@@ -290,7 +296,13 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   border-radius: 180px;
   box-shadow: 0 20px 50px rgba(207, 83, 139, 0.25);
   transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  animation: floatBigCloud 5s ease-in-out infinite alternate;
   z-index: 5;
+}
+
+@keyframes floatBigCloud {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-10px); }
 }
 
 .big-intro-cloud:before, .big-intro-cloud:after {
@@ -320,14 +332,16 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 
 .cloud-right {
   right: calc(50% - 480px);
+  animation-delay: 2.5s;
 }
 
 .clouds-intro-wrapper.opened .cloud-left {
-  transform: translateX(-120vw);
+  transform: translateX(-120vw) translateY(0px) !important;
 }
 
 .clouds-intro-wrapper.opened .cloud-right {
-  transform: translateX(120vw);
+  transform: translateX(120vw) translateY(0px) !important;
+  animation: none;
 }
 
 .pig-intro-stage {
