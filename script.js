@@ -147,41 +147,90 @@ function setupSong(){stopBackground();let a=document.getElementById('songPlayer'
 replay.addEventListener('click',()=>{finalScreen.classList.remove('show');opened.clear();gifts.forEach(g=>g.classList.remove('opened'));openedCount.textContent='0';progressBar.style.width='0%';startBackground()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){photoModal.classList.remove('show');calendarModal.classList.remove('show');if(modal.classList.contains('show'))closeGift()}});
 
-// MINI GAME LOGIC
-const gameGrid = document.getElementById('gameGrid');
+// DRAG PIG MINI GAME LOGIC (MOUSE & TOUCH DRAGGING)
+const draggablePig = document.getElementById('draggablePig');
+const dragPlayArea = document.getElementById('dragPlayArea');
+const girlTarget = document.getElementById('girlTarget');
 const gameStatus = document.getElementById('gameStatus');
-const totalTiles = 4;
-let winningIndex = Math.floor(Math.random() * totalTiles);
-let gameWon = false;
 
-function initMiniGame() {
-  gameGrid.innerHTML = '';
-  winningIndex = Math.floor(Math.random() * totalTiles);
-  gameWon = false;
-  gameStatus.textContent = "Click a card to find the hidden cute pig!";
+let isDragging = false;
+let gameCompleted = false;
 
-  for (let i = 0; i < totalTiles; i++) {
-    const tile = document.createElement('button');
-    tile.className = 'game-tile';
-    tile.textContent = "👧";
-    tile.addEventListener('click', () => handleTileClick(i, tile));
-    gameGrid.appendChild(tile);
+function initDragGame() {
+  isDragging = false;
+  gameCompleted = false;
+  draggablePig.style.left = '35px';
+  gameStatus.textContent = "Drag the pig across the field to give a big hug!";
+  draggablePig.style.cursor = 'grab';
+}
+
+function startDrag(e) {
+  if (gameCompleted) return;
+  isDragging = true;
+  draggablePig.style.cursor = 'grabbing';
+  e.preventDefault();
+}
+
+function onDrag(clientX) {
+  if (!isDragging || gameCompleted) return;
+  const rect = dragPlayArea.getBoundingClientRect();
+  let offsetX = clientX - rect.left - 25; // center offset
+  
+  // Constrain inside bounds
+  const minX = 10;
+  const maxX = dragPlayArea.clientWidth - 70;
+  
+  if (offsetX < minX) offsetX = minX;
+  if (offsetX > maxX) offsetX = maxX;
+  
+  draggablePig.style.left = offsetX + 'px';
+
+  // Check if pig is close enough to girl target
+  const pigRect = draggablePig.getBoundingClientRect();
+  const girlRect = girlTarget.getBoundingClientRect();
+  
+  if (pigRect.right >= girlRect.left - 15) {
+    // Success!
+    isDragging = false;
+    gameCompleted = true;
+    draggablePig.style.left = (dragPlayArea.clientWidth - 75) + 'px';
+    draggablePig.style.cursor = 'default';
+    gameStatus.textContent = "Yay! Big hug for my Pancha! 💕🎉";
+    confetti(40);
   }
 }
 
-function handleTileClick(index, tile) {
-  if (gameWon || tile.classList.contains('revealed')) return;
-
-  tile.classList.add('revealed');
-  if (index === winningIndex) {
-    tile.textContent = "🐷";
-    gameStatus.textContent = "Yay! You found the cute pig! 💕🎉";
-    gameWon = true;
-    confetti(50);
-  } else {
-    tile.textContent = "🌸";
-    gameStatus.textContent = "Not here! Keep looking for the cute pig... 💖";
+function endDrag() {
+  if (!isDragging) return;
+  isDragging = false;
+  draggablePig.style.cursor = 'grab';
+  
+  // If not reached, snap back gently if user didn't reach target
+  if (!gameCompleted) {
+    draggablePig.style.transition = 'left 0.3s ease';
+    draggablePig.style.left = '35px';
+    setTimeout(() => {
+      draggablePig.style.transition = 'none';
+    }, 300);
   }
 }
 
-initMiniGame();
+// Mouse events
+draggablePig.addEventListener('mousedown', startDrag);
+window.addEventListener('mousemove', (e) => {
+  if (isDragging) onDrag(e.clientX);
+});
+window.addEventListener('mouseup', endDrag);
+
+// Touch events for mobile phones
+draggablePig.addEventListener('touchstart', (e) => {
+  startDrag(e.touches[0]);
+});
+window.addEventListener('touchmove', (e) => {
+  if (isDragging && e.touches.length > 0) {
+    onDrag(e.touches[0].clientX);
+  }
+});
+window.addEventListener('touchend', endDrag);
+
+initDragGame();
