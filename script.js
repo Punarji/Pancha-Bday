@@ -204,7 +204,7 @@ function handleTileClick(index, tile) {
     gameWon = true;
     confetti(50);
   } else {
-    tile.textContent = "😿";
+    tile.textContent = "🐽😿";
     gameStatus.textContent = "Wrong! You didn't find me... 😢";
   }
 }
