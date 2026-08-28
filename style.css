@@ -31,6 +31,67 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .ribbon{position:absolute;z-index:3;width:28px;height:105px;left:76px;bottom:10px;background:#ffb2d0;border-radius:3px}
 .bow{position:absolute;z-index:4;top:3px;left:53px;font-size:75px;transform:rotate(-7deg)}
 .lock{position:absolute;z-index:5;left:72px;top:72px;width:38px;height:38px;background:#fff;border-radius:50%;display:grid;place-items:center;color:#f65c9c;font-size:23px}
+
+/* MINI GAME STYLING */
+.mini-game-section {
+  margin: 35px auto 0;
+  max-width: 700px;
+}
+.game-card-box {
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 28px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.game-card-box h2 {
+  font-family: Pacifico, cursive;
+  color: #ef5797;
+  font-size: 26px;
+  margin: 0 0 6px 0;
+}
+.game-sub {
+  color: #8f7584;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  max-width: 480px;
+  margin: 0 auto 15px;
+}
+.game-tile {
+  background: linear-gradient(135deg, #ff8ebc, #ff6fae);
+  border: none;
+  border-radius: 16px;
+  aspect-ratio: 1;
+  font-size: 32px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(207,83,139,0.2);
+  transition: transform 0.2s, background 0.2s;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 700;
+}
+.game-tile:hover {
+  transform: scale(1.05);
+}
+.game-tile.revealed {
+  background: #fff;
+  border: 2px solid #ff9bc3;
+  box-shadow: none;
+}
+.game-status {
+  font-weight: 700;
+  color: #d65b91;
+  font-size: 17px;
+  margin: 0;
+}
+
 .progress-wrap{max-width:530px;margin:35px auto 0;text-align:center}.progress-text{font-weight:700;color:#d65b91}.progress{height:9px;background:rgba(255,255,255,.7);border-radius:20px;margin-top:9px;overflow:hidden}.progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#ff79b2,#f24b91);border-radius:20px;transition:.5s}
 .message-panel{margin:30px auto 0;max-width:700px;text-align:center;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);padding:22px;border-radius:25px;box-shadow:var(--shadow)}.panel-heart{font-size:28px;color:#f35a9b}.message-panel p{font-size:20px;margin:4px}.message-panel small{color:#8b7583}
 .modal,.final-screen{position:fixed;inset:0;background:rgba(79,38,61,.3);backdrop-filter:blur(7px);z-index:20;display:none;align-items:center;justify-content:center;padding:20px}.modal.show,.final-screen.show{display:flex}
@@ -38,7 +99,6 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .close{position:absolute;right:15px;top:12px;border:0;background:#fff;color:#ee5796;width:38px;height:38px;border-radius:50%;font-size:28px;cursor:pointer}.modal-icon{font-size:48px}.modal h2{font-family:Pacifico,cursive;color:#ef5797;font-size:38px;margin:4px 0}.modal-sub{margin-top:0;color:#896e7e}
 .letter{font-size:19px;line-height:1.55;text-align:center;padding:12px 20px}.letter p{margin:14px 0}.letter b{color:#e94e91}
 
-/* EXACT 5x5 cm PHOTO SIZES FOR MEMORIES CARD */
 .photos-exact-5cm {
   display: flex;
   justify-content: center;
@@ -74,29 +134,26 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 .confetti{position:fixed;z-index:50;width:9px;height:14px;top:-20px;animation:confetti 2.8s linear forwards;pointer-events:none}@keyframes confetti{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
 @media(max-width:700px){.app{padding-top:18px}.top-pill,.date-pill{position:static;display:inline-block;margin:4px}.small-title{margin-top:32px}.gifts{grid-template-columns:1fr;gap:15px}.gift-card{display:grid;grid-template-columns:145px 1fr;align-items:center;text-align:left;padding:12px}.gift-box{width:145px;height:125px;transform:scale(.78);transform-origin:center}.gift-card strong,.gift-card small{grid-column:2}.gift-card strong{margin-top:-65px}.gift-card small{margin-top:-25px}.photos-exact-5cm{flex-direction:column;align-items:center}.modal-card{padding:28px 18px}.final-card h2{font-size:32px}}
 
-/* CANDLE SCREEN WITH STEP-BY-STEP FADED ENTRANCE & GLOWING (NO TAP HINT) */
-.candle-screen{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 40%,#ffeaf5 0,#f7b9d4 28%,#302035 100%);display:grid;place-items:center;overflow:hidden;transition:opacity 1s,transform 1s}.candle-screen.hide{opacity:0;transform:scale(1.08);pointer-events:none}.candle-card{text-align:center;color:#fff;padding:30px}.candle-card h1{font-family:Pacifico,cursive;font-size:clamp(35px,7vw,60px);margin:5px 0;color:#fff;text-shadow:0 0 20px #ff8fbe}.candle-note{font-size:19px}.tiny{font-size:18px;opacity:.9}
+/* CANDLE SCREEN WITH STEP-BY-STEP FADED ENTRANCE & GLOWING (NO WATCH THE CANDLE GLOW TEXT & NO TAP HINT) */
+.candle-screen{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 40%,#ffeaf5 0,#f7b9d4 28%,#302035 100%);display:grid;place-items:center;overflow:hidden;transition:opacity 1s,transform 1s}.candle-screen.hide{opacity:0;transform:scale(1.08);pointer-events:none}.candle-card{text-align:center;color:#fff;padding:30px}.candle-card h1{font-family:Pacifico,cursive;font-size:clamp(35px,7vw,60px);margin:5px 0;color:#fff;text-shadow:0 0 20px #ff8fbe}.tiny{font-size:18px;opacity:.9}
 
-/* Faded candle initially */
 .candle-button{position:relative;width:150px;height:260px;border:0;background:transparent;cursor:pointer;margin:12px auto 0;display:block;opacity:0.2;transform:scale(0.85);transition:opacity 1.5s ease, transform 1.5s ease;}
 .candle-button.faded-visible {opacity: 1; transform: scale(1);}
 
 .candle-body{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);width:72px;height:155px;border-radius:10px 10px 18px 18px;background:linear-gradient(90deg,#ffd3e5,#fff,#ffb8d4);box-shadow:0 0 35px rgba(255,185,215,.65)}.candle-base{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:105px;height:22px;border-radius:50%;background:#ff9bc3;box-shadow:0 0 30px #ff9bc3}
 
-/* Suddenly glowing flame state */
 .flame{position:absolute;z-index:2;left:50%;top:26px;transform:translateX(-50%);width:40px;height:65px;border-radius:55% 45% 60% 40%;background:#fff1a8;box-shadow:0 0 15px #fff,0 0 45px #ff8cba,0 0 85px #ff6aa8;opacity:0;transition:opacity 0.8s ease;animation:none;}
 .candle-button.glowing .flame{opacity:1;animation:flicker .13s infinite alternate;}
 .flame i{display:block;width:18px;height:34px;background:#fff;border-radius:50%;margin:17px auto}
 .candle-button.off .flame{animation:none;opacity:0;transform:translateX(-50%) scale(.1)}@keyframes flicker{to{transform:translateX(-50%) rotate(3deg) scale(1.04)}}
 
-/* SMOKE EFFECT OVERLAY */
 .smoke-overlay{position:fixed;inset:0;z-index:110;background:radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(240,220,235,0.8) 60%, rgba(200,180,195,0.4) 100%);opacity:0;pointer-events:none;transition:opacity 0.6s ease-in-out;backdrop-filter:blur(8px);}
 .smoke-overlay.show{opacity:1;pointer-events:auto;}
 
 .birthday-blast{position:fixed;inset:0;z-index:90;display:none;place-items:center;background:rgba(255,125,180,.18);pointer-events:none}.birthday-blast.show{display:grid;animation:blastFade 2.2s forwards}.blast-text{font-family:Pacifico,cursive;font-size:clamp(35px,9vw,90px);text-align:center;color:#fff;text-shadow:0 0 15px #ff4f9c,0 0 45px #ff4f9c;animation:blastText 1.7s ease-out}@keyframes blastText{0%{transform:scale(.1);opacity:0}35%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:0}}@keyframes blastFade{0%{opacity:1}100%{opacity:0}}
 .site{display:none}.site.show{display:block}.top-pill{border:0;cursor:pointer;font-family:inherit}.main-memory-photo{width:min(100%,520px);max-height:60vh;object-fit:contain;border-radius:22px;border:3px solid #fff;box-shadow:0 18px 45px rgba(207,83,139,.16)}.photo-fallback{display:none;min-height:300px;border:2px dashed #ff9fc5;border-radius:20px;background:#fff;place-items:center;padding:30px;color:#e9659c}.photo-fallback span{font-size:60px}.photo-fallback small{display:block}.song-note{font-size:13px;color:#947d89}
 
-/* BIG CLOUD OPENING INTRO & FULLY COVERED PIG */
+/* BIG CLOUD OPENING INTRO & FULLY COVERED PIG WITH OVERLAPPING CLOSE CLOUDS */
 .hide-init {
   display: none !important;
 }
@@ -143,11 +200,11 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   pointer-events: none;
 }
 
-/* MASSIVE CLOUDS TO COMPLETELY HIDE EVERYTHING BEHIND THEM */
+/* MASSIVE CLOUDS OVERLAPPING CLOSER SO NO PIG IS SEEN BEHIND THEM */
 .big-intro-cloud {
   position: absolute;
-  width: 650px;
-  height: 280px;
+  width: 750px;
+  height: 320px;
   background: #ffffff;
   border-radius: 180px;
   box-shadow: 0 20px 50px rgba(207, 83, 139, 0.25);
@@ -163,25 +220,26 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 }
 
 .big-intro-cloud:before {
-  width: 280px;
-  height: 280px;
-  left: 90px;
-  top: -130px;
+  width: 320px;
+  height: 320px;
+  left: 100px;
+  top: -150px;
 }
 
 .big-intro-cloud:after {
-  width: 350px;
-  height: 350px;
-  right: 80px;
-  top: -160px;
+  width: 380px;
+  height: 380px;
+  right: 90px;
+  top: -180px;
 }
 
+/* Shifted closer so they completely overlap and hide the pig */
 .cloud-left {
-  left: calc(50% - 630px);
+  left: calc(50% - 480px);
 }
 
 .cloud-right {
-  right: calc(50% - 630px);
+  right: calc(50% - 480px);
 }
 
 /* When clouds open */
@@ -204,7 +262,6 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   50% { transform: scale(1.04); }
 }
 
-/* Pig Hidden Behind Clouds Initially Stage */
 .pig-intro-stage {
   position: absolute;
   z-index: 3;
@@ -215,7 +272,6 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   transition: transform 1.2s ease, opacity 0.8s ease;
 }
 
-/* Pig walking animation sequence class */
 .pig-intro-stage.gone-back {
   transform: scale(0.3) translateY(150px);
   opacity: 0;
@@ -224,7 +280,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 .pig-character-walk {
   position: relative;
   font-size: 75px;
-  animation: walkInCircle 6s infinite linear;
+  animation: walkInCircle 10s infinite linear; /* Slower pig speed */
   transform-origin: center center;
   user-select: none;
   filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
@@ -232,10 +288,9 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 
 .pig-body-part {
   display: block;
-  animation: pigWiggle 0.4s infinite alternate ease-in-out;
+  animation: pigWiggle 0.7s infinite alternate ease-in-out; /* Slower wiggle */
 }
 
-/* Pig Legs */
 .pig-legs-container {
   position: absolute;
   bottom: -5px;
@@ -254,11 +309,11 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 }
 
 .left-leg {
-  animation: legMoveLeft 0.3s infinite alternate ease-in-out;
+  animation: legMoveLeft 0.5s infinite alternate ease-in-out; /* Slower legs */
 }
 
 .right-leg {
-  animation: legMoveRight 0.3s infinite alternate ease-in-out;
+  animation: legMoveRight 0.5s infinite alternate ease-in-out;
 }
 
 @keyframes legMoveLeft {
@@ -277,14 +332,13 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 }
 
 @keyframes walkInCircle {
-  0% { transform: translate(0px, -30px) rotate(0deg); }
-  25% { transform: translate(30px, 0px) rotate(90deg); }
-  50% { transform: translate(0px, 30px) rotate(180deg); }
-  75% { transform: translate(-30px, 0px) rotate(270deg); }
-  100% { transform: translate(0px, -30px) rotate(360deg); }
+  0% { transform: translate(0px, -20px) rotate(0deg); }
+  25% { transform: translate(20px, 0px) rotate(90deg); }
+  50% { transform: translate(0px, 20px) rotate(180deg); }
+  75% { transform: translate(-20px, 0px) rotate(270deg); }
+  100% { transform: translate(0px, -20px) rotate(360deg); }
 }
 
-/* Thought Bubble styling */
 .thought-bubble {
   position: absolute;
   bottom: 110px;
@@ -324,7 +378,6 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   100% { opacity: 1; transform: translateX(-50%) scale(1); }
 }
 
-/* Calendar Modal Custom Styling */
 .calendar-card-box {
   width: min(420px, 92vw) !important;
 }
