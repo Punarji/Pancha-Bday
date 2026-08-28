@@ -345,13 +345,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   font-size: 75px;
   margin-bottom: 12px;
   filter: drop-shadow(0 10px 15px rgba(207, 83, 139, 0.3));
-  animation: floatPig 3s ease-in-out infinite;
   user-select: none;
-}
-
-@keyframes floatPig {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
 }
 
 .pig-body-part {
