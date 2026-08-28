@@ -32,7 +32,7 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .bow{position:absolute;z-index:4;top:3px;left:53px;font-size:75px;transform:rotate(-7deg)}
 .lock{position:absolute;z-index:5;left:72px;top:72px;width:38px;height:38px;background:#fff;border-radius:50%;display:grid;place-items:center;color:#f65c9c;font-size:23px}
 
-/* MINI GAME STYLING */
+/* DRAG PIG TO GIRL MINI GAME STYLING */
 .mini-game-section {
   margin: 35px auto 0;
   max-width: 700px;
@@ -53,37 +53,43 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 }
 .game-sub {
   color: #8f7584;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-size: 16px;
 }
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  max-width: 480px;
+.drag-play-area {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  height: 150px;
+  background: linear-gradient(135deg, #fff0f7, #ffe3ef);
+  border: 2px dashed #ff9bc3;
+  border-radius: 20px;
   margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 35px;
+  overflow: hidden;
+  touch-action: none;
 }
-.game-tile {
-  background: linear-gradient(135deg, #ff8ebc, #ff6fae);
-  border: none;
-  border-radius: 16px;
-  aspect-ratio: 1;
-  font-size: 32px;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(207,83,139,0.2);
-  transition: transform 0.2s, background 0.2s;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  font-weight: 700;
+.girl-target {
+  font-size: 48px;
+  user-select: none;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
 }
-.game-tile:hover {
-  transform: scale(1.05);
+.draggable-pig {
+  position: absolute;
+  left: 35px;
+  font-size: 44px;
+  cursor: grab;
+  user-select: none;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
+  transition: transform 0.1s ease;
+  z-index: 5;
 }
-.game-tile.revealed {
-  background: #fff;
-  border: 2px solid #ff9bc3;
-  box-shadow: none;
+.draggable-pig:active {
+  cursor: grabbing;
+  transform: scale(1.15);
 }
 .game-status {
   font-weight: 700;
@@ -96,25 +102,25 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .message-panel{margin:30px auto 0;max-width:700px;text-align:center;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);padding:22px;border-radius:25px;box-shadow:var(--shadow)}.panel-heart{font-size:28px;color:#f35a9b}.message-panel p{font-size:20px;margin:4px}.message-panel small{color:#8b7583}
 .modal,.final-screen{position:fixed;inset:0;background:rgba(79,38,61,.3);backdrop-filter:blur(7px);z-index:20;display:none;align-items:center;justify-content:center;padding:20px}.modal.show,.final-screen.show{display:flex}
 .modal-card{position:relative;width:min(720px,95vw);max-height:90vh;overflow:auto;background:linear-gradient(180deg,#fffafd,#fff1f7);border:2px solid #fff;border-radius:30px;padding:34px;box-shadow:0 30px 80px rgba(91,38,68,.25);text-align:center}
-.close{position:absolute;right:15px;top:12px;border:0;background:#fff;color:#ee5796;width:38px;height:38px;border-radius:50%;font-size:28px;cursor:pointer}.modal-icon{font-size:48px}.modal h2{font-family:Pacifico,cursive;color:#ef5797;font-size:38px;margin:4px 0}.modal-sub{margin-top:0;color:#896e7e}
-.letter{font-size:19px;line-height:1.55;text-align:center;padding:12px 20px}.letter p{margin:14px 0}.letter b{color:#e94e91}
+.close{position:absolute;right:15px;top:12px;border:0;background:#fff;color:#ee5796;width:38px;height:38px;border-radius:50%;font-size:28px;cursor:pointer}.modal-icon{font-size:48px}.modal-icon-small{font-size:32px;margin-bottom: -5px;}.modal h2{font-family:Pacifico,cursive;color:#ef5797;font-size:38px;margin:4px 0}.modal-sub{margin-top:0;color:#896e7e}
+.letter{font-size:17px;line-height:1.4;text-align:center;padding:2px 10px}.letter p{margin:6px 0}.letter b{color:#e94e91}
 
-/* VINTAGE ENVELOPE OPENING ANIMATION STYLES INSIDE MODAL */
+/* VINTAGE ENVELOPE OPENING ANIMATION STYLES (NO SCROLL, FULL FIT) */
 .vintage-envelope-opening-stage {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 5px;
 }
 .open-envelope-container {
   position: relative;
   width: min(440px, 85vw);
-  height: 280px;
+  height: 250px;
   background: #e8d3be;
   border-radius: 12px;
   box-shadow: 0 15px 35px rgba(120,80,60,0.25);
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   overflow: hidden;
 }
 .open-env-back {
@@ -124,24 +130,24 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 }
 .vintage-letter-card {
   position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  height: 230px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  height: 215px;
   background: #fbf6ec;
   border: 2px solid #dfc7b0;
   border-radius: 10px;
-  padding: 20px;
+  padding: 12px 15px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.08);
   transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-  transform: translateY(120px);
+  transform: translateY(110px);
   z-index: 2;
-  overflow-y: auto;
+  overflow: hidden; /* Prevent scrolling inside letter */
   text-align: center;
 }
 .vintage-letter-card.pulled-out {
-  transform: translateY(-40px);
-  height: 380px;
+  transform: translateY(-25px);
+  height: 310px;
   box-shadow: 0 15px 40px rgba(100,60,40,0.2);
 }
 .vintage-paper-style {
@@ -154,7 +160,7 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 160px;
+  height: 140px;
   background: linear-gradient(180deg, #e4cca7, #d7bd99);
   clip-path: polygon(0 30%, 50% 100%, 100% 30%, 100% 100%, 0 100%);
   z-index: 3;
@@ -167,7 +173,7 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
   top: 0;
   left: 0;
   width: 100%;
-  height: 130px;
+  height: 110px;
   background: #eedbc6;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   z-index: 4;
@@ -184,8 +190,8 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
   background: #d46a84;
   color: #fff;
   border: none;
-  padding: 12px 26px;
-  font-size: 16px;
+  padding: 10px 22px;
+  font-size: 15px;
   font-weight: 700;
   border-radius: 999px;
   cursor: pointer;
@@ -283,12 +289,14 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   cursor: pointer;
 }
 
-/* COLOURFUL & VISIBLE CLOUDY FONT FOR "HI" */
+/* COLOURFUL & VISIBLE CLOUDY FONT FOR "HI" CENTERED BETWEEN BOTH CLOUDS */
 .cloud-intro-title {
   position: absolute;
-  top: 16%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: Pacifico, cursive;
-  font-size: clamp(80px, 14vw, 130px);
+  font-size: clamp(90px, 15vw, 140px);
   background: linear-gradient(135deg, #ff3385, #ff7eb6, #ffb8d4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -355,8 +363,8 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 }
 
 @keyframes pulseHint {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.04); }
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.04); }
 }
 
 .pig-intro-stage {
