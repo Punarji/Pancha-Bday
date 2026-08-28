@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#ff7eb6" />
   <title>For My Pancha 💗</title>
-  <!-- TAB ICON AS A PIG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐷</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,30 +13,39 @@
 </head>
 <body>
 
-  <!-- STEP 1: CLOUD OPENING INTRO WITH PASSCODE LOCK TO UNLOCK -->
+  <!-- STEP 1: PIG & PASSCODE SCREEN -->
   <section class="pig-screen" id="pigScreen">
     <div class="clouds-intro-wrapper" id="cloudsIntroWrapper">
       
-      <!-- PASSCODE LOCK BOX -->
-      <div class="passcode-box" id="passcodeBox">
-        <div class="modal-icon">🔐</div>
-        <h2>Enter Passcode</h2>
-        <p class="passcode-sub">Hint: What do you call me? (ura) 🐷</p>
-        <div class="passcode-input-group">
-          <input type="password" id="passcodeInput" placeholder="Enter passcode..." autocomplete="off" />
-          <button id="passcodeSubmitBtn">Unlock ✨</button>
-        </div>
-        <p class="passcode-error" id="passcodeError"></p>
-      </div>
-
       <!-- Pig sequence container hidden safely behind overlapping clouds initially -->
-      <div class="pig-intro-stage hide-init" id="pigIntroStage">
+      <div class="pig-intro-stage" id="pigIntroStage">
         <div class="thought-bubble" id="pigThought">Hmmmm what a speacial day is today...</div>
         <div class="pig-character-walk">
           <div class="pig-body-part">🐷</div>
           <div class="pig-legs-container">
             <div class="pig-leg left-leg"></div>
             <div class="pig-leg right-leg"></div>
+          </div>
+        </div>
+        
+        <!-- PASSCODE INPUT CONTAINER -->
+        <div class="passcode-box" id="passcodeBox">
+          <div class="passcode-dots" id="passcodeDots">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+          <div class="passcode-keypad">
+            <button class="key-btn" data-val="1">1</button>
+            <button class="key-btn" data-val="2">2</button>
+            <button class="key-btn" data-val="3">3</button>
+            <button class="key-btn" data-val="4">4</button>
+            <button class="key-btn" data-val="5">5</button>
+            <button class="key-btn" data-val="6">6</button>
+            <button class="key-btn" data-val="7">7</button>
+            <button class="key-btn" data-val="8">8</button>
+            <button class="key-btn" data-val="9">9</button>
+            <button class="key-btn key-clear" data-val="C">C</button>
+            <button class="key-btn" data-val="0">0</button>
+            <button class="key-btn key-enter" data-val="ok">✓</button>
           </div>
         </div>
       </div>
