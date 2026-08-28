@@ -14,10 +14,10 @@
 </head>
 <body>
 
-  <!-- STEP 1: CLOUD OPENING INTRO WITH COLOURFUL HI & OVERLAPPING CLOUDS -->
+  <!-- STEP 1: CLOUD OPENING INTRO WITH FAR CLOUDS MOVING CLOSER & HI IN THE CENTER -->
   <section class="pig-screen" id="pigScreen">
     <div class="clouds-intro-wrapper" id="cloudsIntroWrapper">
-      <!-- Pig sequence container perfectly centered between the clouds -->
+      <!-- Pig hidden safely BEHIND the clouds in the center -->
       <div class="pig-intro-stage" id="pigIntroStage">
         <div class="thought-bubble" id="pigThought">Hmmmm what a speacial day is today...</div>
         <div class="pig-character-walk">
@@ -29,9 +29,13 @@
         </div>
       </div>
 
-      <div class="big-intro-cloud cloud-left" id="cloudLeft">
-        <div class="cloud-intro-title" id="cloudIntroTitle">HI</div>
-      </div>
+      <!-- Left Cloud starts further left -->
+      <div class="big-intro-cloud cloud-left" id="cloudLeft"></div>
+      
+      <!-- Center meeting point where HI appears when they close in -->
+      <div class="cloud-intro-title" id="cloudIntroTitle">HI</div>
+
+      <!-- Right Cloud starts further right -->
       <div class="big-intro-cloud cloud-right" id="cloudRight"></div>
     </div>
   </section>
@@ -72,7 +76,6 @@
       </header>
 
       <section class="gifts" aria-label="Three birthday gifts">
-        <!-- PREVIOUS GIFT BOX ICON RESTORED FOR SWEET MESSAGE -->
         <button class="gift-card" data-gift="message" aria-label="Open sweet message">
           <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
           <strong>💌 A Sweet Message</strong><small>Open me first</small>
@@ -164,7 +167,6 @@
     </div>
   </div>
 
-  <!-- VINTAGE LETTER TEMPLATE OPENING FROM ENVELOPE -->
   <template id="messageTemplate">
     <div class="vintage-envelope-opening-stage">
       <div class="open-envelope-container" id="openEnvelopeContainer">
