@@ -99,80 +99,6 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .close{position:absolute;right:15px;top:12px;border:0;background:#fff;color:#ee5796;width:38px;height:38px;border-radius:50%;font-size:28px;cursor:pointer}.modal-icon{font-size:48px}.modal h2{font-family:Pacifico,cursive;color:#ef5797;font-size:38px;margin:4px 0}.modal-sub{margin-top:0;color:#896e7e}
 .letter{font-size:19px;line-height:1.55;text-align:center;padding:12px 20px}.letter p{margin:14px 0}.letter b{color:#e94e91}
 
-/* PASSCODE BOX STYLING */
-.passcode-box {
-  position: absolute;
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 30px;
-  border-radius: 28px;
-  box-shadow: 0 20px 50px rgba(207, 83, 139, 0.3);
-  text-align: center;
-  width: min(380px, 90vw);
-  border: 2px solid #ffb8d4;
-  backdrop-filter: blur(10px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.passcode-box.hide {
-  opacity: 0;
-  transform: scale(0.9);
-  pointer-events: none;
-}
-.passcode-box h2 {
-  font-family: Pacifico, cursive;
-  color: #ef5797;
-  font-size: 28px;
-  margin: 10px 0 5px 0;
-}
-.passcode-sub {
-  color: #8f7584;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-.passcode-input-group {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-.passcode-box input {
-  padding: 12px 16px;
-  border-radius: 999px;
-  border: 2px solid #ffb8d4;
-  outline: none;
-  font-family: inherit;
-  font-size: 16px;
-  width: 200px;
-  text-align: center;
-  color: #463744;
-  background: #fff;
-}
-.passcode-box input:focus {
-  border-color: #f84d93;
-}
-.passcode-box button {
-  background: #ff6fae;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  font-size: 15px;
-  font-weight: 700;
-  border-radius: 999px;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(255, 111, 174, 0.3);
-  font-family: inherit;
-  transition: transform 0.2s;
-}
-.passcode-box button:hover {
-  transform: scale(1.05);
-}
-.passcode-error {
-  color: #e94e91;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 12px;
-  min-height: 20px;
-}
-
 /* VINTAGE ENVELOPE OPENING ANIMATION STYLES INSIDE MODAL */
 .vintage-envelope-opening-stage {
   display: flex;
@@ -407,7 +333,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 
 .pig-intro-stage {
   position: absolute;
-  z-index: 3;
+  z-index: 6;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -415,18 +341,14 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   transition: transform 1.2s ease, opacity 0.8s ease;
 }
 
-.pig-intro-stage.gone-back {
-  transform: scale(0.3) translateY(150px);
-  opacity: 0;
-}
-
 .pig-character-walk {
   position: relative;
-  font-size: 75px;
+  font-size: 65px;
   animation: walkInCircle 10s infinite linear;
   transform-origin: center center;
   user-select: none;
   filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
+  margin-bottom: 10px;
 }
 
 .pig-body-part {
@@ -475,50 +397,101 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
 }
 
 @keyframes walkInCircle {
-  0% { transform: translate(0px, -20px) rotate(0deg); }
-  25% { transform: translate(20px, 0px) rotate(90deg); }
-  50% { transform: translate(0px, 20px) rotate(180deg); }
-  75% { transform: translate(-20px, 0px) rotate(270deg); }
-  100% { transform: translate(0px, -20px) rotate(360deg); }
+  0% { transform: translate(0px, -10px) rotate(0deg); }
+  25% { transform: translate(10px, 0px) rotate(90deg); }
+  50% { transform: translate(0px, 10px) rotate(180deg); }
+  75% { transform: translate(-10px, 0px) rotate(270deg); }
+  100% { transform: translate(0px, -10px) rotate(360deg); }
 }
 
 .thought-bubble {
-  position: absolute;
-  bottom: 110px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   background: #fff;
   color: #463744;
-  padding: 12px 20px;
-  border-radius: 20px;
-  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-size: 14px;
   font-weight: 700;
-  box-shadow: 0 10px 25px rgba(207, 83, 139, 0.3);
+  box-shadow: 0 8px 20px rgba(207, 83, 139, 0.25);
   width: max-content;
-  max-width: 320px;
+  max-width: 280px;
   text-align: center;
   border: 2px solid #ff9bc3;
-  z-index: 6;
-  opacity: 0;
-  animation: fadeInBubbleSlow 1s ease 1s forwards;
+  margin-bottom: 8px;
 }
 
-.thought-bubble::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 10px 10px 0;
-  border-style: solid;
-  border-color: #fff transparent;
-  display: block;
-  width: 0;
+/* PASSCODE KEYPAD STYLING */
+.passcode-box {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 2px solid #ffbcde;
+  padding: 16px;
+  border-radius: 22px;
+  box-shadow: 0 15px 35px rgba(207, 83, 139, 0.25);
+  text-align: center;
+  width: 230px;
 }
 
-@keyframes fadeInBubbleSlow {
-  0% { opacity: 0; transform: translateX(-50%) scale(0.9); }
-  100% { opacity: 1; transform: translateX(-50%) scale(1); }
+.passcode-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.passcode-dots .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #ff6fae;
+  background: #fff;
+  transition: background 0.2s;
+}
+
+.passcode-dots .dot.filled {
+  background: #ff6fae;
+}
+
+.passcode-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.key-btn {
+  background: #fff;
+  border: 1px solid #ffd1e8;
+  border-radius: 12px;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #55404f;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 4px 10px rgba(207, 83, 139, 0.08);
+  transition: background 0.15s, transform 0.1s;
+}
+
+.key-btn:hover {
+  background: #ffe6f2;
+}
+
+.key-btn:active {
+  transform: scale(0.95);
+}
+
+.key-clear {
+  color: #e5538e;
+}
+
+.key-enter {
+  background: #ff6fae;
+  color: #fff;
+  border: none;
+}
+
+.key-enter:hover {
+  background: #f84d93;
 }
 
 .calendar-card-box {
