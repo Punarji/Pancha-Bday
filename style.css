@@ -299,7 +299,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   pointer-events: none;
 }
 
-/* MASSIVE OVERLAPPING CLOUDS */
+/* MASSIVE OVERLAPPING CLOUDS POSITIONED CORRECTLY FOR CENTER GAP */
 .big-intro-cloud {
   position: absolute;
   width: 750px;
@@ -309,6 +309,7 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   box-shadow: 0 20px 50px rgba(207, 83, 139, 0.25);
   transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
   z-index: 5;
+  top: calc(50% - 160px);
 }
 
 .big-intro-cloud:before, .big-intro-cloud:after {
@@ -332,12 +333,15 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   top: -180px;
 }
 
+/* Perfectly aligned so the gap is exactly in the middle of the screen */
 .cloud-left {
-  left: calc(50% - 480px);
+  right: 50%;
+  margin-right: -40px;
 }
 
 .cloud-right {
-  right: calc(50% - 480px);
+  left: 50%;
+  margin-left: -40px;
 }
 
 .clouds-intro-wrapper.opened .cloud-left {
@@ -367,10 +371,13 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   align-items: center;
   justify-content: center;
   transition: transform 1.2s ease, opacity 0.8s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .pig-intro-stage.gone-back {
-  transform: scale(0.3) translateY(150px);
+  transform: translate(-50%, -50%) scale(0.3) translateY(150px);
   opacity: 0;
 }
 
