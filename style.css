@@ -32,50 +32,6 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .bow{position:absolute;z-index:4;top:3px;left:53px;font-size:75px;transform:rotate(-7deg)}
 .lock{position:absolute;z-index:5;left:72px;top:72px;width:38px;height:38px;background:#fff;border-radius:50%;display:grid;place-items:center;color:#f65c9c;font-size:23px}
 
-/* VINTAGE ENVELOPE GIFT ICON */
-.vintage-envelope-box {
-  height: 140px;
-  position: relative;
-  width: 170px;
-  margin: 15px auto 15px;
-  background: #f2e3d5;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(150,110,90,0.2);
-  border: 2px solid #dcc4b0;
-  overflow: hidden;
-}
-.envelope-base {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #f7ece1 0%, #ecd7c2 100%);
-}
-.envelope-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  background: #e4ccb5;
-  clip-path: polygon(0 0, 50% 100%, 100% 0);
-  border-bottom: 2px solid #d3b69c;
-}
-.envelope-seal {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 32px;
-  height: 32px;
-  background: #d46a84;
-  color: #fff;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  z-index: 3;
-}
-
 /* MINI GAME STYLING */
 .mini-game-section {
   margin: 35px auto 0;
