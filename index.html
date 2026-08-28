@@ -12,14 +12,14 @@
 </head>
 <body>
 
-  <!-- STEP 1: CLOUD OPENING INTRO WITH CLOUDY HI & HIDDEN BEHIND -->
+  <!-- STEP 1: CLOUD OPENING INTRO WITH CLOUDY HI, OVERLAPPING CLOUDS, & SLOWER PIG SPEED -->
   <section class="pig-screen" id="pigScreen">
     <div class="clouds-intro-wrapper" id="cloudsIntroWrapper">
       <div class="cloud-intro-title" id="cloudIntroTitle">HI</div>
       
-      <!-- Pig sequence container hidden safely behind clouds initially -->
+      <!-- Pig sequence container hidden safely behind overlapping clouds initially -->
       <div class="pig-intro-stage" id="pigIntroStage">
-        <div class="thought-bubble" id="pigThought">Hmmmm what a speacial day is today... 💭</div>
+        <div class="thought-bubble" id="pigThought">Hmmmm what a speacial day is today...</div>
         <div class="pig-character-walk">
           <div class="pig-body-part">🐷</div>
           <div class="pig-legs-container">
@@ -34,12 +34,11 @@
     </div>
   </section>
 
-  <!-- STEP 2: FADED CANDLE SHOWING STEP BY STEP (NO TAP HINT) -->
+  <!-- STEP 2: FADED CANDLE SHOWING STEP BY STEP (NO WATCH THE CANDLE GLOW TEXT & NO TAP HINT) -->
   <section class="candle-screen hide-init" id="candleScreen">
     <div class="candle-card">
       <p class="tiny">A little birthday surprise for you...</p>
       <h1>Make a wish, Suduu 💗</h1>
-      <p class="candle-note">Watch the candle glow... ✨</p>
       <button class="candle-button" id="candleButton" aria-label="Light off the birthday candle">
         <span class="flame"><i></i></span><span class="candle-body"></span><span class="candle-base"></span>
       </button>
@@ -87,6 +86,18 @@
         </button>
       </section>
 
+      <!-- MINI GAME SECTION: Find the cute pig -->
+      <section class="mini-game-section" aria-label="Mini game">
+        <div class="game-card-box">
+          <h2>Find the Cute Pig Mini Game 🐷💕</h2>
+          <p class="game-sub">Help the beautiful girl find her cute hiding pig among the magical cards!</p>
+          <div class="game-grid" id="gameGrid">
+            <!-- 4 hidden cards generated via script -->
+          </div>
+          <p class="game-status" id="gameStatus">Click a card to find the hidden cute pig!</p>
+        </div>
+      </section>
+
       <div class="progress-wrap">
         <div class="progress-text"><span id="openedCount">0</span> / 3 gifts opened 💗</div>
         <div class="progress"><span id="progressBar"></span></div>
@@ -122,7 +133,6 @@
           <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
         </div>
         <div class="cal-grid">
-          <!-- September 2026 starts on Tuesday: Aug 30,31 faded, Sep 1 is Tuesday -->
           <span class="fade-day">30</span><span class="fade-day">31</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
           <span class="special-birthday-date">6 👑🎂</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
           <span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
@@ -165,7 +175,6 @@
     </div>
   </template>
 
-  <!-- MEMORIES TEMPLATE WITH 5x5 cm EXACT SIZED PHOTO SLOTS -->
   <template id="memoriesTemplate">
     <div class="modal-icon">📸</div><h2>Our Little Memories</h2>
     <p class="modal-sub">Three moments I want to keep close. 💗</p>
