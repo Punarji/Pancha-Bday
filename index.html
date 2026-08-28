@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#ff7eb6" />
   <title>For My Pancha 💗</title>
-  <!-- PIG TAB ICON (FAVICON) -->
+  <!-- TAB ICON AS A PIG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐷</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,11 +14,24 @@
 </head>
 <body>
 
-  <!-- STEP 1: CLOUD OPENING INTRO WITH FAR CLOUDS MOVING CLOSER & HI IN THE CENTER -->
+  <!-- STEP 1: CLOUD OPENING INTRO WITH PASSCODE LOCK TO UNLOCK -->
   <section class="pig-screen" id="pigScreen">
     <div class="clouds-intro-wrapper" id="cloudsIntroWrapper">
-      <!-- Pig hidden safely BEHIND the clouds in the center -->
-      <div class="pig-intro-stage" id="pigIntroStage">
+      
+      <!-- PASSCODE LOCK BOX -->
+      <div class="passcode-box" id="passcodeBox">
+        <div class="modal-icon">🔐</div>
+        <h2>Enter Passcode</h2>
+        <p class="passcode-sub">Hint: What do you call me? (ura) 🐷</p>
+        <div class="passcode-input-group">
+          <input type="password" id="passcodeInput" placeholder="Enter passcode..." autocomplete="off" />
+          <button id="passcodeSubmitBtn">Unlock ✨</button>
+        </div>
+        <p class="passcode-error" id="passcodeError"></p>
+      </div>
+
+      <!-- Pig sequence container hidden safely behind overlapping clouds initially -->
+      <div class="pig-intro-stage hide-init" id="pigIntroStage">
         <div class="thought-bubble" id="pigThought">Hmmmm what a speacial day is today...</div>
         <div class="pig-character-walk">
           <div class="pig-body-part">🐷</div>
@@ -29,13 +42,7 @@
         </div>
       </div>
 
-      <!-- Left Cloud starts further left -->
       <div class="big-intro-cloud cloud-left" id="cloudLeft"></div>
-      
-      <!-- Center meeting point where HI appears when they close in -->
-      <div class="cloud-intro-title" id="cloudIntroTitle">HI</div>
-
-      <!-- Right Cloud starts further right -->
       <div class="big-intro-cloud cloud-right" id="cloudRight"></div>
     </div>
   </section>
@@ -76,6 +83,7 @@
       </header>
 
       <section class="gifts" aria-label="Three birthday gifts">
+        <!-- PREVIOUS GIFT BOX ICON RESTORED FOR SWEET MESSAGE -->
         <button class="gift-card" data-gift="message" aria-label="Open sweet message">
           <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
           <strong>💌 A Sweet Message</strong><small>Open me first</small>
@@ -167,6 +175,7 @@
     </div>
   </div>
 
+  <!-- VINTAGE LETTER TEMPLATE OPENING FROM ENVELOPE -->
   <template id="messageTemplate">
     <div class="vintage-envelope-opening-stage">
       <div class="open-envelope-container" id="openEnvelopeContainer">
