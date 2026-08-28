@@ -99,7 +99,6 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .close{position:absolute;right:15px;top:12px;border:0;background:#fff;color:#ee5796;width:38px;height:38px;border-radius:50%;font-size:28px;cursor:pointer}.modal-icon{font-size:48px}.modal h2{font-family:Pacifico,cursive;color:#ef5797;font-size:38px;margin:4px 0}.modal-sub{margin-top:0;color:#896e7e}
 .letter{font-size:19px;line-height:1.55;text-align:center;padding:12px 20px}.letter p{margin:14px 0}.letter b{color:#e94e91}
 
-/* VINTAGE ENVELOPE OPENING ANIMATION STYLES INSIDE MODAL */
 .vintage-envelope-opening-stage {
   display: flex;
   flex-direction: column;
@@ -283,7 +282,26 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   cursor: pointer;
 }
 
-/* SMALLER, CLOSER OVERLAPPING CLOUDS WITH "HI" RIGHT WHERE THEY MEET IN THE CENTER */
+/* Pig hidden safely BEHIND the clouds in the center layer (z-index 2) */
+.pig-intro-stage {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1.2s ease, opacity 0.8s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pig-intro-stage.gone-back {
+  transform: translate(-50%, -50%) scale(0.3) translateY(150px);
+  opacity: 0;
+}
+
+/* CLOUDS START FAR APART AND SLIDE CLOSE TOGETHER */
 .big-intro-cloud {
   position: absolute;
   width: 520px;
@@ -317,35 +335,18 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   top: -120px;
 }
 
-/* Brought closer together so they meet tightly in the center */
+/* Start far apart off-screen or sides, then slide closer to meet in the middle */
 .cloud-left {
-  right: 50%;
-  margin-right: -10px;
+  right: calc(50% + 80px);
+  transform: translateX(-40vw);
 }
 
 .cloud-right {
-  left: 50%;
-  margin-left: -10px;
+  left: calc(50% + 80px);
+  transform: translateX(40vw);
 }
 
-/* COLOURFUL & VISIBLE CLOUDY FONT FOR "HI" RIGHT WHERE THE CLOUDS MEET */
-.cloud-intro-title {
-  position: absolute;
-  right: -35px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: Pacifico, cursive;
-  font-size: clamp(65px, 11vw, 105px);
-  background: linear-gradient(135deg, #ff3385, #ff7eb6, #ffb8d4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 10px rgba(255, 110, 160, 0.4));
-  letter-spacing: 2px;
-  z-index: 7;
-  animation: pulseHint 2s infinite;
-  pointer-events: none;
-}
-
+/* When wrapper opens, they fly all the way out */
 .clouds-intro-wrapper.opened .cloud-left {
   transform: translateX(-120vw);
 }
@@ -360,27 +361,50 @@ audio{width:min(480px,90%)}.song-help{background:#fff;border-radius:18px;padding
   pointer-events: none;
 }
 
-@keyframes pulseHint {
-  0%, 100% { transform: translateY(-50%) scale(1); }
-  50% { transform: translateY(-50%) scale(1.04); }
+/* When initial page loads, clouds slide IN from far apart to close together */
+.clouds-intro-wrapper .cloud-left,
+.clouds-intro-wrapper .cloud-right {
+  animation: slideCloudsTogether 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
 }
 
-.pig-intro-stage {
+@keyframes slideCloudsTogether {
+  0% {
+    transform: translateX(var(--start-x, 0));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.cloud-left { --start-x: -45vw; }
+.cloud-right { --start-x: 45vw; }
+
+/* COLOURFUL & VISIBLE CLOUDY FONT FOR "HI" RIGHT WHERE THE CLOUDS MEET IN THE CENTER */
+.cloud-intro-title {
   position: absolute;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: transform 1.2s ease, opacity 0.8s ease;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
+  font-family: Pacifico, cursive;
+  font-size: clamp(65px, 11vw, 105px);
+  background: linear-gradient(135deg, #ff3385, #ff7eb6, #ffb8d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 10px rgba(255, 110, 160, 0.4));
+  letter-spacing: 2px;
+  z-index: 7;
+  opacity: 0;
+  animation: fadeInHi 0.8s ease 0.9s forwards, pulseHint 2s infinite 1.7s;
+  pointer-events: none;
 }
 
-.pig-intro-stage.gone-back {
-  transform: translate(-50%, -50%) scale(0.3) translateY(150px);
-  opacity: 0;
+@keyframes fadeInHi {
+  to { opacity: 1; }
+}
+
+@keyframes pulseHint {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.04); }
 }
 
 .pig-character-walk {
