@@ -41,7 +41,7 @@ cloudsIntroWrapper.addEventListener('click', () => {
   // 1. Open the two big overlapping clouds
   cloudsIntroWrapper.classList.add('opened');
 
-  // 2. Pig thinks out loud step-by-step with slower pacing
+  // 2. Pig thinks out loud step-by-step
   setTimeout(() => {
     pigThought.textContent = "Hmmmm what a speacial day is today...";
   }, 500);
@@ -98,7 +98,7 @@ candleButton.addEventListener('click', () => {
   }, 1400);
 });
 
-// Date Button Calendar Modal Logic (September 1st Tuesday, Sep 6th Sunday)
+// Date Button Calendar Modal Logic
 dateButton.addEventListener('click', () => {
   calendarModal.classList.add('show');
   confetti(25);
@@ -110,15 +110,44 @@ calendarModal.addEventListener('click', (e) => {
 
 photoButton.addEventListener('click',()=>photoModal.classList.add('show'));closePhoto.addEventListener('click',()=>photoModal.classList.remove('show'));photoModal.addEventListener('click',e=>{if(e.target===photoModal)photoModal.classList.remove('show')});
 function markOpened(t){if(!opened.has(t)){opened.add(t);document.querySelector(`[data-gift="${t}"]`).classList.add('opened');openedCount.textContent=opened.size;progressBar.style.width=(opened.size/3*100)+'%'}}
-function openGift(t){let id={message:'messageTemplate',memories:'memoriesTemplate',song:'songTemplate'}[t];modalContent.innerHTML=document.getElementById(id).innerHTML;modal.classList.add('show');markOpened(t);if(t==='song')setupSong();confetti(35)}
+
+function openGift(t){
+  let id={message:'messageTemplate',memories:'memoriesTemplate',song:'songTemplate'}[t];
+  modalContent.innerHTML=document.getElementById(id).innerHTML;
+  modal.classList.add('show');
+  markOpened(t);
+
+  // If vintage message card, attach envelope opening interaction
+  if(t==='message') {
+    const pullBtn = document.getElementById('pullLetterBtn');
+    const envFlap = document.getElementById('openEnvFlap');
+    const letterCard = document.getElementById('vintageLetterCard');
+    
+    if(pullBtn) {
+      pullBtn.addEventListener('click', () => {
+        envFlap.classList.add('opened');
+        setTimeout(() => {
+          letterCard.classList.add('pulled-out');
+          pullBtn.style.display = 'none';
+        }, 300);
+        confetti(25);
+      });
+    }
+  }
+
+  if(t==='song')setupSong();
+  confetti(35);
+}
+
 gifts.forEach(g=>g.addEventListener('click',()=>openGift(g.dataset.gift)));
+
 function closeGift(){let a=document.getElementById('songPlayer');if(a)a.pause();modal.classList.remove('show');if(bgStarted)startBackground();if(opened.size===3)setTimeout(()=>{finalScreen.classList.add('show');confetti(110)},400)}
 closeModal.addEventListener('click',closeGift);modal.addEventListener('click',e=>{if(e.target===modal)closeGift()});
 function setupSong(){stopBackground();let a=document.getElementById('songPlayer'),r=document.querySelector('.record');a.addEventListener('play',()=>r.classList.add('playing'));a.addEventListener('pause',()=>r.classList.remove('playing'));a.addEventListener('ended',()=>r.classList.remove('playing'));a.addEventListener('error',()=>{document.querySelector('.song-note').textContent='Add your legally obtained audio as assets/thinking-out-loud.mp3 to enable this gift.'});a.play().catch(()=>{})}
 replay.addEventListener('click',()=>{finalScreen.classList.remove('show');opened.clear();gifts.forEach(g=>g.classList.remove('opened'));openedCount.textContent='0';progressBar.style.width='0%';startBackground()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){photoModal.classList.remove('show');calendarModal.classList.remove('show');if(modal.classList.contains('show'))closeGift()}});
 
-// MINI GAME LOGIC: Beautiful Girl finding Cute Pig
+// MINI GAME LOGIC
 const gameGrid = document.getElementById('gameGrid');
 const gameStatus = document.getElementById('gameStatus');
 const totalTiles = 4;
@@ -134,7 +163,7 @@ function initMiniGame() {
   for (let i = 0; i < totalTiles; i++) {
     const tile = document.createElement('button');
     tile.className = 'game-tile';
-    tile.textContent = "👧"; // Beautiful girl icon representing searching
+    tile.textContent = "👧";
     tile.addEventListener('click', () => handleTileClick(i, tile));
     gameGrid.appendChild(tile);
   }
