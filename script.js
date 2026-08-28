@@ -58,7 +58,7 @@ cloudsIntroWrapper.addEventListener('click', () => {
   setTimeout(() => {
     pigIntroStage.classList.add('gone-back');
     pigThought.textContent = "click me";
-    pigThought.style.transform = "translateX(-50%) scale(1.1)";
+    pigThought.style.transform = "translate(-50%, -50%) scale(1.1)";
   }, 7600);
 
   // 4. Transition to candle screen step by step
