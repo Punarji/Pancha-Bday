@@ -188,7 +188,7 @@ function initMiniGame() {
   for (let i = 0; i < totalTiles; i++) {
     const tile = document.createElement('button');
     tile.className = 'game-tile';
-    tile.textContent = "👧";
+    tile.textContent = "🎁";
     tile.addEventListener('click', () => handleTileClick(i, tile));
     gameGrid.appendChild(tile);
   }
@@ -204,8 +204,8 @@ function handleTileClick(index, tile) {
     gameWon = true;
     confetti(50);
   } else {
-    tile.textContent = "🌸";
-    gameStatus.textContent = "Not here! Keep looking for the cute pig... 💖";
+    tile.textContent = "😿";
+    gameStatus.textContent = "Wrong! You didn't find me... 😢";
   }
 }
 
