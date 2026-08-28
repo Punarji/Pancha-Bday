@@ -17,17 +17,16 @@ const replay=document.getElementById('replay');
 
 const pigScreen = document.getElementById('pigScreen');
 const cloudsIntroWrapper = document.getElementById('cloudsIntroWrapper');
-const pigIntroStage = document.getElementById('pigIntroStage');
 const pigThought = document.getElementById('pigThought');
 const dateButton = document.getElementById('dateButton');
 const calendarModal = document.getElementById('calendarModal');
 const closeCalendar = document.getElementById('closeCalendar');
 
-// Passcode elements
+const passcodeDots = document.querySelectorAll('.passcode-dots .dot');
+const keyBtns = document.querySelectorAll('.key-btn');
 const passcodeBox = document.getElementById('passcodeBox');
-const passcodeInput = document.getElementById('passcodeInput');
-const passcodeSubmitBtn = document.getElementById('passcodeSubmitBtn');
-const passcodeError = document.getElementById('passcodeError');
+let enteredCode = "";
+const correctPasscode = "0906";
 
 const opened=new Set();
 let backgroundAudio=new Audio('assets/perfect-instrumental.mp3');
@@ -38,69 +37,71 @@ function confetti(n=70){const s=['💗','✨','🌸','♡','🎀','🎂'];for(le
 function hearts(){const b=document.getElementById('heartsBg');if(!b)return;let e=document.createElement('div');e.className='float-heart';e.textContent=['♡','💗','✦','🌸'][Math.floor(Math.random()*4)];e.style.left=Math.random()*100+'%';e.style.bottom='-20px';e.style.fontSize=14+Math.random()*22+'px';e.style.animationDuration=7+Math.random()*7+'s';b.appendChild(e);setTimeout(()=>e.remove(),15000)}
 setInterval(hearts,900);
 
-// Passcode verification logic
-function verifyPasscode() {
-  const entered = passcodeInput.value.trim().toLowerCase();
-  // Correct passcode is set to "ura"
-  if (entered === 'ura') {
-    passcodeBox.classList.add('hide');
-    pigIntroStage.classList.remove('hide-init');
-    startIntroSequence();
-  } else {
-    passcodeError.textContent = "Oopsie! Wrong passcode, try again 🐷";
-    passcodeInput.value = '';
-    passcodeInput.focus();
-  }
-}
-
-passcodeSubmitBtn.addEventListener('click', verifyPasscode);
-passcodeInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    verifyPasscode();
-  }
+// Passcode Keypad Logic
+keyBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const val = btn.dataset.val;
+    if (val === 'C') {
+      enteredCode = "";
+      updateDots();
+    } else if (val === 'ok') {
+      checkPasscode();
+    } else {
+      if (enteredCode.length < 4) {
+        enteredCode += val;
+        updateDots();
+        if (enteredCode.length === 4) {
+          setTimeout(checkPasscode, 200);
+        }
+      }
+    }
+  });
 });
 
-// Sequence timeline triggered automatically after correct passcode unlock
-function startIntroSequence() {
-  // 1. Open the two big overlapping clouds
-  cloudsIntroWrapper.classList.add('opened');
+function updateDots() {
+  passcodeDots.forEach((dot, idx) => {
+    if (idx < enteredCode.length) {
+      dot.classList.add('filled');
+    } else {
+      dot.classList.remove('filled');
+    }
+  });
+}
 
-  // 2. Pig thinks out loud step-by-step
-  setTimeout(() => {
-    pigThought.textContent = "Hmmmm what a speacial day is today...";
-  }, 500);
-
-  setTimeout(() => {
-    pigThought.textContent = "Oh wait today is my pancha's birthdayy!";
-  }, 2800);
-
-  setTimeout(() => {
-    pigThought.textContent = "lets go to celebrate it come follow me";
-  }, 5200);
-
-  // 3. Pig goes backward slowly and changes thought
-  setTimeout(() => {
-    pigIntroStage.classList.add('gone-back');
-    pigThought.textContent = "click anywhere or wait";
-    pigThought.style.transform = "translateX(-50%) scale(1.1)";
-  }, 7600);
-
-  // 4. Transition to candle screen step by step
-  setTimeout(() => {
-    pigScreen.classList.add('hide');
-    candleScreen.classList.remove('hide-init');
-
-    // Fade candle in step-by-step
+function checkPasscode() {
+  if (enteredCode === correctPasscode) {
+    pigThought.textContent = " Yay! Correct passcode! ✨";
+    passcodeBox.style.display = "none";
+    
     setTimeout(() => {
-      candleButton.classList.add('faded-visible');
-    }, 400);
+      // 1. Open the two big overlapping clouds
+      cloudsIntroWrapper.classList.add('opened');
+    }, 600);
 
-    // Suddenly glow the candle
+    // 2. Transition to candle screen step by step
     setTimeout(() => {
-      candleButton.classList.add('glowing');
+      pigScreen.classList.add('hide');
+      candleScreen.classList.remove('hide-init');
+
+      // Fade candle in step-by-step
+      setTimeout(() => {
+        candleButton.classList.add('faded-visible');
+      }, 400);
+
+      // Suddenly glow the candle
+      setTimeout(() => {
+        candleButton.classList.add('glowing');
+      }, 2000);
+
     }, 2000);
-
-  }, 9000);
+  } else {
+    pigThought.textContent = " Wrong passcode, try again!";
+    passcodeBox.style.transform = "translateX(8px)";
+    setTimeout(() => passcodeBox.style.transform = "translateX(-8px)", 100);
+    setTimeout(() => passcodeBox.style.transform = "translateX(0)", 200);
+    enteredCode = "";
+    updateDots();
+  }
 }
 
 // Candle tap interaction triggering smoke on whole screen and surprise
