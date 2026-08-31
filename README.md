@@ -1,4 +1,4 @@
-CHATHUU / SUDUU BIRTHDAY SURPRISE - VERSION 2
+SUDUU BIRTHDAY SURPRISE - VERSION 2
 
 Opening: click the glowing candle -> birthday blast -> website.
 The upper-left 🐷 For my Pancha 🐷 is a button that opens assets/our-photo.jpg.
