@@ -9,236 +9,64 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-
-  <section class="pig-screen" id="pigScreen">
-    <div class="clouds-intro-wrapper" id="cloudsIntroWrapper">
-      <div class="pig-intro-stage" id="pigIntroStage">
-        <div class="thought-bubble" id="pigThought">Enter the secret code, my love... ✨</div>
-        <div class="pig-character-walk">
-          <div class="pig-body-part">🐷</div>
-        </div>
-        <div class="passcode-box" id="passcodeBox">
-          <div class="passcode-dots" id="passcodeDots">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          </div>
-          <div class="passcode-keypad">
-            <button class="key-btn" data-val="1">1</button>
-            <button class="key-btn" data-val="2">2</button>
-            <button class="key-btn" data-val="3">3</button>
-            <button class="key-btn" data-val="4">4</button>
-            <button class="key-btn" data-val="5">5</button>
-            <button class="key-btn" data-val="6">6</button>
-            <button class="key-btn" data-val="7">7</button>
-            <button class="key-btn" data-val="8">8</button>
-            <button class="key-btn" data-val="9">9</button>
-            <button class="key-btn key-clear" data-val="C">✕</button>
-            <button class="key-btn" data-val="0">0</button>
-            <button class="key-btn key-enter" data-val="ok">💗</button>
-          </div>
-        </div>
-      </div>
-      <div class="big-intro-cloud cloud-left" id="cloudLeft"></div>
-      <div class="big-intro-cloud cloud-right" id="cloudRight"></div>
-    </div>
-  </section>
-
-  <section class="candle-screen hide-init" id="candleScreen">
-    <div class="candle-card">
-      <p class="tiny">A little birthday surprise for you...</p>
-      <h1>Make a wish, Suduu 💗</h1>
-      <button class="candle-button" id="candleButton" aria-label="Light off the birthday candle">
-        <span class="flame"><i></i></span><span class="candle-body"></span><span class="candle-base"></span>
-      </button>
-    </div>
-  </section>
-
-  <div class="smoke-overlay" id="smokeOverlay"></div>
-
-  <div class="birthday-blast" id="blast"><div class="blast-text">HAPPY BIRTHDAY! 🎂💗</div></div>
   
-  <div class="site" id="site">
-    <div class="sky">
-      <div class="cloud cloud-1"></div><div class="cloud cloud-2"></div>
-      <div class="cloud cloud-3"></div>
-      <div class="stars"></div>
-      <div class="hearts-bg" id="heartsBg"></div>
-    </div>
-
-    <main class="app">
-      <header class="hero">
-        <button class="top-pill" id="photoButton">🐷 For my Pancha 🐷</button>
-        <button class="date-pill" id="dateButton" aria-label="View special date calendar">🎂 06.09.2026</button>
-        <p class="small-title">Happy Birthday</p>
-        <h1>Suduu</h1>
-        <div class="nickname">♡ My loving Panchoo ♡</div>
-        <p class="intro">I made three little gifts for the girl who is like the sky to me. ☁️💗<br>
-          <span>Open them one by one...</span></p>
-      </header>
-
-      <section class="gifts" aria-label="Three birthday gifts">
-        <button class="gift-card" data-gift="message" aria-label="Open sweet message">
-          <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
-          <strong>💌 A Sweet Message</strong><small>Open me first</small>
-        </button>
-
-        <button class="gift-card" data-gift="memories" aria-label="Open memories">
-          <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
-          <strong>📸 Our Memories</strong><small>A little photo surprise</small>
-        </button>
-
-        <button class="gift-card" data-gift="song" aria-label="Open song">
-          <div class="gift-box"><div class="lid"></div><div class="box"></div><div class="ribbon"></div><div class="bow">🎀</div><span class="lock">♡</span></div>
-          <strong>🎵 A Song For You</strong><small>One song, just for you</small>
-        </button>
-      </section>
-
-      <section class="mini-game-section" aria-label="Mini game">
-        <div class="game-card-box">
-          <h2>Find the Cute Pig Mini Game 🐷💕</h2>
-          <p class="game-sub">Help find the cute hiding pig among the magical cards!</p>
-          <div class="game-grid" id="gameGrid"></div>
-          <p class="game-status" id="gameStatus">Click a card to find the hidden cute pig!</p>
-        </div>
-      </section>
-
-      <div class="progress-wrap">
-        <div class="progress-text"><span id="openedCount">0</span> / 3 gifts opened 💗</div>
-        <div class="progress"><span id="progressBar"></span></div>
-      </div>
-
-      <section class="message-panel" id="finalHint">
-        <div class="panel-heart">♡</div>
-        <p>Three little gifts. One very special girl. 🌸</p>
-        <small>Take your time, Panchoo. There is a little surprise waiting at the end. ✨</small>
-      </section>
-    </main>
-  </div>
-
-  <div class="modal" id="photoModal" aria-hidden="true">
-    <div class="modal-card">
-      <button class="close" id="closePhoto" aria-label="Close">×</button>
-      <div class="modal-icon">🐷💕</div><h2>Our Little World</h2>
-      <p class="modal-sub">A photo just for us. 💗</p>
-      <img class="main-memory-photo" src="assets/our-photo.jpg" alt="Our photo" onerror="this.style.display='none';document.getElementById('photoFallback').style.display='grid'">
-      <div class="photo-fallback" id="photoFallback"><span>📸</span><b>Add your photo here</b><small>Replace <code>assets/our-photo.jpg</code> with your photo.</small></div>
-    </div>
-  </div>
-
-  <div class="modal" id="calendarModal" aria-hidden="true">
-    <div class="modal-card calendar-card-box">
-      <button class="close" id="closeCalendar" aria-label="Close">×</button>
-      <div class="modal-icon">🗓️</div>
-      <h2>September 2026</h2>
-      <p class="modal-sub">The most special day of the year! 💗</p>
-      <div class="custom-calendar">
-        <div class="cal-header-days">
-          <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-        </div>
-        <div class="cal-grid">
-          <span class="fade-day">30</span><span class="fade-day">31</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-          <span class="special-birthday-date">6 👑🎂</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
-          <span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
-          <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
-          <span>27</span><span>28</span><span>29</span><span>30</span><span class="fade-day">1</span><span class="fade-day">2</span><span class="fade-day">3</span>
-        </div>
-      </div>
-      <p class="cal-note">✨ September 6th (Sunday): Suduu's Birthday! ✨</p>
-    </div>
-  </div>
-
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-card">
-      <button class="close" id="closeModal" aria-label="Close">×</button>
-      <div id="modalContent"></div>
-    </div>
-  </div>
-
-  <div class="modal" id="photoPreviewModal" aria-hidden="true">
-    <div class="modal-card photo-preview-card">
-      <button class="close" id="closePhotoPreview" aria-label="Close">×</button>
-      <div class="modal-icon">📸</div>
-      <img class="preview-large-photo" id="previewLargeImg" src="" alt="Enlarged Memory Photo">
-      <p class="modal-sub" id="previewCaption">Our precious memory 💗</p>
-    </div>
-  </div>
-
-  <div class="final-screen" id="finalScreen" aria-hidden="true">
-    <div class="final-card">
-      <div class="big-heart">💗</div>
-      <p class="final-kicker">You opened all three...</p>
-      <h2>Happy 25th Birthday,<br><span>My loving Panchoo 🎂✨</span></h2>
-      <p><b>Keep smiling, my Sweetest Angry bird 💗</b></p>
-      <p>You are my little piece of sky — beautiful, bright, and impossible not to smile at. ☁️🌸</p>
-      <p class="signature">With lots of love,<br><b>your ura 🐷💕</b></p>
-      <button class="replay" id="replay">Replay the surprise ↻</button>
-    </div>
-  </div>
-
-  <template id="messageTemplate">
-    <div class="vintage-envelope-opening-stage">
-      <div class="open-envelope-container" id="openEnvelopeContainer">
-        <div class="open-env-back"></div>
-        <div class="vintage-letter-card" id="vintageLetterCard">
-          <div class="modal-icon">💌</div>
-          <h2>For my Pancha</h2>
-          <div class="letter vintage-paper-style">
-            <p><b>Happy 25th Birthday, Suduu! 🌸💕</b></p>
-            <p>You are like the sky to me — sometimes calm, sometimes full of colors, but always beautiful in your own way. ☁️🌷</p>
-            <p>Thank you for being my Pancha, my favorite person, and the one who always calls me <b>“ura” 🐷😂</b>.</p>
-            <p>I hope this new year of your life brings you endless happiness, beautiful moments, and everything your heart wishes for.</p>
-            <p><b>Keep smiling, my Sweetest Angry bird 💗</b></p>
-            <p><b>Happy 25th Birthday, My loving Panchoo 🎂✨</b></p>
-          </div>
-        </div>
-        <div class="open-env-front"></div>
-        <div class="open-env-flap" id="openEnvFlap"></div>
-      </div>
-      <button class="pull-letter-btn" id="pullLetterBtn">Pull letter out of envelope ✨</button>
-    </div>
-  </template>
-
-  <template id="memoriesTemplate">
-    <div class="modal-icon">📸</div><h2>Our Little Memories</h2>
-    <div class="photos photos-exact-5cm">
-      <div class="memory-photo-box"><img src="assets/photo1.jpg" alt="Memory 1" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo2.jpg" alt="Memory 2" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo3.jpg" alt="Memory 3" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo4.jpg" alt="Memory 4" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo5.jpg" alt="Memory 5" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo6.jpg" alt="Memory 6" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo7.jpg" alt="Memory 7" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo8.jpg" alt="Memory 8" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo9.jpg" alt="Memory 9" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo10.jpg" alt="Memory 10" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo11.jpg" alt="Memory 11" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo12.jpg" alt="Memory 12" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo13.jpg" alt="Memory 13" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo14.jpg" alt="Memory 14" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo15.jpg" alt="Memory 15" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo16.jpg" alt="Memory 16" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo17.jpg" alt="Memory 17" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo18.jpg" alt="Memory 18" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo19.jpg" alt="Memory 19" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo20.jpg" alt="Memory 20" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo21.jpg" alt="Memory 21" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo22.jpg" alt="Memory 22" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo23.jpg" alt="Memory 23" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo24.jpg" alt="Memory 24" onerror="this.src='assets/placeholder.svg'"></div>
-      <div class="memory-photo-box"><img src="assets/photo25.jpg" alt="Memory 25" onerror="this.src='assets/placeholder.svg'"></div>
-    </div>
-  </template>
-
-  <template id="songTemplate">
-    <div class="modal-icon">🎵</div><h2>A Song For You</h2>
-    <p class="modal-sub">Thinking Out Loud — Ed Sheeran 💗</p>
-    <div class="record"><div class="record-center">♡</div></div>
-    <audio id="songPlayer" controls preload="metadata"><source src="assets/thinking-out-loud.mp3" type="audio/mpeg"></audio>
-    <p class="song-note">Add your legally obtained audio as <code>assets/thinking-out-loud.mp3</code> to enable this gift.</p>
-  </template>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  <style>
+    /* --- CSS STYLES --- */
+    *{box-sizing:border-box}
+    :root{--pink:#ff6fae;--hot:#f84d93;--soft:#fff3f8;--ink:#463744;--white:#fff;--shadow:0 18px 45px rgba(207,83,139,.16)}
+    html,body{margin:0;min-height:100%;font-family:"Baloo 2",system-ui,sans-serif;color:var(--ink);overflow-x:hidden}
+    body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%)}
+    .sky{position:fixed;inset:0;z-index:-2;overflow:hidden;background:linear-gradient(180deg,#ffd2e5,#fff0f7 55%,#f8f4ff)}
+    .cloud{position:absolute;width:260px;height:75px;background:rgba(255,255,255,.45);border-radius:100px;filter:blur(1px);animation: floatCloud 8s ease-in-out infinite alternate;}
+    @keyframes floatCloud { 0% { transform: translateY(0px); } 100% { transform: translateY(-12px); } }
+    .cloud:before,.cloud:after{content:"";position:absolute;background:inherit;border-radius:50%}
+    .cloud:before{width:110px;height:110px;left:40px;top:-45px}.cloud:after{width:140px;height:140px;right:30px;top:-65px}
+    .cloud-1{top:18%;left:-100px;animation-delay: 0s;}
+    .cloud-2{top:62%;right:-110px;transform:scale(.85);animation-delay: 2s;}
+    .cloud-3{top:82%;left:10%;transform:scale(.55);opacity:.7;animation-delay: 4s;}
+    .stars:before,.stars:after{content:"✦  ·  ✧     ·  ✦       ·  ✧   ·";position:absolute;color:rgba(255,255,255,.85);font-size:25px;letter-spacing:20px;top:12%;left:8%}
+    .stars:after{top:47%;left:72%;font-size:18px}
+    .hearts-bg{position:absolute;inset:0;pointer-events:none}
+    .float-heart{position:absolute;animation:floatUp linear forwards;opacity:.6}
+    @keyframes floatUp{from{transform:translateY(20px) scale(.8);opacity:0}20%{opacity:.7}to{transform:translateY(-110vh) scale(1.25) rotate(18deg);opacity:0}}
+    .app{width:min(980px,92vw);margin:auto;padding:28px 0 60px}
+    .hero{text-align:center;position:relative}
+    .top-pill,.date-pill{position:absolute;top:0;background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.8);padding:9px 18px;border-radius:999px;box-shadow:0 8px 25px rgba(211,89,139,.1);font-weight:700;color:#ee4f92}
+    .top-pill{left:0}.date-pill{right:0; cursor:pointer; font-family:inherit; transition: transform 0.2s;}
+    .date-pill:hover{transform: scale(1.05); background: rgba(255,255,255,.9);}
+    .small-title{margin:62px 0 0;font-size:18px}.hero h1{font-family:Pacifico,cursive;color:#f44e95;font-size:clamp(54px,10vw,92px);line-height:1;margin:6px 0;text-shadow:0 5px 0 rgba(255,255,255,.8)}
+    .nickname{display:inline-block;background:#ff6fae;color:#fff;padding:5px 30px;border-radius:12px;transform:rotate(-1deg);font-weight:700;font-size:20px}
+    .intro{margin:24px auto 28px;max-width:650px;font-size:20px;line-height:1.45}.intro span{color:#f14f94;font-weight:700}
+    .gifts{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-top:28px}
+    .gift-card{border:0;background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.9);border-radius:28px;padding:24px 14px 18px;box-shadow:var(--shadow);cursor:pointer;color:var(--ink);font-family:inherit;transition:.25s}
+    .gift-card:hover{transform:translateY(-8px) rotate(-1deg);box-shadow:0 24px 55px rgba(207,83,139,.22)}
+    .gift-card.opened{background:rgba(255,255,255,.88);outline:2px solid #ff9bc3}
+    .gift-card strong{display:block;color:#ef5797;font-size:19px}.gift-card small{display:block;margin-top:3px;color:#8f7584}
+    .gift-box{height:170px;position:relative;width:180px;margin:auto;filter:drop-drop-shadow(0 13px 10px rgba(201,66,126,.17))}
+    .gift-box .box{position:absolute;left:20px;right:20px;bottom:10px;height:105px;border-radius:8px 8px 15px 15px;background:linear-gradient(90deg,#ff72ad,#ff9ac5 50%,#ff65a4)}
+    .gift-box .lid{position:absolute;left:12px;right:12px;top:45px;height:38px;border-radius:10px;background:linear-gradient(90deg,#ff5e9e,#ff98c4);z-index:2}
+    .ribbon{position:absolute;z-index:3;width:28px;height:105px;left:76px;bottom:10px;background:#ffb2d0;border-radius:3px}
+    .bow{position:absolute;z-index:4;top:3px;left:53px;font-size:75px;transform:rotate(-7deg)}
+    .lock{position:absolute;z-index:5;left:72px;top:72px;width:38px;height:38px;background:#fff;border-radius:50%;display:grid;place-items:center;color:#f65c9c;font-size:23px}
+    .mini-game-section { margin: 35px auto 0; max-width: 700px; }
+    .game-card-box { background: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.9); border-radius: 28px; padding: 24px; text-align: center; box-shadow: var(--shadow); }
+    .game-card-box h2 { font-family: Pacifico, cursive; color: #ef5797; font-size: 26px; margin: 0 0 6px 0; }
+    .game-sub { color: #8f7584; margin-bottom: 20px; font-size: 16px; }
+    .game-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 480px; margin: 0 auto 15px; }
+    .game-tile { background: linear-gradient(135deg, #ff8ebc, #ff6fae); border: none; border-radius: 16px; aspect-ratio: 1; font-size: 32px; cursor: pointer; box-shadow: 0 8px 20px rgba(207,83,139,0.2); transition: transform 0.2s, background 0.2s; display: grid; place-items: center; color: #fff; font-weight: 700; }
+    .game-tile:hover { transform: scale(1.05); }
+    .game-tile.revealed { background: #fff; border: 2px solid #ff9bc3; box-shadow: none; }
+    .game-status { font-weight: 700; color: #d65b91; font-size: 17px; margin: 0; }
+    .progress-wrap{max-width:530px;margin:35px auto 0;text-align:center}.progress-text{font-weight:700;color:#d65b91}.progress{height:9px;background:rgba(255,255,255,.7);border-radius:20px;margin-top:9px;overflow:hidden}.progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#ff79b2,#f24b91);border-radius:20px;transition:.5s}
+    .message-panel{margin:30px auto 0;max-width:700px;text-align:center;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);padding:22px;border-radius:25px;box-shadow:var(--shadow)}.panel-heart{font-size:28px;color:#f35a9b}.message-panel p{font-size:20px;margin:4px}.message-panel small{color:#8b7583}
+    .modal,.final-screen{position:fixed;inset:0;background:rgba(79,38,61,.3);backdrop-filter:blur(7px);z-index:20;display:none;align-items:center;justify-content:center;padding:20px}.modal.show,.final-screen.show{display:flex}
+    .modal-card{position:relative;width:min(720px,95vw);max-height:90vh;overflow:auto;background:linear-gradient(180deg,#fffafd,#fff1f7);border:2px solid #fff;border-radius:30px;padding:34px;box-shadow:0 30px 80px rgba(91,38,68,.25);text-align:center}
+    .close{position:absolute;right:15px;top:12px;border:0;background:#fff;color:#ee5796;width:38px;height:38px;border-radius:50%;font-size:28px;cursor:pointer}.modal-icon{font-size:48px}.modal h2{font-family:Pacifico,cursive;color:#ef5797;font-size:38px;margin:4px 0}.modal-sub{margin-top:0;color:#896e7e}
+    .letter{font-size:19px;line-height:1.55;text-align:center;padding:12px 20px}.letter p{margin:14px 0}.letter b{color:#e94e91}
+    .vintage-envelope-opening-stage { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; }
+    .open-envelope-container { position: relative; width: min(440px, 85vw); height: 280px; background: #e8d3be; border-radius: 12px; box-shadow: 0 15px 35px rgba(120,80,60,0.25); margin-bottom: 20px; overflow: hidden; }
+    .open-env-back { position: absolute; inset: 0; background: #eddccb; }
+    .vintage-letter-card { position: absolute; left: 20px; right: 20px; bottom: 20px; height: 230px; background: #fbf6ec; border: 2px solid #dfc7b0; border-radius: 10px; padding: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); transform: translateY(120px); z-index: 2; overflow-y: auto; text-align: center; }
+    .vintage-letter-card.pulled-out { transform: translateY(-40px); height: 380px; box-shadow: 0 15px 40px rgba(100,60,40,0.2); }
+    .vintage-paper-style { background: #fbf6ec; font-family: "Baloo 2", serif; color: #524039; }
+    .open-env-front { position: absolute; bottom: 0; left: 0; width: 100%; height: 160px; background: linear-gradient(180deg, #e4cca7, #d7bd99); clip-path: polygon(0 30%, 50% 100%, 100% 30%, 100% 100%, 0 10
