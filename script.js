@@ -138,16 +138,15 @@ function openGift(t){
   if(t==='message') {
     const pullBtn = document.getElementById('pullLetterBtn');
     const envFlap = document.getElementById('openEnvFlap');
-    const letterCard = document.getElementById('vintageLetterCard');
     
     if(pullBtn) {
       pullBtn.addEventListener('click', () => {
         envFlap.classList.add('opened');
-        setTimeout(() => {
-          letterCard.classList.add('pulled-out');
-          pullBtn.style.display = 'none';
-        }, 300);
         confetti(25);
+        setTimeout(() => {
+          modalContent.innerHTML = document.getElementById('letterPreviewTemplate').innerHTML;
+          confetti(35);
+        }, 700);
       });
     }
   }
