@@ -13,7 +13,7 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .cloud-1{top:18%;left:-100px;animation-delay: 0s;}
 .cloud-2{top:62%;right:-110px;transform:scale(.85);animation-delay: 2s;}
 .cloud-3{top:82%;left:10%;transform:scale(.55);opacity:.7;animation-delay: 4s;}
-.stars:before,.stars:after{content:"✦  ·  ✧     ·  ✦       ·  ✧   ·";position:absolute;color:rgba(255,255,255,.85);font-size:25px;letter-spacing:20px;top:12%;left:8%}
+.stars:before,.stars:after{content:"✦  ·  ✧     ·  ✦        ·  ✧    ·";position:absolute;color:rgba(255,255,255,.85);font-size:25px;letter-spacing:20px;top:12%;left:8%}
 .stars:after{top:47%;left:72%;font-size:18px}
 .hearts-bg{position:absolute;inset:0;pointer-events:none}
 .float-heart{position:absolute;animation:floatUp linear forwards;opacity:.6}
@@ -114,9 +114,9 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 }
 .open-envelope-container {
   position: relative;
-  width: min(440px, 85vw);
-  height: 280px;
-  background: #e8d3be;
+  width: min(320px, 80vw);
+  height: 210px;
+  background: #f4e5d4;
   border-radius: 12px;
   box-shadow: 0 15px 35px rgba(120,80,60,0.25);
   margin-bottom: 20px;
@@ -125,41 +125,14 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .open-env-back {
   position: absolute;
   inset: 0;
-  background: #eddccb;
-}
-.vintage-letter-card {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  height: 230px;
-  background: #fbf6ec;
-  border: 2px solid #dfc7b0;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-  transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-  transform: translateY(120px);
-  z-index: 2;
-  overflow-y: auto;
-  text-align: center;
-}
-.vintage-letter-card.pulled-out {
-  transform: translateY(-40px);
-  height: 380px;
-  box-shadow: 0 15px 40px rgba(100,60,40,0.2);
-}
-.vintage-paper-style {
-  background: #fbf6ec;
-  font-family: "Baloo 2", serif;
-  color: #524039;
+  background: #ead6c2;
 }
 .open-env-front {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 160px;
+  height: 130px;
   background: linear-gradient(180deg, #e4cca7, #d7bd99);
   clip-path: polygon(0 30%, 50% 100%, 100% 30%, 100% 100%, 0 100%);
   z-index: 3;
@@ -172,8 +145,8 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
   top: 0;
   left: 0;
   width: 100%;
-  height: 130px;
-  background: #eedbc6;
+  height: 110px;
+  background: #ecdcc9;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   z-index: 4;
   transform-origin: top;
@@ -184,6 +157,18 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 .open-env-flap.opened {
   transform: rotateX(180deg);
   z-index: 1;
+}
+.envelope-stamp {
+  position: absolute;
+  z-index: 5;
+  top: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32px;
+  transition: opacity 0.3s;
+}
+.open-env-flap.opened ~ .envelope-stamp {
+  opacity: 0;
 }
 .pull-letter-btn {
   background: #d46a84;
@@ -200,6 +185,16 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
 }
 .pull-letter-btn:hover {
   transform: scale(1.05);
+}
+.vintage-paper-style {
+  background: #fbf6ec;
+  font-family: "Baloo 2", serif;
+  color: #524039;
+  border: 2px solid #dfc7b0;
+  border-radius: 20px;
+  padding: 15px;
+  margin-top: 10px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.03);
 }
 
 .photos-exact-5cm {
