@@ -160,6 +160,36 @@ function openGift(t){
     }
   }
 
+  // If memories template, add click-to-preview functionality for all photos
+  if(t==='memories') {
+    const memoryBoxes = modalContent.querySelectorAll('.memory-photo-box');
+    const previewModal = document.getElementById('photoPreviewModal');
+    const previewImg = document.getElementById('previewLargeImg');
+    const closePreviewBtn = document.getElementById('closePhotoPreview');
+    const previewCaption = document.getElementById('previewCaption');
+
+    memoryBoxes.forEach((box, index) => {
+      const img = box.querySelector('img');
+      if (img) {
+        box.addEventListener('click', () => {
+          previewImg.src = img.src;
+          previewCaption.textContent = `Memory #${index + 1} 💗`;
+          previewModal.classList.add('show');
+        });
+      }
+    });
+
+    closePreviewBtn.onclick = () => {
+      previewModal.classList.remove('show');
+    };
+
+    previewModal.onclick = (e) => {
+      if (e.target === previewModal) {
+        previewModal.classList.remove('show');
+      }
+    };
+  }
+
   if(t==='song')setupSong();
   confetti(35);
 }
@@ -170,7 +200,7 @@ function closeGift(){let a=document.getElementById('songPlayer');if(a)a.pause();
 closeModal.addEventListener('click',closeGift);modal.addEventListener('click',e=>{if(e.target===modal)closeGift()});
 function setupSong(){stopBackground();let a=document.getElementById('songPlayer'),r=document.querySelector('.record');a.addEventListener('play',()=>r.classList.add('playing'));a.addEventListener('pause',()=>r.classList.remove('playing'));a.addEventListener('ended',()=>r.classList.remove('playing'));a.addEventListener('error',()=>{document.querySelector('.song-note').textContent='Add your legally obtained audio as assets/thinking-out-loud.mp3 to enable this gift.'});a.play().catch(()=>{})}
 replay.addEventListener('click',()=>{finalScreen.classList.remove('show');opened.clear();gifts.forEach(g=>g.classList.remove('opened'));openedCount.textContent='0';progressBar.style.width='0%';startBackground()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){photoModal.classList.remove('show');calendarModal.classList.remove('show');if(modal.classList.contains('show'))closeGift()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){photoModal.classList.remove('show');calendarModal.classList.remove('show');const previewModal = document.getElementById('photoPreviewModal');if(previewModal) previewModal.classList.remove('show');if(modal.classList.contains('show'))closeGift()}});
 
 // MINI GAME LOGIC
 const gameGrid = document.getElementById('gameGrid');
