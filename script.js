@@ -74,21 +74,17 @@ function checkPasscode() {
     passcodeBox.style.display = "none";
     
     setTimeout(() => {
-      // 1. Open the two big overlapping clouds
       cloudsIntroWrapper.classList.add('opened');
     }, 600);
 
-    // 2. Transition to candle screen step by step
     setTimeout(() => {
       pigScreen.classList.add('hide');
       candleScreen.classList.remove('hide-init');
 
-      // Fade candle in step-by-step
       setTimeout(() => {
         candleButton.classList.add('faded-visible');
       }, 400);
 
-      // Suddenly glow the candle
       setTimeout(() => {
         candleButton.classList.add('glowing');
       }, 2000);
@@ -104,7 +100,6 @@ function checkPasscode() {
   }
 }
 
-// Candle tap interaction triggering smoke on whole screen and surprise
 candleButton.addEventListener('click', () => {
   candleButton.classList.add('off');
   smokeOverlay.classList.add('show');
@@ -116,14 +111,12 @@ candleButton.addEventListener('click', () => {
     site.classList.add('show');
     startBackground();
 
-    // Fade out smoke smoothly
     setTimeout(() => {
       smokeOverlay.classList.remove('show');
     }, 600);
   }, 1400);
 });
 
-// Date Button Calendar Modal Logic
 dateButton.addEventListener('click', () => {
   calendarModal.classList.add('show');
   confetti(25);
@@ -142,7 +135,6 @@ function openGift(t){
   modal.classList.add('show');
   markOpened(t);
 
-  // If vintage message card, attach envelope opening interaction
   if(t==='message') {
     const pullBtn = document.getElementById('pullLetterBtn');
     const envFlap = document.getElementById('openEnvFlap');
@@ -160,7 +152,6 @@ function openGift(t){
     }
   }
 
-  // If memories template, add click-to-preview functionality for all photos
   if(t==='memories') {
     const memoryBoxes = modalContent.querySelectorAll('.memory-photo-box');
     const previewModal = document.getElementById('photoPreviewModal');
@@ -173,7 +164,7 @@ function openGift(t){
       if (img) {
         box.addEventListener('click', () => {
           previewImg.src = img.src;
-          previewCaption.textContent = `Memory #${index + 1} 💗`;
+          previewCaption.textContent = `Our precious memory 💗`;
           previewModal.classList.add('show');
         });
       }
@@ -202,7 +193,6 @@ function setupSong(){stopBackground();let a=document.getElementById('songPlayer'
 replay.addEventListener('click',()=>{finalScreen.classList.remove('show');opened.clear();gifts.forEach(g=>g.classList.remove('opened'));openedCount.textContent='0';progressBar.style.width='0%';startBackground()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){photoModal.classList.remove('show');calendarModal.classList.remove('show');const previewModal = document.getElementById('photoPreviewModal');if(previewModal) previewModal.classList.remove('show');if(modal.classList.contains('show'))closeGift()}});
 
-// MINI GAME LOGIC
 const gameGrid = document.getElementById('gameGrid');
 const gameStatus = document.getElementById('gameStatus');
 const totalTiles = 4;
