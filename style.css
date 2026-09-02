@@ -222,6 +222,7 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
   align-items: center;
   justify-content: center;
   transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .memory-photo-box:hover {
@@ -232,6 +233,21 @@ body{background:linear-gradient(180deg,#ffd8e8 0%,#fff0f7 55%,#fdf8ff 100%);over
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Photo Preview Modal Styling */
+.photo-preview-card {
+  max-width: 500px !important;
+  text-align: center;
+}
+.preview-large-photo {
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  border-radius: 20px;
+  border: 3px solid #ff9fc5;
+  box-shadow: 0 10px 30px rgba(207,83,139,0.2);
+  margin: 15px 0 10px 0;
 }
 
 .record{width:150px;height:150px;margin:20px auto;border-radius:50%;background:repeating-radial-gradient(circle,#28232b 0 3px,#413941 4px 6px);display:grid;place-items:center;box-shadow:0 10px 30px #caa;animation:spin 6s linear infinite paused}.record.playing{animation-play-state:running}.record-center{width:48px;height:48px;border-radius:50%;background:#ff6fae;color:#fff;display:grid;place-items:center;font-size:22px;border:5px solid #fff}
